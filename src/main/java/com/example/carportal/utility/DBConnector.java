@@ -21,10 +21,15 @@ public class DBConnector {
         password = System.getenv("db.password");
 
         try {
-            con = DriverManager.getConnection("jdbc:mysql://m7az7525jg6ygibs.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/zz8alsto5xji5csq", "rbr1fjpttf5bx6st", "oghqg58l1vq2ij25");
+            con = DriverManager.getConnection(url, username, password);
         } catch (SQLException e){
             e.printStackTrace();
         }
         return con;
+    }
+
+    public static void main(String[] args) {
+        DBConnector c = new DBConnector();
+        c.getConnection();
     }
 }
