@@ -10,10 +10,10 @@ public class Car {
     private String make;
     private String model;
     private String chassisNumber;
-    private Colour colour;
+    private String colour;
     private ArrayList<Damage> carDamages;
 
-    public Car(int carID, String make, String model, String chassisNumber, Colour colour, ArrayList<Damage> carDamages) {
+    public Car(int carID, String make, String model, String chassisNumber, String colour) {
         this.carID = carID;
         this.make = make;
         this.model = model;
@@ -54,11 +54,11 @@ public class Car {
         this.chassisNumber = chassisNumber;
     }
 
-    public Colour getColour() {
+    public String getColour() {
         return colour;
     }
 
-    public void setColour(Colour colour) {
+    public void setColour(String colour) {
         this.colour = colour;
     }
 
