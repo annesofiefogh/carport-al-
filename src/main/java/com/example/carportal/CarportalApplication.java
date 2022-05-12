@@ -1,10 +1,6 @@
 package com.example.carportal;
 
-import com.example.carportal.models.Car;
-import com.example.carportal.repositories.CarDBHandler;
-import com.example.carportal.repositories.IRepository;
-import com.example.carportal.repositories.LeaseDBHandler;
-import com.example.carportal.repositories.CarDBHandler;
+import com.example.carportal.repositories.CarRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -24,5 +20,8 @@ public class CarportalApplication implements CommandLineRunner {
         /*System.out.println("Hey allesammen");
         CarDBHandler handler = new CarDBHandler();
         handler.getOneEntity();*/
+        System.out.println("Hey allesammen");
+        CarRepository handler = new CarRepository();
+        handler.getOneEntity(1);
     }
 }

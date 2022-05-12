@@ -1,7 +1,7 @@
 package com.example.carportal.repositories;
 
 import com.example.carportal.models.Car;
-import com.example.carportal.utility.DBConnector;
+import com.example.carportal.repositories.utility.DBConnector;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.List;
 
-public class CarDBHandler implements ICarDbRepository {
+public class CarRepository implements ICarRepository {
 
     private DBConnector dbc = new DBConnector();
     private Connection con;
@@ -34,7 +34,7 @@ public class CarDBHandler implements ICarDbRepository {
     }
 
     @Override
-    public List getAllEntities() {
+    public List getAllEntities() { // Might not be needed.
         return null;
     }
 
@@ -44,7 +44,7 @@ public class CarDBHandler implements ICarDbRepository {
     }
 
     public static void main(String[] args) {
-        CarDBHandler c = new CarDBHandler();
+        CarRepository c = new CarRepository();
         System.out.println(c.getOneEntity(1));
     }
 
