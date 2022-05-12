@@ -6,12 +6,12 @@ public interface IRepository<T> {
 
     public T getOneEntity(int ID);
 
-    public List<T> getAllEntities();
+    public List<T> getAllEntities(); // Might delete this one
 
     public boolean create(T entity);
 
-    // get all specific entities
-    //
+
+
 
 
 

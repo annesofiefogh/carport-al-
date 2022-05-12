@@ -1,9 +1,9 @@
 package com.example.carportal.services;
 
-import com.example.carportal.repositories.CarDBHandler;
+import com.example.carportal.repositories.CarRepository;
 
 public class CarService {
 
-    private CarDBHandler cDBHandler;
+    private CarRepository cDBHandler;
 
 }

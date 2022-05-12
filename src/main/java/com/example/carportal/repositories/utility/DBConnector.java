@@ -1,4 +1,4 @@
-package com.example.carportal.utility;
+package com.example.carportal.repositories.utility;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
