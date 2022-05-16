@@ -5,6 +5,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+import java.util.HashMap;
+
 @SpringBootApplication
 public class CarportalApplication implements CommandLineRunner {
 
@@ -15,6 +17,9 @@ public class CarportalApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
+        /*System.out.println("Hey allesammen");
+        CarDBHandler handler = new CarDBHandler();
+        handler.getOneEntity();*/
         System.out.println("Hey allesammen");
         CarRepository handler = new CarRepository();
         handler.getOneEntity(1);
