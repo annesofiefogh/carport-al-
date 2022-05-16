@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret abonnement</title>
+</head>
+<body>
+<div><br><br><br>
+    <h1>Opret abonnement</h1>
+    <form name = "leaseCreation" action = "/createlease" method = "POST">
+        <label for=""></label>
+        <input type="">
+
+
+        <label for="price">Pris</label>
+        <input type="number" id="price" name="price" autofocus>
+        <label for="startDate">Oprettelsesdato</label>
+        <input type="date" id="startDate" name="startDate" autofocus>
+        <label for="endDate">Slutdato</label>
+        <input type="date" id="endDate" name="endDate" autofocus>
+        <button onclick="location.href='/createleasesuccess'">Submit</button>
+    </form>
+</div>
+</body>
+</html>

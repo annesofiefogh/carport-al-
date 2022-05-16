@@ -28,12 +28,13 @@ public class LeaseRepository implements ILeaseRepository{
     }
 
     @Override
-    public boolean create(Object entity) { // Create lease
+    public boolean create(Object entity) { // Create lease - hent liste af Available cars
+
         return false;
     }
 
     @Override
-    public boolean update(int id) {     // Change status from open to pending.
+    public boolean update(int id) {     // Change status from open to closed.
         return false;                   // TODO SKAL SGU NOK SLETTES DA VI KUN HAR 2 FORSKELLIGE STATUS, OPEN/PENDING OG CLOSED
     }
 

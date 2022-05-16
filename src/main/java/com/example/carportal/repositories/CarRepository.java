@@ -12,14 +12,14 @@ public class CarRepository implements ICarRepository {
     private Connection con;
 
 
-    @Override //TODO Needs to be changed, since repository can't know models MÅSKE
+    @Override
     public Car getOneEntity(int ID) {
         con = dbc.getConnection();
         Car car = null;
         try{
             ResultSet rs;
             Statement stmt;
-            String sqlString = "SELECT * FROM `car` WHERE Car_ID = " + ID + "" + ";";
+            String sqlString = "SELECT * FROM `car` WHERE `Car_ID` = " + ID + "" + ";";
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
             rs.next();
@@ -49,7 +49,7 @@ public class CarRepository implements ICarRepository {
             con = dbc.getConnection();
             try
             {
-                String sqlString = "UPDATE car SET Available = '" + availableNumber + "' WHERE car_id = '" + id + "'";
+                String sqlString = "UPDATE `car` SET `Available` = '" + availableNumber + "' WHERE car_id = '" + id + "'";
                 PreparedStatement preparedStatement = con.prepareStatement(sqlString);
                 preparedStatement.executeUpdate();
             } catch (SQLException e)
