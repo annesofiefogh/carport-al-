@@ -18,10 +18,7 @@ public class CarportalApplication implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         /*System.out.println("Hey allesammen");
-        CarDBHandler handler = new CarDBHandler();
+        CarDBHandler handler = new CarRepository();
         handler.getOneEntity();*/
-        System.out.println("Hey allesammen");
-        CarRepository handler = new CarRepository();
-        handler.getOneEntity(1);
     }
 }

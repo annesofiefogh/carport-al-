@@ -1,10 +1,45 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Login</title>
 </head>
 <body>
+<h1>Login form</h1>
+<form name="form" id="login" action="/index" method="POST">
 
+    <label for="userName">Username</label><br>
+    <input type="text" id="userName" name="userName" autocomplete="off" autofocus/>
+    <br><br>
+
+    <label for="password">Password</label><br>
+    <input type="password" id="password" name="password" autocomplete="off"/>
+    <br><br>
+
+    <div>
+        <button id="resetButton" class="visible" type="button" onclick="resetForm()">Reset form</button>
+        <button id="submitButton" class="visible" type="submit" onclick="location.href='../LoggedIn'">Login</button>
+    </div>
+
+</form>
+<script th:inline="javascript">
+
+    disableEnter("userName");
+    disableEnter("password");
+
+    function disableEnter(id) {
+        let el = document.getElementById(id);
+        el.addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                event.preventDefault();
+            }
+        });
+    }
+
+    function resetForm() {
+        document.form.userName.value = "";
+        document.form.password.value = "";
+    }
+</script>
 </body>
 </html>
