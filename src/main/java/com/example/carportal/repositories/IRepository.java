@@ -10,6 +10,7 @@ public interface IRepository<T> {
 
     public boolean create(T entity);
 
+    public boolean update (int id);
 
 
 
