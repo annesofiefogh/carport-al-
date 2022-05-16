@@ -13,7 +13,7 @@ public class Car {
     private String colour;
     private ArrayList<Damage> carDamages;
 
-    public Car(int carID, String make, String model, String chassisNumber, String colour) {
+    public Car(int carID, String chassisNumber, String make, String model, String colour) {
         this.carID = carID;
         this.make = make;
         this.model = model;

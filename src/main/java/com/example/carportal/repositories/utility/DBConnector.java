@@ -1,4 +1,4 @@
-package com.example.carportal.utility;
+package com.example.carportal.repositories.utility;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -20,12 +20,16 @@ public class DBConnector {
         username = System.getenv("db.username");
         password = System.getenv("db.password");
 
-
         try {
-            con = DriverManager.getConnection(url,username,password);
+            con = DriverManager.getConnection(url, username, password);
         } catch (SQLException e){
             e.printStackTrace();
         }
         return con;
+    }
+
+    public static void main(String[] args) {
+        DBConnector c = new DBConnector();
+        c.getConnection();
     }
 }
