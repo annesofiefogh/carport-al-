@@ -12,14 +12,23 @@ public class Car {
     private String chassisNumber;
     private String colour;
     private ArrayList<Damage> carDamages;
+    private boolean available;
 
-    public Car(int carID, String chassisNumber, String make, String model, String colour) {
+    public Car(int carID, String chassisNumber, String make, String model, String colour, boolean available) {
         this.carID = carID;
         this.make = make;
         this.model = model;
         this.chassisNumber = chassisNumber;
         this.colour = colour;
-        this.carDamages = carDamages;
+        this.available = available;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
+
+    public void setAvailable(boolean available) {
+        this.available = available;
     }
 
     public int getCarID() {

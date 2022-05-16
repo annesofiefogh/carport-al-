@@ -4,6 +4,9 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class Lease {
+    private enum Status {
+        OPEN, CLOSED, PENDING //TODO SKAL SGU NOK SLETTES
+    }
 
     private int leaseID;
     private Car car;
@@ -12,8 +15,10 @@ public class Lease {
     private Date endDate;
     private Customer customer;
     private ArrayList<Damage> damageReport;
+    private Status status;
 
-    public Lease(int leaseID, Car car, double price, Date startDate, Date endDate, Customer customer, ArrayList<Damage> damageReport) {
+
+    public Lease(int leaseID, Car car, double price, Date startDate, Date endDate, Customer customer, ArrayList<Damage> damageReport, Status status ) {
         this.leaseID = leaseID;
         this.car = car;
         this.price = price;
@@ -21,6 +26,7 @@ public class Lease {
         this.endDate = endDate;
         this.customer = customer;
         this.damageReport = damageReport;
+        this.status = status;
     }
 
     public int getLeaseID() {
@@ -77,6 +83,14 @@ public class Lease {
 
     public void setDamageReport(ArrayList<Damage> damageReport) {
         this.damageReport = damageReport;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 
     @Override

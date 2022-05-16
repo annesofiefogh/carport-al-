@@ -7,4 +7,6 @@ import java.util.List;
 public interface ICarRepository extends IRepository<Car>{
 
     // MIGHT BE DELETED, make sure CarRepository extends IRepository if that is the case.
+
+
 }
