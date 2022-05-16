@@ -7,9 +7,16 @@
 <body>
 <div><br><br><br>
     <h1>Opret abonnement</h1>
-    <form name = "leaseCreation" action = "/createlease" method = "POST">
-        <label for=""></label>
-        <input type="">
+    <form name="leaseCreation" action="/createlease" method = "POST">
+        <label for="customers">Vælg kunde:&nbsp</label>
+            <select name="customers" id="customers">
+                <option th:each="c : ${allCustomers}" th:value="${c.getId}" th:text="${c.getName()}"></option>
+            </select>
+
+        <label for="cars">Vælg bil:&nbsp</label>
+            <select name="cars" id="cars">
+                <option th:each="car : ${availableCars}" th:value="${car.getId}" th:text="${car.getName()}"></option>
+            </select>
 
 
         <label for="price">Pris</label>
@@ -19,6 +26,7 @@
         <label for="endDate">Slutdato</label>
         <input type="date" id="endDate" name="endDate" autofocus>
         <button onclick="location.href='/createleasesuccess'">Submit</button>
+
     </form>
 </div>
 </body>

@@ -4,6 +4,7 @@ import com.example.carportal.models.Car;
 import com.example.carportal.repositories.utility.DBConnector;
 
 import java.sql.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class CarRepository implements ICarRepository {
@@ -50,14 +51,32 @@ public class CarRepository implements ICarRepository {
             try
             {
                 String sqlString = "UPDATE `car` SET `Available` = '" + availableNumber + "' WHERE car_id = '" + id + "'";
-                PreparedStatement preparedStatement = con.prepareStatement(sqlString);
-                preparedStatement.executeUpdate();
+                PreparedStatement ps = con.prepareStatement(sqlString);
+                ps.executeUpdate();
             } catch (SQLException e)
             {
                 e.printStackTrace();
             }
-
         return false;
+    }
+
+    public ArrayList<Car> getAllAvailableCars(){
+        con = dbc.getConnection();
+        ArrayList<Car> listOfAvailableCars = new ArrayList<>();
+        Statement stmt;
+        ResultSet rs;
+        try{
+           String sqlString = "SELECT * FROM `car` WHERE `Available`= 1";
+           stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+           rs = stmt.executeQuery(sqlString);
+           while (rs.next()){
+               Car car = new Car(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6));
+               listOfAvailableCars.add(car);
+           }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return listOfAvailableCars;
     }
 
     public static void main(String[] args) {
@@ -65,5 +84,4 @@ public class CarRepository implements ICarRepository {
         c.update(1);
         System.out.println(c.getOneEntity(1));
     }
-
 }

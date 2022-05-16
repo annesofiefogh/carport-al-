@@ -2,6 +2,7 @@ package com.example.carportal.models;
 
 public class Customer {
 
+    private int id;
     private String name;
     private int phoneNumber;
     private String email;
@@ -9,13 +10,22 @@ public class Customer {
     private boolean creditApproved;
     private boolean driversLicense;
 
-    public Customer(String name, int phoneNumber, String email, String address, boolean creditApproved, boolean driversLicense) {
+    public Customer(int id, String name, int phoneNumber, String email, String address, boolean creditApproved, boolean driversLicense) {
+        this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.address = address;
         this.creditApproved = creditApproved;
         this.driversLicense = driversLicense;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getName() {
