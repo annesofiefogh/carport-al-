@@ -4,13 +4,13 @@ public class Customer {
 
     private int id;
     private String name;
-    private int phoneNumber;
+    private String phoneNumber;
     private String email;
     private String address;
     private boolean creditApproved;
     private boolean driversLicense;
 
-    public Customer(int id, String name, int phoneNumber, String email, String address, boolean creditApproved, boolean driversLicense) {
+    public Customer(int id, String name, String phoneNumber, String email, String address, boolean creditApproved, boolean driversLicense) {
         this.id = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
@@ -36,11 +36,11 @@ public class Customer {
         this.name = name;
     }
 
-    public int getPhoneNumber() {
+    public String getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 

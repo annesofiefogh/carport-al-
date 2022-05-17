@@ -28,7 +28,7 @@ public class UserRepository implements IUserRepository{
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
             rs.next();
-            customer = new Customer(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getBoolean(6),rs.getBoolean(7));
+            customer = new Customer(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getBoolean(6),rs.getBoolean(7));
         } catch (SQLException e){
             e.printStackTrace();
         }
