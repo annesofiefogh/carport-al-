@@ -8,10 +8,10 @@ public class Lease {
 
     private int leaseID;
     private int carID;
+    private int customerID;
     private double price;
     private LocalDate startDate;
     private LocalDate endDate;
-    private int customerID;
     private boolean status; // Har ændret den til en boolean istedet.
 
     //TODO Har ændret Date til String da jeg ikke kan få databasen til at snakke med en Date variable.
@@ -24,6 +24,8 @@ public class Lease {
         this.customerID = customerID;
         this.status = status;
     }
+
+
 
     @Override
     public String toString() {

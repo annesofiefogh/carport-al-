@@ -15,7 +15,7 @@
 
         <label for="cars">Vælg bil:&nbsp</label>
             <select name="cars" id="cars">
-                <option th:each="car : ${availableCars}" th:value="${car.getId}" th:text="${car.getName()}"></option>
+                <option th:each="car : ${availableCars}" th:value="${car.getCarID()}" th:text="${car.getMake()}"></option>
             </select>
 
 
