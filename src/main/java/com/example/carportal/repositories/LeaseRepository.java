@@ -100,6 +100,18 @@ public class LeaseRepository implements ILeaseRepository {
 
     }
 
+    public boolean closeLease(int leaseID){
+        con = dbc.getConnection();
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement("UPDATE `zz8alsto5xji5csq`.`lease` SET `Status` = '0' WHERE (`Lease_id` = '" + leaseID + "')");
+            preparedStatement.executeUpdate();
+        }catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
+
     @Override
     public ArrayList<Lease> getAllOpenLeases() { // When user needs to create a dmgReport, get a
         // monthly income and see list of cars rented out.
@@ -128,6 +140,8 @@ public class LeaseRepository implements ILeaseRepository {
     public static void main(String[] args) {
         LeaseRepository lr = new LeaseRepository();
         UserRepository userRepository = new UserRepository();
+
+        lr.closeLease(5);
 
         /*
         CarRepository carRepository = new CarRepository();
