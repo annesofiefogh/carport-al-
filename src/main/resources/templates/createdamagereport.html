@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Opret skaderapport</title>
+</head>
+<body>
+<div><br><br><br>
+    <h1>Opret skadesrapport</h1>
+    <form name="damageCreation" action="/createdamagereport" method = "POST">
+        <label for="damageList">Vælg kunde:&nbsp</label>
+        <select name="damageList" id="damageList">
+            <option th:each="c : ${allCustomers}" th:value="${c.getId}" th:text="${c.getName()}"></option>
+        </select>
+
+</body>
+</html>

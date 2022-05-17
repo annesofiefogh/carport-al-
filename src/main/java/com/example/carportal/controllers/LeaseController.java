@@ -2,6 +2,7 @@ package com.example.carportal.controllers;
 
 import com.example.carportal.models.Car;
 import com.example.carportal.models.Customer;
+import com.example.carportal.models.Damage;
 import com.example.carportal.models.Lease;
 import com.example.carportal.services.JoinService;
 import com.example.carportal.services.LeaseService;
@@ -14,6 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 @Controller
 public class LeaseController {
@@ -45,6 +47,20 @@ public class LeaseController {
     @GetMapping("/createleasesuccess")
     public String leaseCreated(){
         return "createleasesuccess";
+    }
+
+    @GetMapping("/createdamagereport")
+    public String closeLease(Model model){
+        model.addAttribute("openLeases", ls.getAllOpenLeases());
+        return "createdamagereport";
+    }
+
+    @PostMapping("/createdamagereport")
+    public String createDamageReport(WebRequest request){
+        int leaseID = Integer.valueOf(request.getParameter("leaseID"));
+        String description = request.getParameter("description");
+        double price = Double.parseDouble(request.getParameter("price"));
+        Damage damage = new Damage()
     }
 
 }

@@ -15,4 +15,8 @@ public class LeaseService {
         lr.create(lease);
     }
 
+    public ArrayList<Lease> getAllOpenLeases(){
+        return lr.getAllOpenLeases();
+    }
+
 }

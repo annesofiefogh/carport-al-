@@ -4,14 +4,11 @@ import java.util.ArrayList;
 
 public class Car {
 
-    public enum Colour {RED,BLUE,BLACK,YELLOW}
-
     private int carID;
     private String make;
     private String model;
     private String chassisNumber;
     private String colour;
-    private ArrayList<Damage> carDamages;
     private boolean available;
 
     public Car(int carID, String chassisNumber, String make, String model, String colour, boolean available) {
@@ -71,13 +68,6 @@ public class Car {
         this.colour = colour;
     }
 
-    public ArrayList<Damage> getCarDamages() {
-        return carDamages;
-    }
-
-    public void setCarDamages(ArrayList<Damage> carDamages) {
-        this.carDamages = carDamages;
-    }
 
     @Override
     public String toString() {
