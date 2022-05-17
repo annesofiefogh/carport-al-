@@ -8,19 +8,19 @@
 <div><br><br><br>
     <h1>Opret abonnement</h1>
     <form name="leaseCreation" action="/createlease" method = "POST">
-        <label for="customers">Vælg kunde:&nbsp</label>
-            <select name="customers" id="customers">
+        <label for="customerID">Vælg kunde:&nbsp</label>
+            <select name="customerID" id="customerID">
                 <option th:each="c : ${allCustomers}" th:value="${c.getId}" th:text="${c.getName()}"></option>
             </select>
 
-        <label for="cars">Vælg bil:&nbsp</label>
-            <select name="cars" id="cars">
+        <label for="carID">Vælg bil:&nbsp</label>
+            <select name="carID" id="carID">
                 <option th:each="car : ${availableCars}" th:value="${car.getCarID()}" th:text="${car.getMake()}"></option>
             </select>
 
 
         <label for="price">Pris</label>
-        <input type="number" id="price" name="price" autofocus>
+        <input type="number" inputmode="decimal" id="price" name="price" autofocus>
         <label for="startDate">Oprettelsesdato</label>
         <input type="date" id="startDate" name="startDate" autofocus>
         <label for="endDate">Slutdato</label>
