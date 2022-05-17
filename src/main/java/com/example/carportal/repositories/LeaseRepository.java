@@ -33,8 +33,8 @@ public class LeaseRepository implements ILeaseRepository{
         int carID = ((Lease) entity).getCarID();
         int costumerID = ((Lease) entity).getCustomerID();
         double price = ((Lease) entity).getPrice();
-        //Date startDate = ((Lease) entity).getStartDate();
-        //Date endDate = ((Lease) entity).getEndDate();
+        LocalDate startDate = ((Lease) entity).getStartDate();
+        LocalDate endDate = ((Lease) entity).getEndDate();
         boolean status = ((Lease) entity).isStatus();
         try
         {
@@ -43,10 +43,8 @@ public class LeaseRepository implements ILeaseRepository{
             preparedStatement.setInt(1, carID);
             preparedStatement.setInt(2, costumerID);
             preparedStatement.setDouble(3, price);
-            //preparedStatement.setDate(4, startDate);
-            //preparedStatement.setDate(5, endDate);
-            preparedStatement.setString(4, "startDate");
-            preparedStatement.setString(5, "endDate");
+            preparedStatement.setDate(4, java.sql.Date.valueOf(startDate));
+            preparedStatement.setDate(5, java.sql.Date.valueOf(endDate));
             preparedStatement.setBoolean(6, status);
             preparedStatement.executeUpdate();
             con.close();
