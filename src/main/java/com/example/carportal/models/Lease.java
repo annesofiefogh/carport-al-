@@ -25,6 +25,15 @@ public class Lease {
         this.status = status;
     }
 
+    public Lease(int carID,  int customerID, double price, LocalDate startDate, LocalDate endDate, boolean status ) {
+        this.carID = carID;
+        this.price = price;
+        this.startDate = startDate;
+        this.endDate = endDate;
+        this.customerID = customerID;
+        this.status = status;
+    }
+
     @Override
     public String toString() {
         return "Lease{" +
