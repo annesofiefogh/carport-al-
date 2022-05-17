@@ -7,11 +7,12 @@ public class Damage {
     private double price;
     private boolean repaired;
 
-    public Damage(int damageID, String description, double price, boolean repaired) {
+    public Damage(int damageID, String description, double price) {
         this.damageID = damageID;
         this.description = description;
         this.price = price;
-        this.repaired = repaired;
+        //this.repaired = repaired;
+        // Har fjernet Repair da det såvidt jeg ved ikke er en funktionalitet vi skal implementere
     }
 
     public int getDamageID() {
