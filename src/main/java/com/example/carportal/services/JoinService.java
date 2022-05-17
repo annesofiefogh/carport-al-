@@ -24,11 +24,17 @@ public class JoinService { //Exists because leasecontroller cannot know car- and
         return listOfAvailableCars;
     }
 
+    public void changeCarStatus (int carID){
+        cr.update(carID);
+    }
+
     public static void main(String[] args) {
         JoinService js = new JoinService();
         System.out.println(js.getListOfAvailableCars());
         System.out.println(js.getListOfCustomers());
     }
+
+
 
 
 }

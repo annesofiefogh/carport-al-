@@ -9,7 +9,7 @@ public interface ILeaseRepository extends IRepository{
 
 
 
-    public boolean dmgReport (int leaseID, ArrayList<Damage> listOfDamages);
+    public boolean damageReport(int leaseID,int carID, ArrayList<Damage> listOfDamages);
     // Create dmgReport for the chosen lease.
     // Change status from pending to closed.
 

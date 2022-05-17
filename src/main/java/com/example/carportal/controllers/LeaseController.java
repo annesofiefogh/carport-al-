@@ -41,6 +41,7 @@ public class LeaseController {
         Date endDate = Date.valueOf(request.getParameter("endDate"));
         Lease lease = new Lease(carID, customerID, price, startDate.toLocalDate(), endDate.toLocalDate(), true);
         ls.createLease(lease);
+        js.changeCarStatus(carID);
         return "redirect:/createleasesuccess";
     }
 

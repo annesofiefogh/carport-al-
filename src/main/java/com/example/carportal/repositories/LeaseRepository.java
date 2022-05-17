@@ -39,6 +39,7 @@ public class LeaseRepository implements ILeaseRepository {
         try {
             PreparedStatement preparedStatement = con.prepareStatement
                     ("INSERT INTO `zz8alsto5xji5csq`.`lease` (`Car_id`, `Costumer_id`, `Price`, `Start_date`, `Stop_date`, `Status`) VALUES (?,?,?,?,?,?);");
+
             preparedStatement.setInt(1, carID);
             preparedStatement.setInt(2, costumerID);
             preparedStatement.setDouble(3, price);
@@ -46,6 +47,7 @@ public class LeaseRepository implements ILeaseRepository {
             preparedStatement.setDate(5, java.sql.Date.valueOf(endDate));
             preparedStatement.setBoolean(6, status);
             preparedStatement.executeUpdate();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -58,24 +60,28 @@ public class LeaseRepository implements ILeaseRepository {
         return false;                   // TODO SKAL SGU NOK SLETTES DA VI KUN HAR 2 FORSKELLIGE STATUS, OPEN/PENDING OG CLOSED
     }
 
-    @Override//TODO DEN ER IKKE FÆRDIG
-    public boolean dmgReport(int leaseID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
+    @Override
+    public boolean damageReport(int leaseID,int carID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
 
-        /*con = dbc.getConnection();
+        con = dbc.getConnection();
         try {
-            for (int i = 0; i < listOfDamages.size(); i++) {
-                Damage damage = new Damage(listOfDamages.get(i).getDamageID(), listOfDamages.get(i).getDescription(), listOfDamages.get(i).getPrice());
+            for (Damage listOfDamage : listOfDamages) {
+                Damage damage = new Damage(listOfDamage.getDescription(), listOfDamage.getPrice());
                 PreparedStatement preparedStatement = con.prepareStatement
-                        ("INSERT INTO `zz8alsto5xji5csq`.`damage`(`Car_id`, `Lease_id`, `Dmg_description`, `Price`, ´Repaired`) VALUES (?,?,?,?,?)");
-
+                        ("INSERT INTO `zz8alsto5xji5csq`.`damage`(`Car_id`, `Lease_id`, `Dmg_description`, `Price`, `Repaired`) VALUES (?,?,?,?,?);");
+                preparedStatement.setInt(1, carID);
+                preparedStatement.setInt(2, leaseID);
+                preparedStatement.setString(3, damage.getDescription());
+                preparedStatement.setDouble(4, damage.getPrice());
+                preparedStatement.setBoolean(5, false);
+                preparedStatement.executeUpdate();
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        // Change status from open to closed.
+        closeLease(leaseID);
 
-        return false;*/
         return false;
     }
 
@@ -141,7 +147,7 @@ public class LeaseRepository implements ILeaseRepository {
         LeaseRepository lr = new LeaseRepository();
         UserRepository userRepository = new UserRepository();
 
-        lr.closeLease(5);
+        //lr.closeLease(5);
 
         /*
         CarRepository carRepository = new CarRepository();
@@ -153,9 +159,18 @@ public class LeaseRepository implements ILeaseRepository {
 
         LocalDate date1 = LocalDate.now();
         LocalDate date2 = LocalDate.of(2055,5,4);
-        Lease lease = new Lease(99, 2,1,2500.99,date1,date2,true);
+        Lease lease = new Lease(2,1,2500.99,date1,date2,true);
         System.out.println(lr.create(lease));
 */
+        Damage damage1 = new Damage("punkteret venstre hjul", 500);
+        Damage damage2 = new Damage("Grimt betræk", 27);
+        Damage damage3 = new Damage("ingen motor", 1500);
+        ArrayList<Damage> arrayList = new ArrayList<>();
+        arrayList.add(damage1);
+        arrayList.add(damage2);
+        arrayList.add(damage3);
+
+        lr.damageReport(1,3,arrayList);
 
         //System.out.println(lr.getAllOpenLeases());
         //System.out.println(lr.listOfDamagesOnLease(2));
