@@ -46,7 +46,7 @@ public class LeaseRepository implements ILeaseRepository {
             preparedStatement.setDate(5, java.sql.Date.valueOf(endDate));
             preparedStatement.setBoolean(6, status);
             preparedStatement.executeUpdate();
-            con.close();
+
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -67,14 +67,14 @@ public class LeaseRepository implements ILeaseRepository {
             for (int i = 0; i < listOfDamages.size(); i++) {
                 Damage damage = new Damage(listOfDamages.get(i).getDamageID(), listOfDamages.get(i).getDescription(), listOfDamages.get(i).getPrice());
                 PreparedStatement preparedStatement = con.prepareStatement
-                        ("INSERT INTO `zz8alsto5xji5csq`.`damage`(`Car_id`, `Lease_id`, `Dmg_description`, `Price`, ´Repaired`) VALUES (?,?,?,?,?");
+                        ("INSERT INTO `zz8alsto5xji5csq`.`damage`(`Car_id`, `Lease_id`, `Dmg_description`, `Price`, ´Repaired`) VALUES (?,?,?,?,?)");
 
             }
         } catch (SQLException e) {
             e.printStackTrace();
         }
 
-        // Change status from open to closed.
+        closeLease(leaseID);
 
         return false;
     }
