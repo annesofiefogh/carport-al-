@@ -139,10 +139,10 @@ public class LeaseRepository implements ILeaseRepository {
 
         LocalDate date1 = LocalDate.now();
         LocalDate date2 = LocalDate.of(2055,5,4);
-        Lease lease = new Lease(99, 2,1,2500.99,date1,date2,true);
+        Lease lease = new Lease(2,1,2500.99,date1,date2,true);
         System.out.println(lr.create(lease));
-*/
 
+*/
         //System.out.println(lr.getAllOpenLeases());
         //System.out.println(lr.listOfDamagesOnLease(2));
     }
