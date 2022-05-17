@@ -33,8 +33,8 @@ public class LeaseRepository implements ILeaseRepository{
         int carID = ((Lease) entity).getCarID();
         int costumerID = ((Lease) entity).getCustomerID();
         double price = ((Lease) entity).getPrice();
-        //Date startDate = ((Lease) entity).getStartDate();
-        //Date endDate = ((Lease) entity).getEndDate();
+        LocalDate startDate = ((Lease) entity).getStartDate();
+        LocalDate endDate = ((Lease) entity).getEndDate();
         boolean status = ((Lease) entity).isStatus();
         try
         {
@@ -43,10 +43,8 @@ public class LeaseRepository implements ILeaseRepository{
             preparedStatement.setInt(1, carID);
             preparedStatement.setInt(2, costumerID);
             preparedStatement.setDouble(3, price);
-            //preparedStatement.setDate(4, startDate);
-            //preparedStatement.setDate(5, endDate);
-            preparedStatement.setString(4, "startDate");
-            preparedStatement.setString(5, "endDate");
+            preparedStatement.setDate(4, java.sql.Date.valueOf(startDate));
+            preparedStatement.setDate(5, java.sql.Date.valueOf(endDate));
             preparedStatement.setBoolean(6, status);
             preparedStatement.executeUpdate();
             con.close();
@@ -127,6 +125,22 @@ public class LeaseRepository implements ILeaseRepository{
         }
         return listOfLeases;
     }
+
+    public boolean closeLease(int leaseID){
+        con = dbc.getConnection();
+        try {
+
+            PreparedStatement preparedStatement = con.prepareStatement("UPDATE `zz8alsto5xji5csq`.`lease` SET `Status` = '0' WHERE (`Lease_id` = '"+leaseID+"')");
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e){
+            e.printStackTrace();
+            return false;
+        }
+
+        return true;
+    }
+
     //TEST
     public static void main(String[] args) {
         LeaseRepository lr = new LeaseRepository();
@@ -140,8 +154,9 @@ public class LeaseRepository implements ILeaseRepository{
         String date2 = "2025,12,24";
         Lease lease = new Lease(carRepository.getOneEntity(1), 2500.95, date, date2,customer, null, true);
         System.out.println(lr.create(lease));
-         */
 
+         */
+        lr.closeLease(4);
         System.out.println(lr.getAllOpenLeases());
     }
 
