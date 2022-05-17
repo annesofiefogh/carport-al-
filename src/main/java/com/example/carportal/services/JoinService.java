@@ -2,18 +2,20 @@ package com.example.carportal.services;
 
 import com.example.carportal.models.Car;
 import com.example.carportal.models.Customer;
+import com.example.carportal.models.Lease;
 import com.example.carportal.repositories.CarRepository;
 import com.example.carportal.repositories.LeaseRepository;
+import com.example.carportal.repositories.UserRepository;
 
 import java.util.ArrayList;
 
-public class JoinService {
+public class JoinService { //Exists because leasecontroller cannot know car- and userservice (Seperation of concerns)
 
-    private LeaseRepository lr = new LeaseRepository();
+    private UserRepository ur = new UserRepository();
     private CarRepository cr = new CarRepository();
 
     public ArrayList<Customer> getListOfCustomers(){
-        ArrayList<Customer> listOfAllCustomers = (ArrayList<Customer>) lr.getAllEntities();
+        ArrayList<Customer> listOfAllCustomers = ur.getAllCustomers();
         return listOfAllCustomers;
     }
 
@@ -25,6 +27,7 @@ public class JoinService {
     public static void main(String[] args) {
         JoinService js = new JoinService();
         System.out.println(js.getListOfAvailableCars());
+        System.out.println(js.getListOfCustomers());
     }
 
 

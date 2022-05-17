@@ -12,11 +12,6 @@ public class IndexController {
         return "index";
     }
 
-    @GetMapping("/")
-        public String start(){
-       return "index";
-    }
-
 
     @GetMapping("/index")
     public String index(){

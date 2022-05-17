@@ -67,7 +67,7 @@ public class LeaseRepository implements ILeaseRepository {
             for (int i = 0; i < listOfDamages.size(); i++) {
                 Damage damage = new Damage(listOfDamages.get(i).getDamageID(), listOfDamages.get(i).getDescription(), listOfDamages.get(i).getPrice());
                 PreparedStatement preparedStatement = con.prepareStatement
-                        ("INSERT INTO `zz8alsto5xji5csq`.`damage`(`Car_id`, `Lease_id`, `Dmg_description`, `Price`, ´Repaired`) VALUES (?,?,?,?,?)");
+                        ("INSERT INTO `zz8alsto5xji5csq`.`damage`(`Car_id`, `Lease_id`, `Dmg_description`, `Price`, ´Repaired`) VALUES (?,?,?,?,?");
 
             }
         } catch (SQLException e) {
@@ -155,8 +155,9 @@ public class LeaseRepository implements ILeaseRepository {
         LocalDate date2 = LocalDate.of(2055,5,4);
         Lease lease = new Lease(2,1,2500.99,date1,date2,true);
         System.out.println(lr.create(lease));
-
 */
+
+
         //System.out.println(lr.getAllOpenLeases());
         //System.out.println(lr.listOfDamagesOnLease(2));
     }
