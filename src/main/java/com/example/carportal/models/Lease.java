@@ -1,32 +1,41 @@
 package com.example.carportal.models;
 
 import java.sql.Date;
+import java.time.LocalDate;
 import java.util.ArrayList;
 
 public class Lease {
-    private enum Status {
-        OPEN, CLOSED, PENDING //TODO SKAL SGU NOK SLETTES
-    }
 
     private int leaseID;
-    private Car car;
+    private int carID;
     private double price;
-    private Date startDate;
-    private Date endDate;
-    private Customer customer;
-    private ArrayList<Damage> damageReport;
-    private Status status;
+    private LocalDate startDate;
+    private LocalDate endDate;
+    private int customerID;
+    private boolean status; // Har ændret den til en boolean istedet.
 
-
-    public Lease(int leaseID, Car car, double price, Date startDate, Date endDate, Customer customer, ArrayList<Damage> damageReport, Status status ) {
+    //TODO Har ændret Date til String da jeg ikke kan få databasen til at snakke med en Date variable.
+    public Lease(int leaseID, int carID,  int customerID, double price, LocalDate startDate, LocalDate endDate, boolean status ) {
         this.leaseID = leaseID;
-        this.car = car;
+        this.carID = carID;
         this.price = price;
         this.startDate = startDate;
         this.endDate = endDate;
-        this.customer = customer;
-        this.damageReport = damageReport;
+        this.customerID = customerID;
         this.status = status;
+    }
+
+    @Override
+    public String toString() {
+        return "Lease{" +
+                "leaseID=" + leaseID +
+                ", carID=" + carID +
+                ", price=" + price +
+                ", startDate=" + startDate +
+                ", endDate=" + endDate +
+                ", customerID=" + customerID +
+                ", status=" + status +
+                '}';
     }
 
     public int getLeaseID() {
@@ -37,12 +46,12 @@ public class Lease {
         this.leaseID = leaseID;
     }
 
-    public Car getCar() {
-        return car;
+    public int getCarID() {
+        return carID;
     }
 
-    public void setCar(Car car) {
-        this.car = car;
+    public void setCarID(int carID) {
+        this.carID = carID;
     }
 
     public double getPrice() {
@@ -53,56 +62,35 @@ public class Lease {
         this.price = price;
     }
 
-    public Date getStartDate() {
+    public LocalDate getStartDate() {
         return startDate;
     }
 
-    public void setStartDate(Date startDate) {
+    public void setStartDate(LocalDate startDate) {
         this.startDate = startDate;
     }
 
-    public Date getEndDate() {
+    public LocalDate getEndDate() {
         return endDate;
     }
 
-    public void setEndDate(Date endDate) {
+    public void setEndDate(LocalDate endDate) {
         this.endDate = endDate;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public int getCustomerID() {
+        return customerID;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerID(int customerID) {
+        this.customerID = customerID;
     }
 
-    public ArrayList<Damage> getDamageReport() {
-        return damageReport;
-    }
-
-    public void setDamageReport(ArrayList<Damage> damageReport) {
-        this.damageReport = damageReport;
-    }
-
-    public Status getStatus() {
+    public boolean isStatus() {
         return status;
     }
 
-    public void setStatus(Status status) {
+    public void setStatus(boolean status) {
         this.status = status;
-    }
-
-    @Override
-    public String toString() {
-        return "Lease{" +
-               "leaseID=" + leaseID +
-               ", car=" + car +
-               ", price=" + price +
-               ", startDate=" + startDate +
-               ", endDate=" + endDate +
-               ", customer=" + customer +
-               ", damageReport=" + damageReport +
-               '}';
     }
 }

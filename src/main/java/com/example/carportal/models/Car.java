@@ -87,7 +87,7 @@ public class Car {
                ", model='" + model + '\'' +
                ", chassisNumber='" + chassisNumber + '\'' +
                ", colour=" + colour +
-               ", carDamages=" + carDamages +
+               ", available=" + available +
                '}';
     }
 }

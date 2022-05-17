@@ -57,6 +57,7 @@ public class CarRepository implements ICarRepository {
             {
                 e.printStackTrace();
             }
+
         return false;
     }
 
@@ -84,4 +85,5 @@ public class CarRepository implements ICarRepository {
         c.update(1);
         System.out.println(c.getOneEntity(1));
     }
+
 }

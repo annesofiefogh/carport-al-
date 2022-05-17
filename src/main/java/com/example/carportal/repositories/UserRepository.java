@@ -1,5 +1,7 @@
 package com.example.carportal.repositories;
 
+import com.example.carportal.models.Car;
+import com.example.carportal.models.Customer;
 import com.example.carportal.models.User;
 import com.example.carportal.repositories.utility.DBConnector;
 
@@ -16,8 +18,21 @@ public class UserRepository implements IUserRepository{
     private Connection con;
 
     @Override
-    public Object getOneEntity(int ID) { // might not be needed, but can't be deleted
-        return null;
+    public Customer getOneEntity(int ID) { // might not be needed, but can't be deleted
+        con = dbc.getConnection();
+        Customer customer = null;
+        try{
+            ResultSet rs;
+            Statement stmt;
+            String sqlString = "SELECT * FROM `customer` WHERE `Customer_id` = " + ID + "" + ";";
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery(sqlString);
+            rs.next();
+            customer = new Customer(rs.getInt(1),rs.getString(2),rs.getInt(3),rs.getString(4),rs.getString(5),rs.getBoolean(6),rs.getBoolean(7));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return customer;
     }
 
     @Override
