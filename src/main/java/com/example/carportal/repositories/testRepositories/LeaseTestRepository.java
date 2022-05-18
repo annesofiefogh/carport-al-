@@ -12,9 +12,9 @@ import java.util.List;
 public class LeaseTestRepository implements ILeaseRepository {
 
     ArrayList<Lease> arrayList = new ArrayList(Arrays.asList(
-            new Lease(1,1,1,100.5, LocalDate.now(),LocalDate.of(2050,12,12),true),
+            new Lease(1,1,1,100.5, LocalDate.of(1999,12,12),LocalDate.of(2050,12,12),true),
             new Lease(2,2,2,200.5, LocalDate.now(),LocalDate.of(2030,12,12),false),
-            new Lease(3,3,3,300.5, LocalDate.now(),LocalDate.of(2025,12,12),true),
+            new Lease(3,3,3,300.5, LocalDate.of(1940,12,12),LocalDate.of(2025,12,12),true),
             new Lease(4,4,4,400.5, LocalDate.now(),LocalDate.of(2099,12,12),false),
             new Lease(5,5,5,500.5, LocalDate.now(),LocalDate.of(2027,12,12),true),
             new Lease(6,6,6,600.5, LocalDate.now(),LocalDate.of(2055,12,12),true)
@@ -26,7 +26,13 @@ public class LeaseTestRepository implements ILeaseRepository {
 
     @Override
     public ArrayList<Lease> getAllOpenLeases() {
-        return null;
+        ArrayList<Lease> listOfOpenLeases = new ArrayList<>();
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (arrayList.get(i).isStatus()){
+                listOfOpenLeases.add(arrayList.get(i));
+            }
+        }
+        return listOfOpenLeases;
     }
 
     @Override

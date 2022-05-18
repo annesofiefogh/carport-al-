@@ -37,7 +37,7 @@ public class LeaseService {
        double price;
 
        for (Lease l: lr.getAllOpenLeases()){
-           if (l.getStartDate().isAfter(LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),1))){
+           if (l.getStartDate().isAfter(LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),LocalDate.now().lengthOfMonth()))){//
             price = 0;
            } else {
             price = l.getPrice();
@@ -47,9 +47,19 @@ public class LeaseService {
        return sum;
     }
 
+    public int printNumberOfLeasedCars(){
+        int count = 0;
+        for (Lease l: lr.getAllOpenLeases()){
+           count ++;
+        }
+        return count;
+    }
+
     public static void main(String[] args) {
-        LeaseService ls = new LeaseService(new LeaseTestRepository());
+        LeaseService ls = new LeaseService(new LeaseRepository());
         System.out.println(ls.calculateMonthlyEarnings());
+        System.out.println(ls.printNumberOfLeasedCars());
+
 
     }
 
