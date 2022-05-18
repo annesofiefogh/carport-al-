@@ -161,18 +161,8 @@ public class LeaseRepository implements ILeaseRepository {
         Lease lease = new Lease(2,1,2500.99,date1,date2,true);
         System.out.println(lr.create(lease));
 */
-        Damage damage1 = new Damage("punkteret venstre hjul", 500);
-        Damage damage2 = new Damage("Grimt betræk", 27);
-        Damage damage3 = new Damage("ingen motor", 1500);
-        ArrayList<Damage> arrayList = new ArrayList<>();
-        arrayList.add(damage1);
-        arrayList.add(damage2);
-        arrayList.add(damage3);
 
-        lr.damageReport(1,3,arrayList);
-
-        //System.out.println(lr.getAllOpenLeases());
-        //System.out.println(lr.listOfDamagesOnLease(2));
+        System.out.println(lr.getAllOpenLeases());
     }
 
 

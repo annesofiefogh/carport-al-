@@ -42,6 +42,6 @@ public class UserTestRepository implements IUserRepository {
 
     @Override
     public ArrayList getAllCustomers() {
-        return null;
+        return customerArrayList;
     }
 }

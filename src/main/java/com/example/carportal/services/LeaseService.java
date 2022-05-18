@@ -37,7 +37,7 @@ public class LeaseService {
        double price;
 
        for (Lease l: lr.getAllOpenLeases()){
-           if (l.getStartDate().isAfter(LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),1))){
+           if (l.getStartDate().isAfter(LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),11))){
             price = 0;
            } else {
             price = l.getPrice();

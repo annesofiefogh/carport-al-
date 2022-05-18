@@ -1,6 +1,7 @@
 package com.example.carportal;
 
-public class CarServiceTest {
+import org.junit.jupiter.api.Test;
 
+public class CarServiceTest {
 
 }
