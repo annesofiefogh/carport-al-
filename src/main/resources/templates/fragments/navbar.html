@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<body>
+<div class="navbar" th:fragment="navbar(span)">
+    <button onclick="location.href='/index'" class="home">Hjem</button>
+    Brugersystem hos Bilabonnement.dk
+    <span th:replace="${span}"></span>
+</div>
+</body>
+</html>

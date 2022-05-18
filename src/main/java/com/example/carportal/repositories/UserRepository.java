@@ -35,6 +35,45 @@ public class UserRepository implements IUserRepository{
         return customer;
     }
 
+    public User getOneUser(int ID){
+        con = dbc.getConnection();
+        User user = null;
+        try{
+            ResultSet rs;
+            Statement stmt;
+            String sqlString = "SELECT * FROM `user` WHERE `User_id` = " + ID + "" + ";";
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery(sqlString);
+            rs.next();
+            user = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBoolean(4),rs.getBoolean(5),rs.getBoolean(6));
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return user;
+    }
+
+    public int getUser(String username, String password){
+        con = dbc.getConnection();
+        int counter = 0;
+        int validUserID = 0;
+        try{
+            ResultSet rs;
+            Statement stmt;
+            String sqlString = "SELECT * FROM `user` WHERE `Username` = '" + username + "' AND `Password` = '" + password + "';";
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery(sqlString);
+            while(rs.next()){
+                counter++;
+                validUserID = rs.getInt(1);
+            }
+
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return (counter == 1) ? validUserID : 2;
+
+    }
+
     @Override
     public List getAllEntities() { // Gets all Users. Needed when someone tries to log in.
 

@@ -4,6 +4,7 @@ import com.example.carportal.services.DamageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -13,17 +14,11 @@ public class IndexController {
 
     private DamageService ds = new DamageService();
 
-    @GetMapping("/")
-    public String startPage()
-    {
-        return "index";
-    }
 
-    @GetMapping("/index")
-    public String index(HttpServletRequest request)
-    {
+    @GetMapping("/mainpage")
+    public String index(HttpServletRequest request){
         ds.addListOfDamagesToSession(request);
-        return "index";
+        return "mainpage";
     }
 
     /*@GetMapping("/")

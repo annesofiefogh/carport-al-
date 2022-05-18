@@ -44,4 +44,14 @@ public class UserTestRepository implements IUserRepository {
     public ArrayList getAllCustomers() {
         return null;
     }
+
+    @Override
+    public User getOneUser(int id){
+        return null;
+    }
+
+    @Override
+    public int getUser(String username, String password){
+        return 0;
+    }
 }
