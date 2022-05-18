@@ -60,11 +60,10 @@ public class LeaseController {
     }
 
     @PostMapping("/createdamagereport")
-    public String createDamageReport(WebRequest dataFromForm, HttpServletRequest request){
+    public String createDamageReport(WebRequest dataFromForm){
         int leaseID = Integer.valueOf(dataFromForm.getParameter("leaseID"));
         String description = dataFromForm.getParameter("description");
         double price = Double.parseDouble(dataFromForm.getParameter("price"));
-        HttpSession session = request.getSession();
 
         Damage damage = new Damage(description,price);
         ls.getAllDamagesOnLease(leaseID, damage);
