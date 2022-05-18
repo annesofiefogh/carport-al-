@@ -2,16 +2,68 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Opret skaderapport</title>
+    <title>Get data</title>
+    <style>
+        .inset {
+            border-style: inset;
+            padding: 2%;
+        }
+        .column {
+            float: left;
+        }
+        .left {
+            width: 30%;
+        }
+        .right {
+            width: 60%;
+            float: right;
+        }</style>
 </head>
 <body>
-<div><br><br><br>
-    <h1>Opret skadesrapport</h1>
-    <form name="damageCreation" action="/createdamagereport" method = "POST">
-        <label for="damageList">Vælg kunde:&nbsp</label>
-        <select name="damageList" id="damageList">
-            <option th:each="c : ${allCustomers}" th:value="${c.getId}" th:text="${c.getName()}"></option>
-        </select>
+<h1>A form to enter data</h1>
 
+<div class="row">
+    <div class="column left inset">
+        <h2>Input form</h2>
+        <form name="form" id="data" action="/createdamagereport" method="POST">
+
+            <label for="leaseId">Lease ID</label>
+            <select name="leaseId" id="leaseId">
+                <option th:each="leaseId : ${openLeases}" th:value="${leaseId}" th:text="${leaseId}"></option>
+            </select>
+            <br><br>
+
+            <label for="description">Description</label><br>
+            <input type="text" id="description" name="description" autocomplete="off"/>
+            <br><br>
+
+            <label for="price">Price</label><br>
+            <input type="number" id="price" name="price" autocomplete="off"/>
+            <br><br>
+
+            <div>
+                <button type="submit" onclick="location.href='../createdamagereport'">Add damage to list >></button>
+                <br><br>
+            </div>
+        </form>
+        <button type="submit" onclick="location.href='../createdamagereportsuccess'">Create damage report</button>
+
+    </div>
+    <div class="column right inset">
+        <h2>List of damages to add to lease no. </h2>
+        <br>
+
+        <table style="width:100%">
+            <tr>
+                <td style="width:70%"><h4>Description</h4></td>
+                <td style="width:20%"><h4>Price</h4></td>
+            </tr>
+            <tr th:each="damage : ${listOfDamages}">
+                <td th:text="${damage.getDescription()}"></td>
+                <td th:text="${damage.getPrice()}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
 </body>
 </html>
