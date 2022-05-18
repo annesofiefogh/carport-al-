@@ -1,6 +1,7 @@
 package com.example.carportal.services;
 
 import com.example.carportal.models.Customer;
+import com.example.carportal.models.Damage;
 import com.example.carportal.models.Lease;
 import com.example.carportal.repositories.LeaseRepository;
 
@@ -17,6 +18,10 @@ public class LeaseService {
 
     public ArrayList<Lease> getAllOpenLeases(){
         return lr.getAllOpenLeases();
+    }
+
+    public ArrayList<Damage> getAllDamagesOnLease(int leaseID, Damage damage){
+        return null;
     }
 
 }

@@ -12,6 +12,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+import java.net.http.HttpRequest;
 import java.sql.Date;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -57,11 +60,15 @@ public class LeaseController {
     }
 
     @PostMapping("/createdamagereport")
-    public String createDamageReport(WebRequest request){
-        int leaseID = Integer.valueOf(request.getParameter("leaseID"));
-        String description = request.getParameter("description");
-        double price = Double.parseDouble(request.getParameter("price"));
-        Damage damage = new Damage()
+    public String createDamageReport(WebRequest dataFromForm, HttpServletRequest request){
+        int leaseID = Integer.valueOf(dataFromForm.getParameter("leaseID"));
+        String description = dataFromForm.getParameter("description");
+        double price = Double.parseDouble(dataFromForm.getParameter("price"));
+        HttpSession session = request.getSession();
+
+        Damage damage = new Damage(description,price);
+        ls.getAllDamagesOnLease(leaseID, damage);
+        return "redirect:/createdamagereportsuccess";
     }
 
 }
