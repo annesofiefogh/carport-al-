@@ -3,7 +3,10 @@ package com.example.carportal.services;
 import com.example.carportal.models.Customer;
 import com.example.carportal.models.Damage;
 import com.example.carportal.models.Lease;
+import com.example.carportal.repositories.ILeaseRepository;
+import com.example.carportal.repositories.IRepository;
 import com.example.carportal.repositories.LeaseRepository;
+import com.example.carportal.repositories.testRepositories.LeaseTestRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -11,7 +14,11 @@ import java.util.List;
 
 public class LeaseService {
 
-    private LeaseRepository lr = new LeaseRepository();
+    private ILeaseRepository lr;
+
+    public LeaseService(ILeaseRepository injectedLeaseRepository){
+        lr = injectedLeaseRepository;
+    }
 
     public void createLease(Lease lease){
         lr.create(lease);
@@ -41,8 +48,9 @@ public class LeaseService {
     }
 
     public static void main(String[] args) {
-        LeaseService ls = new LeaseService();
+        LeaseService ls = new LeaseService(new LeaseTestRepository());
         System.out.println(ls.calculateMonthlyEarnings());
+
     }
 
 }

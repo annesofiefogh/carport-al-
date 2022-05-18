@@ -4,6 +4,9 @@ import com.example.carportal.models.Car;
 import com.example.carportal.models.Customer;
 import com.example.carportal.models.Damage;
 import com.example.carportal.models.Lease;
+import com.example.carportal.repositories.CarRepository;
+import com.example.carportal.repositories.LeaseRepository;
+import com.example.carportal.repositories.UserRepository;
 import com.example.carportal.services.JoinService;
 import com.example.carportal.services.LeaseService;
 import org.springframework.stereotype.Controller;
@@ -23,8 +26,8 @@ import java.util.Arrays;
 @Controller
 public class LeaseController {
 
-    private LeaseService ls = new LeaseService();
-    private JoinService js = new JoinService();
+    private LeaseService ls = new LeaseService(new LeaseRepository());
+    private JoinService js = new JoinService(new UserRepository(),new CarRepository());
 
     @GetMapping("/createlease")
     public String createLease(Model model){

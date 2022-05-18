@@ -17,17 +17,17 @@ public class LeaseRepository implements ILeaseRepository {
     private Connection con;
 
     @Override
-    public Object getOneEntity(int ID) { //Ved ikke helt om den skal bruges da der både er dmgReport og Update
+    public Object getOneEntity(int ID) { //Not needed
         return false;
     }
 
     @Override
-    public List getAllEntities() { //Tror den skal slettes da der både er get all pending og get all pending
+    public List getAllEntities() { //Not needed as we only need all open leases
         return null;
     }
 
     @Override
-    public boolean create(Object entity) { // Create lease - hent liste af Available cars
+    public boolean create(Object entity) { // Add lease to database
 
         con = dbc.getConnection();
         int carID = ((Lease) entity).getCarID();
@@ -39,7 +39,6 @@ public class LeaseRepository implements ILeaseRepository {
         try {
             PreparedStatement preparedStatement = con.prepareStatement
                     ("INSERT INTO `zz8alsto5xji5csq`.`lease` (`Car_id`, `Costumer_id`, `Price`, `Start_date`, `Stop_date`, `Status`) VALUES (?,?,?,?,?,?);");
-
             preparedStatement.setInt(1, carID);
             preparedStatement.setInt(2, costumerID);
             preparedStatement.setDouble(3, price);
@@ -56,8 +55,8 @@ public class LeaseRepository implements ILeaseRepository {
 
 
     @Override
-    public boolean update(int id) {     // Change status from open to closed.
-        return false;                   // TODO SKAL SGU NOK SLETTES DA VI KUN HAR 2 FORSKELLIGE STATUS, OPEN/PENDING OG CLOSED
+    public boolean update(int id) {     // Not needed as we only have open or closed leases
+        return false;
     }
 
     @Override
@@ -85,7 +84,7 @@ public class LeaseRepository implements ILeaseRepository {
         return false;
     }
 
-    public ArrayList<Damage> listOfDamagesOnLease(int leaseID) {
+    public ArrayList<Damage> listOfDamagesOnLease(int leaseID) { //Gets all damages associated with the specific lease
         ArrayList<Damage> damageArrayList = new ArrayList<>();
         Damage damage;
         con = dbc.getConnection();
@@ -120,7 +119,7 @@ public class LeaseRepository implements ILeaseRepository {
 
     @Override
     public ArrayList<Lease> getAllOpenLeases() { // When user needs to create a dmgReport, get a
-        // monthly income and see list of cars rented out.
+                                                 // monthly income and see list of cars rented out.
         ArrayList<Lease> listOfLeases = new ArrayList<>();
         con = dbc.getConnection();
         Lease lease;
