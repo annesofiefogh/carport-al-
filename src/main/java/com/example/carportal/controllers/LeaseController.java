@@ -7,6 +7,7 @@ import com.example.carportal.models.Lease;
 import com.example.carportal.repositories.CarRepository;
 import com.example.carportal.repositories.LeaseRepository;
 import com.example.carportal.repositories.UserRepository;
+import com.example.carportal.services.DamageService;
 import com.example.carportal.services.JoinService;
 import com.example.carportal.services.LeaseService;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,7 @@ public class LeaseController {
 
     private LeaseService ls = new LeaseService(new LeaseRepository());
     private JoinService js = new JoinService(new UserRepository(),new CarRepository());
+    private DamageService ds = new DamageService();
 
     @GetMapping("/createlease")
     public String createLease(Model model){
@@ -57,21 +59,30 @@ public class LeaseController {
     }
 
     @GetMapping("/createdamagereport")
-    public String closeLease(Model model){
-        model.addAttribute("openLeases", ls.getAllOpenLeases());
+    public String getdata(Model model, HttpSession session)
+    {
+        ArrayList<Integer> openLeaseIds = new ArrayList<>(Arrays.asList(22, 37, 39));
+        model.addAttribute("listOfDamages", ds.getSessionListOFDamages(session));
+        model.addAttribute("openLeases", openLeaseIds);
         return "createdamagereport";
     }
 
     @PostMapping("/createdamagereport")
-    public String createDamageReport(WebRequest dataFromForm, HttpServletRequest request){
-        int leaseID = Integer.valueOf(dataFromForm.getParameter("leaseID"));
-        String description = dataFromForm.getParameter("description");
-        double price = Double.parseDouble(dataFromForm.getParameter("price"));
-        HttpSession session = request.getSession();
+    public String gettingdata(WebRequest request, HttpSession session)
+    {
+        int leaseId = Integer.parseInt(request.getParameter("leaseId"));
+        String desc = request.getParameter("description");
+        Double price = Double.parseDouble(request.getParameter("price"));
+        ds.getSessionListOFDamages(session).add(new Damage(leaseId, desc, price));
+        return "redirect:/createdamagereport";
+    }
 
-        Damage damage = new Damage(description,price);
-        ls.getAllDamagesOnLease(leaseID, damage);
-        return "redirect:/createdamagereportsuccess";
+    @GetMapping("createdamagereportsuccess")
+    public String gotdata(Model model, HttpSession session)
+    {
+        model.addAttribute("listOfDamages", ds.getSessionListOFDamages(session));
+        model.addAttribute("totalPrice", ds.getTotalDamage(session));
+        return "createdamagereportsuccess";
     }
 
 }
