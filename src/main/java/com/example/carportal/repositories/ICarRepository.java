@@ -11,4 +11,5 @@ public interface ICarRepository extends IRepository<Car>{
 
     public ArrayList<Car> getAllAvailableCars();
 
+
 }

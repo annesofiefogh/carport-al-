@@ -18,7 +18,7 @@ public class UserRepository implements IUserRepository{
     private Connection con;
 
     @Override
-    public Customer getOneEntity(int ID) { // might not be needed, but can't be deleted
+    public Customer getOneEntity(int ID) {
         con = dbc.getConnection();
         Customer customer = null;
         try{
@@ -36,7 +36,7 @@ public class UserRepository implements IUserRepository{
     }
 
     @Override
-    public List getAllEntities() { // Needed when someone tries to login.
+    public List getAllEntities() { // Gets all Users. Needed when someone tries to log in.
 
         con = dbc.getConnection();
         ArrayList<User> userList = new ArrayList<>();
@@ -87,12 +87,12 @@ public class UserRepository implements IUserRepository{
     }
 
     @Override
-    public boolean create(Object entity) { // might not be needed, but can't be deleted
+    public boolean create(Object entity) { // Might not be needed, but can't be deleted
         return false;
     }
 
     @Override
-    public boolean update(int id) { // Is not needed, but can't be deleted
+    public boolean update(int id) { // Might not be needed, but can't be deleted
         return false;
     }
 }
