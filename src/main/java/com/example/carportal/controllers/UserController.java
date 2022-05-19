@@ -27,7 +27,7 @@ public class UserController {
     @GetMapping("/index")
     public String login(Model model, HttpSession session){
         model.addAttribute("username", us.getUserFromSession(session));
-        System.out.println(us.getUserFromSession(session));
+        us.getUserFromSession(session);
         return "index";
     }
 
@@ -35,9 +35,20 @@ public class UserController {
     public String login(WebRequest request, HttpSession session){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        session.setAttribute("sessionUser", us.getUser(username));
-        return "redirect:/mainpage";
+        boolean validated = us.validateCredentials(username,password);
+        if (validated){
+            session.setAttribute("sessionUser", us.getUser(username));
+        } else {
+            session.setAttribute("sessionUser", us.getUser("guest"));
+        }
+        System.out.println(us.getUserFromSession(session));
+        return (validated) ? "redirect:/mainpage" : "redirect:/index";
     }
 
+    public static void main(String[] args) {
+        UserRepository ur = new UserRepository();
+        //System.out.println(ur.getUser("datadottie"));
+        //System.out.println(ur.validateCredentials("datadottie", "8765"));
+    }
 
 }
