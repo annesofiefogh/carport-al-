@@ -35,7 +35,7 @@ public class UserController {
     public String login(WebRequest request, HttpSession session){
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        session.setAttribute("sessionUser", us.getUser(username, password));
+        session.setAttribute("sessionUser", us.getUser(username));
         return "redirect:/mainpage";
     }
 

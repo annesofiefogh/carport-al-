@@ -10,7 +10,6 @@ import java.util.Arrays;
 import java.util.List;
 
 public class LeaseTestRepository implements ILeaseRepository {
-
     ArrayList<Lease> arrayList = new ArrayList(Arrays.asList(
             new Lease(1,1,1,100.5, LocalDate.of(1999,12,12),LocalDate.of(2050,12,12),true),
             new Lease(2,2,2,200.5, LocalDate.now(),LocalDate.of(2030,12,12),false),

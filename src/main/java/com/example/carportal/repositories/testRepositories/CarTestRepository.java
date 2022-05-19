@@ -25,7 +25,12 @@ public class CarTestRepository implements ICarRepository {
 
     @Override
     public Car getOneEntity(int ID) {
-        Car car = new Car(5, "ABC123DEF", "Skoda", "Octavia", "Black", true);
+        Car car = null;
+        for (int i = 0; i < arrayList.size(); i++) {
+            if (arrayList.get(i).getCarID() == ID){
+                car = arrayList.get(i);
+            }
+        }
         return car;
     }
 

@@ -1,6 +1,5 @@
 package com.example.carportal.repositories;
 
-import com.example.carportal.models.Car;
 import com.example.carportal.models.Customer;
 import com.example.carportal.models.User;
 import com.example.carportal.repositories.utility.DBConnector;
@@ -12,7 +11,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
-public class UserRepository implements IUserRepository{
+public class UserRepository implements IUserRepository {
 
     private DBConnector dbc = new DBConnector();
     private Connection con;
@@ -21,56 +20,55 @@ public class UserRepository implements IUserRepository{
     public Customer getOneEntity(int ID) {
         con = dbc.getConnection();
         Customer customer = null;
-        try{
+        try {
             ResultSet rs;
             Statement stmt;
             String sqlString = "SELECT * FROM `customer` WHERE `Customer_id` = " + ID + "" + ";";
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
             rs.next();
-            customer = new Customer(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getBoolean(6),rs.getBoolean(7));
-        } catch (SQLException e){
+            customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6), rs.getBoolean(7));
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return customer;
     }
 
-    public User getOneUser(int ID){
+    public User getUser(int ID) {
         con = dbc.getConnection();
         User user = null;
-        try{
+        try {
             ResultSet rs;
             Statement stmt;
             String sqlString = "SELECT * FROM `user` WHERE `User_id` = " + ID + "" + ";";
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
             rs.next();
-            user = new User(rs.getInt(1),rs.getString(2),rs.getString(3),rs.getBoolean(4),rs.getBoolean(5),rs.getBoolean(6));
-        } catch (SQLException e){
+            user = new User(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getBoolean(4), rs.getBoolean(5), rs.getBoolean(6));
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
     }
 
-    public int getUser(String username, String password){
+    public User getUser(String username) {
         con = dbc.getConnection();
-        int counter = 0;
-        int validUserID = 0;
-        try{
+        User user = null;
+        try {
             ResultSet rs;
             Statement stmt;
-            String sqlString = "SELECT * FROM `user` WHERE `Username` = '" + username + "' AND `Password` = '" + password + "';";
+            String sqlString = "SELECT * FROM `user` WHERE `Username` = '" + username + "';";
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
-            while(rs.next()){
-                counter++;
-                validUserID = rs.getInt(1);
+            rs.next();
+            if (rs.getFetchSize() == 0) {
+                return new User(-1,"Guest","Guest",false,false,false);
             }
-
-        } catch (SQLException e){
+            user = getUser(rs.getInt(1));
+        } catch (SQLException e) {
             e.printStackTrace();
         }
-        return (counter == 1) ? validUserID : 2;
+        return user;
 
     }
 
@@ -79,8 +77,7 @@ public class UserRepository implements IUserRepository{
 
         con = dbc.getConnection();
         ArrayList<User> userList = new ArrayList<>();
-        try
-        {
+        try {
             ResultSet rs;
             Statement stmt;
             String sqlString = "SELECT * FROM `user`";
@@ -88,8 +85,7 @@ public class UserRepository implements IUserRepository{
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
 
-            while (rs.next())
-            {
+            while (rs.next()) {
                 int userID = rs.getInt(1);
                 String userName = rs.getString(2);
                 String getPassword = rs.getString(3);
@@ -99,27 +95,26 @@ public class UserRepository implements IUserRepository{
                 userList.add(new User(userID, userName, getPassword, isBusiness, isDamage, isRegistration));
             }
             con.close();
-        } catch (SQLException e)
-        {
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return userList;
     }
 
-    public ArrayList<Customer> getAllCustomers(){
+    public ArrayList<Customer> getAllCustomers() {
         con = dbc.getConnection();
         ArrayList<Customer> allCustomers = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
-        try{
+        try {
             String sqlString = "SELECT * FROM `customer`";
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
-            while (rs.next()){
+            while (rs.next()) {
                 Customer customer = new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6), rs.getBoolean(7));
                 allCustomers.add(customer);
             }
-       } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         return allCustomers;
@@ -133,5 +128,10 @@ public class UserRepository implements IUserRepository{
     @Override
     public boolean update(int id) { // Might not be needed, but can't be deleted
         return false;
+    }
+
+    public static void main(String[] args) {
+        UserRepository ur = new UserRepository();
+        System.out.println(ur.getUser("datadottie"));
     }
 }

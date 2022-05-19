@@ -46,12 +46,12 @@ public class UserTestRepository implements IUserRepository {
     }
 
     @Override
-    public User getOneUser(int id){
+    public User getUser(int id){
         return null;
     }
 
     @Override
-    public int getUser(String username, String password){
-        return 0;
+    public User getUser(String username){
+        return null;
     }
 }

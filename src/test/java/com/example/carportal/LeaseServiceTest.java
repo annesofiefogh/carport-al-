@@ -18,8 +18,5 @@ public class LeaseServiceTest {
         //Act
         double result = serviceTest.calculateMonthlyEarnings();
         assertEquals(expected,result);
-
-
-
     }
 }

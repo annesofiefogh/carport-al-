@@ -3,7 +3,6 @@ package com.example.carportal.repositories;
 import com.example.carportal.models.User;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public interface IUserRepository extends IRepository{
 
@@ -11,8 +10,8 @@ public interface IUserRepository extends IRepository{
 
     public ArrayList getAllCustomers();
 
-    public User getOneUser(int id);
+    public User getUser(int id);
 
-    public int getUser(String username, String password);
+    public User getUser(String username);
 
 }
