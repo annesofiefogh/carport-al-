@@ -1,6 +1,7 @@
 package com.example.carportal.services;
 
 import com.example.carportal.models.Car;
+import com.example.carportal.models.CarWithPrice;
 import com.example.carportal.models.Customer;
 import com.example.carportal.repositories.*;
 
@@ -11,6 +12,8 @@ public class JoinService { //Exists because leasecontroller cannot know car- and
     private IUserRepository ur;
     private ICarRepository cr;
 
+
+
     public JoinService(IUserRepository injectedUserRepository, ICarRepository injectedCarRepository ){
         ur = injectedUserRepository;
         cr = injectedCarRepository;
@@ -19,6 +22,7 @@ public class JoinService { //Exists because leasecontroller cannot know car- and
         ArrayList<Customer> listOfAllCustomers = ur.getAllCustomers();
         return listOfAllCustomers;
     }
+
 
     public ArrayList<Car> getCars(int available){
         ArrayList<Car> listOfCars = cr.getCars(available);
