@@ -1,5 +1,6 @@
 package com.example.carportal.controllers;
 
+import com.example.carportal.repositories.UserRepository;
 import com.example.carportal.services.DamageService;
 import com.example.carportal.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -14,7 +15,7 @@ public class HomeController
 {
 
     private DamageService ds = new DamageService();
-    private UserService us = new UserService();
+    private UserService us = new UserService(new UserRepository());
 
     @GetMapping("/mainpage")
     public String index(HttpSession session, HttpServletRequest request, Model model){

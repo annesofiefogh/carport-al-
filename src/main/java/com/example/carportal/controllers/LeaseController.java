@@ -84,8 +84,12 @@ public class LeaseController {
     }
 
     @GetMapping("viewmonthlyincome")
-    public String viewmonthlyincome()
+    public String viewmonthlyincome(Model model)
     {
+        model.addAttribute("listOfUnavailableCars", js.getCars(0));
+        model.addAttribute("totalPrice", ls.calculateMonthlyEarnings());
+        model.addAttribute("listOfOpenLeases", ls.getAllOpenLeases());
+
         return "viewmonthlyincome";
     }
 

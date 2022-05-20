@@ -21,8 +21,8 @@ public class JoinService { //Exists because leasecontroller cannot know car- and
     }
 
     public ArrayList<Car> getCars(int available){
-        ArrayList<Car> listOfAvailableCars = cr.getCars(1);
-        return listOfAvailableCars;
+        ArrayList<Car> listOfCars = cr.getCars(available);
+        return listOfCars;
     }
 
     public void changeCarStatus (int carID){

@@ -68,7 +68,7 @@ public class CarRepository implements ICarRepository {
 
     public ArrayList<Car> getCars(int available){
         con = dbc.getConnection();
-        ArrayList<Car> listOfAvailableCars = new ArrayList<>();
+        ArrayList<Car> listOfCars = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
         try{
@@ -77,12 +77,12 @@ public class CarRepository implements ICarRepository {
            rs = stmt.executeQuery(sqlString);
            while (rs.next()){
                Car car = new Car(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6));
-               listOfAvailableCars.add(car);
+               listOfCars.add(car);
            }
         } catch (SQLException e){
             e.printStackTrace();
         }
-        return listOfAvailableCars;
+        return listOfCars;
     }
 
     public static void main(String[] args) {
