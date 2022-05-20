@@ -53,4 +53,9 @@ public class LeaseTestRepository implements ILeaseRepository {
     public boolean update(int id) {
         return false;
     }
+
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
 }

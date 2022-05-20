@@ -61,13 +61,18 @@ public class CarRepository implements ICarRepository {
         return false;
     }
 
-    public ArrayList<Car> getAllAvailableCars(){
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
+    public ArrayList<Car> getCars(int available){
         con = dbc.getConnection();
         ArrayList<Car> listOfAvailableCars = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
         try{
-           String sqlString = "SELECT * FROM `car` WHERE `Available`= 1";
+           String sqlString = "SELECT * FROM `car` WHERE `Available`= '" + available + "';";
            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
            rs = stmt.executeQuery(sqlString);
            while (rs.next()){

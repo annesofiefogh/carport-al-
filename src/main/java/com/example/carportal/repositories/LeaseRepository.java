@@ -60,6 +60,11 @@ public class LeaseRepository implements ILeaseRepository {
     }
 
     @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
+    @Override
     public boolean damageReport(int leaseID,int carID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
 
         con = dbc.getConnection();

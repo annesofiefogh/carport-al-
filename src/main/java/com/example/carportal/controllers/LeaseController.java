@@ -16,11 +16,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import java.net.http.HttpRequest;
 import java.sql.Date;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -34,7 +31,7 @@ public class LeaseController {
     @GetMapping("/createlease")
     public String createLease(Model model){
         ArrayList<Customer> allCustomers = js.getListOfCustomers();
-        ArrayList<Car> availableCars = js.getListOfAvailableCars();
+        ArrayList<Car> availableCars = js.getCars(1);
         model.addAttribute("allCustomers", allCustomers);
         model.addAttribute("availableCars", availableCars);
         return "createlease";

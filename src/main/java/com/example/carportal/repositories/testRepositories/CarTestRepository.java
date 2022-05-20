@@ -18,7 +18,7 @@ public class CarTestRepository implements ICarRepository {
     ));
 
     @Override
-    public ArrayList<Car> getAllAvailableCars() {
+    public ArrayList<Car> getCars(int available) {
         ArrayList<Car> availableCars = new ArrayList<>();
         for (Car c:arrayList) {
             if (c.isAvailable()){
@@ -64,6 +64,11 @@ public class CarTestRepository implements ICarRepository {
 
             }
         }
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
         return false;
     }
 
