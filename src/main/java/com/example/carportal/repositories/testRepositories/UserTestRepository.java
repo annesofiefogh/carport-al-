@@ -54,4 +54,9 @@ public class UserTestRepository implements IUserRepository {
     public User getUser(String username){
         return null;
     }
+
+    @Override
+    public boolean validateCredentials(String username, String password){
+        return false;
+    }
 }

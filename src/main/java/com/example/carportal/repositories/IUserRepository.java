@@ -8,10 +8,12 @@ public interface IUserRepository extends IRepository{
 
     // MIGHT BE DELETED, make sure UserRepository extends IRepository if that is the case.
 
-    public ArrayList getAllCustomers();
+    ArrayList getAllCustomers();
 
-    public User getUser(int id);
+    User getUser(int id);
 
-    public User getUser(String username);
+    User getUser(String username);
+
+    boolean validateCredentials(String username, String password);
 
 }

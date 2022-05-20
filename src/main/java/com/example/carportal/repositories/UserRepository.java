@@ -61,15 +61,28 @@ public class UserRepository implements IUserRepository {
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
             rs.next();
-            if (rs.getFetchSize() == 0) {
-                return new User(-1,"Guest","Guest",false,false,false);
-            }
             user = getUser(rs.getInt(1));
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return user;
+    }
 
+    public boolean validateCredentials (String username, String password){
+        con = dbc.getConnection();
+        try{
+            ResultSet rs;
+            Statement stmt;
+            String sqlString = "SELECT * FROM `user` WHERE `Username` = '" + username + "' AND `Password` = '" + password + "';";
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery(sqlString);
+            if (!rs.next()){
+                return false;
+            }
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return true;
     }
 
     @Override
@@ -130,8 +143,4 @@ public class UserRepository implements IUserRepository {
         return false;
     }
 
-    public static void main(String[] args) {
-        UserRepository ur = new UserRepository();
-        System.out.println(ur.getUser("datadottie"));
-    }
 }
