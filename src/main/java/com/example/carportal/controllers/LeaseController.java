@@ -83,4 +83,10 @@ public class LeaseController {
         return "createdamagereportsuccess";
     }
 
+    @GetMapping("viewmonthlyincome")
+    public String viewmonthlyincome()
+    {
+        return "viewmonthlyincome";
+    }
+
 }

@@ -14,8 +14,6 @@ public class UserService {
         ur = injectedUserRepository;
     }
 
-    public UserService(){}
-
     public void addUserToSession(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute("sessionUser", ur.getUser("guest"));
