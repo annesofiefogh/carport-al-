@@ -82,7 +82,14 @@ public class LeaseController {
     {
         model.addAttribute("listOfDamages", ds.getSessionListOFDamages(session));
         model.addAttribute("totalPrice", ds.getTotalDamage(session));
+        System.out.println(ds.getTotalDamage(session));
         return "createdamagereportsuccess";
+    }
+
+    @GetMapping("viewmonthlyincome")
+    public String viewmonthlyincome()
+    {
+        return "viewmonthlyincome";
     }
 
 }

@@ -5,7 +5,9 @@
     <title>Hovedside</title>
 </head>
 <body>
-<h1>Thanks for logging in</h1>
-<button id="submitButton" type="submit" onclick="location.href='../createdamagereport'">Create damage report</button>
+<h1>Thanks for logging in '<span th:text="${sessionUser.getUserName()}"></spanth:text></span>'</h1>
+<button type="submit" onclick="location.href='../createdamagereport'">Opret tilstands report</button>
+<button type="submit" onclick="location.href='../createlease'">Opret abonnement</button>
+<button type="submit">Se statistiker</button>
 </body>
 </html>
