@@ -3,66 +3,51 @@
 <head>
     <meta charset="UTF-8">
     <title>VisMånedligIndtjening</title>
-    <style>
-        .inset {
-            border-style: inset;
-            padding: 2%;
-        }
-
-        .column {
-            float: left;
-        }
-
-        .left {
-            width: 30%;
-        }
-
-        .right {
-            width: 60%;
-            float: left;
-        }</style>
+<style>
+    .right {
+        text-align: right;
+    }
+</style>
 </head>
 <body>
 <h1>Forventet månedlig indtjening</h1>
 
-<div class="row">
-    <div class="column left">
-        <h2>Åbne leases</h2>
+<p>Der er <span th:text="${numberOfLeasedCars}"></span> udlejet biler med total pris <span th:text="${totalPrice}"></span> DKK.</p>
 
-        <table style="width:90%">
-            <tr>
-                <td><h4>Lease ID</h4></td>
-                <td><h4>Start dato</h4></td>
-                <td><h4>Slut dato</h4></td>
-                <td><h4>Pris</h4></td>
-            </tr>
-            <tr th:each="lease : ${listOfOpenLeases}">
-                <td th:text="${lease.getLeaseID()}"></td>
-                <td th:text="${lease.getStartDate()}"></td>
-                <td th:text="${lease.getEndDate()}"></td>
-                <td th:text="${lease.getPrice()}"></td>
-                <td th:text="${lease.getCarID()}"></td>
-            </tr>
-        </table>
-
-    </div>
-    <div class="column right">
-        <h2>Udlejede Biler</h2>
-
-        <table style="width:90%">
-            <tr>
-                <td><h4>Make</h4></td>
-                <td><h4>Model</h4></td>
-                <td><h4>Farve</h4></td>
-            </tr>
-            <tr th:each="car : ${listOfUnavailableCars}">
-                <td th:text="${car.getMake()}"></td>
-                <td th:text="${car.getModel()}"></td>
-                <td th:text="${car.getColour()}"></td>
-            </tr>
-        </table>
-    </div>
-
+<h3>Åbne leases</h3>
+<div>
+    <table style="width:90%">
+        <tr>
+            <td><h4>Lease ID</h4></td>
+            <td><h4>Start dato</h4></td>
+            <td><h4>Slut dato</h4></td>
+            <td><h4>Vogn ID</h4></td>
+            <td><h4>Make</h4></td>
+            <td><h4>Model</h4></td>
+            <td><h4>Farve</h4></td>
+            <td class="right"><h4>Pris</h4></td>
+        </tr>
+        <tr th:each="stat : ${statistics}">
+            <td th:text="${stat.getLease().getLeaseID()}"></td>
+            <td th:text="${stat.getLease.getStartDate()}"></td>
+            <td th:text="${stat.getLease.getEndDate()}"></td>
+            <td th:text="${stat.getCar().getCarID()}"></td>
+            <td th:text="${stat.getCar().getMake()}"></td>
+            <td th:text="${stat.getCar().getModel()}"></td>
+            <td th:text="${stat.getCar().getColour()}"></td>
+            <td class="right" th:text="${stat.getLease.getPrice()}"></td>
+        </tr>
+        <tr>
+            <td>Total</td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td></td>
+            <td class="right" th:text="${totalPrice}"></td>
+        </tr>
+    </table>
 </div>
 </body>
 </html>

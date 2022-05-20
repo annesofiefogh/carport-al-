@@ -1,9 +1,6 @@
 package com.example.carportal.controllers;
 
-import com.example.carportal.models.Car;
-import com.example.carportal.models.Customer;
-import com.example.carportal.models.Damage;
-import com.example.carportal.models.Lease;
+import com.example.carportal.models.*;
 import com.example.carportal.repositories.CarRepository;
 import com.example.carportal.repositories.LeaseRepository;
 import com.example.carportal.repositories.UserRepository;
@@ -86,10 +83,11 @@ public class LeaseController {
     @GetMapping("viewmonthlyincome")
     public String viewmonthlyincome(Model model)
     {
-        model.addAttribute("listOfUnavailableCars", js.getCars(0));
+        ArrayList<Lease> leases = ls.getAllOpenLeases();
+        ArrayList<Statistic> stats = js.getListOfStatistics(leases);
+        model.addAttribute("statistics", stats);
+        model.addAttribute("numberOfLeasedCars" , leases.size());
         model.addAttribute("totalPrice", ls.calculateMonthlyEarnings());
-        model.addAttribute("listOfOpenLeases", ls.getAllOpenLeases());
-
         return "viewmonthlyincome";
     }
 
