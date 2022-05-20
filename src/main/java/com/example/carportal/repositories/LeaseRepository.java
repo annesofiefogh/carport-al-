@@ -17,14 +17,50 @@ public class LeaseRepository implements ILeaseRepository {
     private Connection con;
 
     @Override
-    public Object getOneEntity(int ID) { //Not needed
-        return false;
+    public Object getOneEntity(int ID) { //For future implementations
+        con = dbc.getConnection();
+        Lease lease = null;
+        try {
+            ResultSet rs;
+            Statement stmt;
+            String sqlString = "SELECT * FROM `lease` WHERE `lease_id` = '" + ID + "''";
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery(sqlString);
+            while (rs.next()) {
+                LocalDate startDate = rs.getDate(5).toLocalDate();
+                LocalDate endDate = rs.getDate(6).toLocalDate();
+                lease = new Lease(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDouble(4), startDate, endDate, rs.getBoolean(7));
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return lease;
     }
 
+
     @Override
-    public List getAllEntities() { //Not needed as we only need all open leases
-        return null;
+    public List getAllEntities() { //For future implementations
+        ArrayList<Lease> listOfLeases = new ArrayList<>();
+        con = dbc.getConnection();
+        Lease lease;
+        try {
+            ResultSet rs;
+            Statement stmt;
+            String sqlString = "SELECT * FROM `lease`";
+            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+            rs = stmt.executeQuery(sqlString);
+            while (rs.next()) {
+                LocalDate startDate = rs.getDate(5).toLocalDate();
+                LocalDate endDate = rs.getDate(6).toLocalDate();
+                lease = new Lease(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDouble(4), startDate, endDate, rs.getBoolean(7));
+                listOfLeases.add(lease);
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return listOfLeases;
     }
+
 
     @Override
     public boolean create(Object entity) { // Add lease to database
