@@ -81,7 +81,7 @@ public class LeaseRepository implements ILeaseRepository {
 
         closeLease(leaseID);
 
-        return false;
+        return true;
     }
 
     public ArrayList<Damage> listOfDamagesOnLease(int leaseID) { //Gets all damages associated with the specific lease

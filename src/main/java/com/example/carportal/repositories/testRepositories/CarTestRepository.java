@@ -19,8 +19,13 @@ public class CarTestRepository implements ICarRepository {
 
     @Override
     public ArrayList<Car> getAllAvailableCars() {
-
-        return arrayList;
+        ArrayList<Car> availableCars = new ArrayList<>();
+        for (Car c:arrayList) {
+            if (c.isAvailable()){
+                availableCars.add(c);
+            }
+        }
+        return availableCars;
     }
 
     @Override

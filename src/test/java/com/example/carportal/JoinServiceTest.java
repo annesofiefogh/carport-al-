@@ -27,5 +27,19 @@ public class JoinServiceTest {
         //Assert
         assertEquals(expected, result);
     }
+
+    @Test
+    void getListOfAvailableCars() {
+
+        //Arrange
+        IUserRepository testUserRepository = new UserTestRepository();
+        ICarRepository testCarRepository = new CarTestRepository();
+        JoinService serviceTest = new JoinService(testUserRepository, testCarRepository);
+        boolean expected = true;
+        //Act
+        boolean result = serviceTest.getListOfAvailableCars().size() == 3;
+        //Assert
+        assertEquals(expected,result);
+    }
 }
 
