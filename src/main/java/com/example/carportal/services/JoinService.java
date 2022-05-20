@@ -2,8 +2,6 @@ package com.example.carportal.services;
 
 import com.example.carportal.models.Car;
 import com.example.carportal.models.Customer;
-import com.example.carportal.models.Lease;
-import com.example.carportal.models.User;
 import com.example.carportal.repositories.*;
 
 import java.util.ArrayList;
@@ -22,8 +20,8 @@ public class JoinService { //Exists because leasecontroller cannot know car- and
         return listOfAllCustomers;
     }
 
-    public ArrayList<Car> getListOfAvailableCars(){
-        ArrayList<Car> listOfAvailableCars = cr.getAllAvailableCars();
+    public ArrayList<Car> getCars(int available){
+        ArrayList<Car> listOfAvailableCars = cr.getCars(1);
         return listOfAvailableCars;
     }
 
@@ -34,7 +32,7 @@ public class JoinService { //Exists because leasecontroller cannot know car- and
 
     public static void main(String[] args) {
         JoinService js = new JoinService(new UserRepository(), new CarRepository());
-        System.out.println(js.getListOfAvailableCars());
+        System.out.println(js.getCars(1));
         System.out.println(js.getListOfCustomers());
     }
 

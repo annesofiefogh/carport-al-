@@ -143,4 +143,9 @@ public class UserRepository implements IUserRepository {
         return false;
     }
 
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
 }

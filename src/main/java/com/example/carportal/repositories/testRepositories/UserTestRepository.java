@@ -41,6 +41,11 @@ public class UserTestRepository implements IUserRepository {
     }
 
     @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
+    @Override
     public ArrayList getAllCustomers() {
         return customerArrayList;
     }
@@ -57,6 +62,11 @@ public class UserTestRepository implements IUserRepository {
 
     @Override
     public boolean validateCredentials(String username, String password){
+        for (int i = 0; i < userArrayList.size(); i++) {
+            if (userArrayList.get(i).getUserName().equals(username) && userArrayList.get(i).getPassword().equals(password)){
+                return true;
+            }
+        }
         return false;
     }
 }

@@ -18,9 +18,14 @@ public class CarTestRepository implements ICarRepository {
     ));
 
     @Override
-    public ArrayList<Car> getAllAvailableCars() {
-
-        return arrayList;
+    public ArrayList<Car> getCars(int available) {
+        ArrayList<Car> availableCars = new ArrayList<>();
+        for (Car c:arrayList) {
+            if (c.isAvailable()){
+                availableCars.add(c);
+            }
+        }
+        return availableCars;
     }
 
     @Override
@@ -59,6 +64,11 @@ public class CarTestRepository implements ICarRepository {
 
             }
         }
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
         return false;
     }
 
