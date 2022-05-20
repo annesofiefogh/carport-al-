@@ -20,7 +20,7 @@ public class CarRepository implements ICarRepository {
         try{
             ResultSet rs;
             Statement stmt;
-            String sqlString = "SELECT * FROM `car` WHERE `Car_ID` = " + ID + "" + ";";
+            String sqlString = "SELECT * FROM `car` WHERE `Car_ID` = " + ID + "" +  ";";
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
             rs.next();
@@ -66,13 +66,14 @@ public class CarRepository implements ICarRepository {
         return false;
     }
 
+    // 1 = available, 0 = unavailable
     public ArrayList<Car> getCars(int available){
         con = dbc.getConnection();
         ArrayList<Car> listOfAvailableCars = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
         try{
-           String sqlString = "SELECT * FROM `car` WHERE `Available`= '" + available + "';";
+           String sqlString = "SELECT * FROM `car` WHERE `Available`= '" + available + "' ORDER BY car_id;";
            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
            rs = stmt.executeQuery(sqlString);
            while (rs.next()){
@@ -88,7 +89,8 @@ public class CarRepository implements ICarRepository {
     public static void main(String[] args) {
         CarRepository c = new CarRepository();
         c.update(1);
-        System.out.println(c.getOneEntity(1));
+    //    System.out.println(c.getOneEntity(1));
+        System.out.println(c.getCars(1));
     }
 
 }

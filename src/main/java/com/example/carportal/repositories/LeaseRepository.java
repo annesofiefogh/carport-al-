@@ -131,7 +131,7 @@ public class LeaseRepository implements ILeaseRepository {
         try {
             ResultSet rs;
             Statement stmt;
-            String sqlString = "SELECT * FROM `lease` WHERE `status` = 1";
+            String sqlString = "SELECT * FROM `lease` WHERE `status` = 1 ORDER BY car_id";
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
             while (rs.next()) {
