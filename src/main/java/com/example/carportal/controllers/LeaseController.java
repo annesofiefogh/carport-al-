@@ -7,6 +7,7 @@ import com.example.carportal.repositories.UserRepository;
 import com.example.carportal.services.DamageService;
 import com.example.carportal.services.JoinService;
 import com.example.carportal.services.LeaseService;
+import com.example.carportal.services.SessionService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -24,14 +25,16 @@ public class LeaseController {
     private LeaseService ls = new LeaseService(new LeaseRepository());
     private JoinService js = new JoinService(new UserRepository(),new CarRepository());
     private DamageService ds = new DamageService();
+    private SessionService ss = new SessionService();
 
     @GetMapping("/createlease")
-    public String createLease(Model model){
+    public String createLease(Model model, HttpSession session){
         ArrayList<Customer> allCustomers = js.getListOfCustomers();
         ArrayList<Car> availableCars = js.getCars(1);
         model.addAttribute("allCustomers", allCustomers);
         model.addAttribute("availableCars", availableCars);
-        return "createlease";
+        boolean hasAccess = ss.hasRegistrationRole(session);
+        return (hasAccess) ? "createlease" : "redirect:/accessdenied";
     }
 
     @PostMapping("/createlease")
@@ -58,7 +61,8 @@ public class LeaseController {
         ArrayList<Integer> openLeaseIds = new ArrayList<>(Arrays.asList(22, 37, 39));
         model.addAttribute("listOfDamages", ds.getSessionListOFDamages(session));
         model.addAttribute("openLeases", openLeaseIds);
-        return "createdamagereport";
+        boolean hasAccess = ss.hasDamageRole(session);
+        return (hasAccess) ? "createdamagereport" : "redirect:/accessdenied";
     }
 
     @PostMapping("/createdamagereport")
@@ -81,14 +85,14 @@ public class LeaseController {
     }
 
     @GetMapping("viewmonthlyincome")
-    public String viewmonthlyincome(Model model)
+    public String viewmonthlyincome(HttpSession session, Model model)
     {
         ArrayList<Lease> leases = ls.getAllOpenLeases();
         ArrayList<Statistic> stats = js.getListOfStatistics(leases);
         model.addAttribute("statistics", stats);
         model.addAttribute("numberOfLeasedCars" , leases.size());
         model.addAttribute("totalPrice", ls.calculateMonthlyEarnings());
-        return "viewmonthlyincome";
+        boolean hasAccess = ss.hasBusinessRole(session);
+        return (hasAccess) ? "viewmonthlyincome" : "redirect:/accessdenied";
     }
-
 }
