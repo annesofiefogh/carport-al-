@@ -3,25 +3,36 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <style>
+        .box {
+            margin: auto;
+            width: 40%;
+            border: 2px solid;
+            padding: 10px;
+        }
+    </style>
 </head>
 <body>
-<h1>Login</h1>
-<form name="form" id="sign_in" action="/index" method="POST">
+<h2>Velkommen til Bilabannoment.dk database system v1.0</h2>
+<div class="box">
+    <h3>Log venligst ind her</h3>
+    <form name="form" id="sign_in" action="/index" method="POST">
 
-    <label for="username">Username</label><br>
-    <input type="text" id="username" name="username" autocomplete="off" autofocus/>
-    <br><br>
+        <label for="username">Username</label><br>
+        <input type="text" id="username" name="username" autocomplete="off" autofocus/>
+        <br><br>
 
-    <label for="password">Password</label><br>
-    <input type="password" id="password" name="password" autocomplete="off"/>
-    <br><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" autocomplete="off"/>
+        <br><br>
 
-    <div>
-        <button id="resetButton" class="visible" type="button" onclick="resetForm()">Reset form</button>
-        <button id="submitButton" class="visible" type="submit" onclick="location.href='../mainpage'">Submit</button>
-    </div>
+        <div>
+            <button id="resetButton" class="visible" type="button" onclick="resetForm()">Reset form</button>
+            <button id="submitButton" class="visible" type="submit" onclick="location.href='../mainpage'">Submit</button>
+        </div>
 
-</form>
+    </form>
+</div>
 <script th:inline="javascript">
 
     disableEnter("userName");

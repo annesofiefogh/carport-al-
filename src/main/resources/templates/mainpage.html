@@ -5,9 +5,10 @@
     <title>Hovedside</title>
 </head>
 <body>
-<h1>Thanks for logging in '<span th:text="${sessionUser.getUserName()}"></spanth:text></span>'</h1>
+<h1>Velkommen '<span th:text="${sessionUser.getUserName()}"></spanth:text></span>'</h1>
 <button type="submit" onclick="location.href='../createdamagereport'">Opret tilstands report</button>
 <button type="submit" onclick="location.href='../createlease'">Opret abonnement</button>
 <button type="submit" onclick="location.href='../viewmonthlyincome'">Se statistiker</button>
+<button type="submit" onclick="location.href='../'">Log ud</button>
 </body>
 </html>
