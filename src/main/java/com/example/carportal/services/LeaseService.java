@@ -32,7 +32,7 @@ public class LeaseService {
         return null;
     }
 
-    public double calculateMonthlyEarnings(){
+    public double calculateMonthlyEarnings(){ //If the startdate is after the current month then it is not added to the total.
         double sum = 0;
        double price;
        LocalDate currentMonth = LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),LocalDate.now().lengthOfMonth());
