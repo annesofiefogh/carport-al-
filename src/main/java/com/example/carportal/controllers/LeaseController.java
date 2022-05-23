@@ -58,9 +58,9 @@ public class LeaseController {
     @GetMapping("/createdamagereport")
     public String getdata(Model model, HttpSession session)
     {
-        ArrayList<Integer> openLeaseIds = new ArrayList<>(Arrays.asList(22, 37, 39));
+        ArrayList<Lease> openLeases = ls.getAllOpenLeases();
         model.addAttribute("listOfDamages", ds.getSessionListOFDamages(session));
-        model.addAttribute("openLeases", openLeaseIds);
+        model.addAttribute("openLeases", openLeases);
         return "createdamagereport";
     }
 

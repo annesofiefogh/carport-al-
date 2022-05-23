@@ -27,9 +27,9 @@
         <h2>Input form</h2>
         <form name="form" id="data" action="/createdamagereport" method="POST">
 
-            <label for="leaseId">Lease ID</label>
-            <select name="leaseId" id="leaseId">
-                <option th:each="leaseId : ${openLeases}" th:value="${leaseId}" th:text="${leaseId}"></option>
+            <label for="openLeases">Lease ID</label>
+            <select name="openLeases" id="openLeases">
+                <option th:each="lease : ${openLeases}" th:value="${lease.getLeaseID()}" th:text="${lease.getLeaseID()}"></option>
             </select>
             <br><br>
 
