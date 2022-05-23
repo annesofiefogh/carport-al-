@@ -1,7 +1,6 @@
 package com.example.carportal.services;
 
 import com.example.carportal.models.Car;
-import com.example.carportal.models.CarWithPrice;
 import com.example.carportal.models.Customer;
 import com.example.carportal.models.Lease;
 import com.example.carportal.models.Statistic;
