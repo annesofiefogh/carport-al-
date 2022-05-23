@@ -149,4 +149,9 @@ public class UserRepository implements IUserRepository {
         return false;
     }
 
+    public static void main(String[] args) {
+        UserRepository ur = new UserRepository();
+        System.out.println(ur.getUser(2));
+    }
+
 }
