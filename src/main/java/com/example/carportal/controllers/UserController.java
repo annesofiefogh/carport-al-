@@ -20,7 +20,7 @@ public class UserController {
 
     @GetMapping("/")
     public String landPage(HttpServletRequest request){
-        us.addUserToSession(request);
+        //us.addUserToSession(request);
         return "index";
     }
 
