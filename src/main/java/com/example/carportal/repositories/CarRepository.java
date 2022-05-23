@@ -31,15 +31,6 @@ public class CarRepository implements ICarRepository {
         return car;
     }
 
-    @Override
-    public List getAllEntities() { // Might not be needed.
-        return null;
-    }
-
-    @Override
-    public boolean create(Car entity) { // Might not be needed
-        return false;
-    }
 
     @Override
     public boolean update(int id) { // Change status Available/Unavailable
@@ -61,10 +52,6 @@ public class CarRepository implements ICarRepository {
         return false;
     }
 
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
 
     // 1 = available, 0 = unavailable
     public ArrayList<Car> getCars(int available){
@@ -84,6 +71,21 @@ public class CarRepository implements ICarRepository {
             e.printStackTrace();
         }
         return listOfAvailableCars;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return false;
+    }
+
+    @Override
+    public List getAllEntities() { // Might not be needed.
+        return null;
+    }
+
+    @Override
+    public boolean create(Car entity) { // Might not be needed
+        return false;
     }
 
     public static void main(String[] args) {

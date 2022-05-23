@@ -12,8 +12,6 @@ public class JoinService { //Exists because leasecontroller cannot know car- and
     private IUserRepository ur;
     private ICarRepository cr;
 
-
-
     public JoinService(IUserRepository injectedUserRepository, ICarRepository injectedCarRepository ){
         ur = injectedUserRepository;
         cr = injectedCarRepository;
@@ -23,7 +21,6 @@ public class JoinService { //Exists because leasecontroller cannot know car- and
         return listOfAllCustomers;
     }
 
-
     public ArrayList<Car> getCars(int available){
         ArrayList<Car> listOfAvailableCars = cr.getCars(1);
         return listOfAvailableCars;
@@ -32,7 +29,6 @@ public class JoinService { //Exists because leasecontroller cannot know car- and
     public void changeCarStatus (int carID){
         cr.update(carID);
     }
-
 
     public static void main(String[] args) {
         JoinService js = new JoinService(new UserRepository(), new CarRepository());

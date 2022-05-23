@@ -91,16 +91,6 @@ public class LeaseRepository implements ILeaseRepository {
 
 
     @Override
-    public boolean update(int id) {     // Not needed as we only have open or closed leases
-        return false;
-    }
-
-    @Override
-    public boolean delete(int id) {
-        return false;
-    }
-
-    @Override
     public boolean damageReport(int leaseID,int carID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
 
         con = dbc.getConnection();
@@ -180,6 +170,16 @@ public class LeaseRepository implements ILeaseRepository {
             e.printStackTrace();
         }
         return listOfLeases;
+    }
+
+    @Override
+    public boolean update(int id) {     // Not needed as we only have open or closed leases
+        return false;
+    }
+
+    @Override
+    public boolean delete(int id) {
+        return false;
     }
 
     //TEST
