@@ -20,7 +20,7 @@ public class CarRepository implements ICarRepository {
         try{
             ResultSet rs;
             Statement stmt;
-            String sqlString = "SELECT * FROM `car` WHERE `Car_ID` = " + ID + "" + ";";
+            String sqlString = "SELECT * FROM `car` WHERE `Car_ID` = " + ID + "" +  ";";
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
             rs.next();
@@ -66,29 +66,31 @@ public class CarRepository implements ICarRepository {
         return false;
     }
 
+    // 1 = available, 0 = unavailable
     public ArrayList<Car> getCars(int available){
         con = dbc.getConnection();
-        ArrayList<Car> listOfAvailableCars = new ArrayList<>();
+        ArrayList<Car> listOfCars = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
         try{
-           String sqlString = "SELECT * FROM `car` WHERE `Available`= '" + available + "';";
+           String sqlString = "SELECT * FROM `car` WHERE `Available`= '" + available + "' ORDER BY car_id;";
            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
            rs = stmt.executeQuery(sqlString);
            while (rs.next()){
                Car car = new Car(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6));
-               listOfAvailableCars.add(car);
+               listOfCars.add(car);
            }
         } catch (SQLException e){
             e.printStackTrace();
         }
-        return listOfAvailableCars;
+        return listOfCars;
     }
 
     public static void main(String[] args) {
         CarRepository c = new CarRepository();
         c.update(1);
-        System.out.println(c.getOneEntity(1));
+    //    System.out.println(c.getOneEntity(1));
+        System.out.println(c.getCars(1));
     }
 
 }

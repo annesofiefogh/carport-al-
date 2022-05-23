@@ -3,42 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Login</title>
+    <link rel="stylesheet" th:href="@{css/index.css}">
 </head>
 <body>
-<h1>Login</h1>
-<form name="form" id="sign_in" action="/index" method="POST">
+<h2 class="center">Velkommen til Bilabannoment.dk database system v1.0</h2>
+<div class="box">
+    <h3>Log venligst ind her</h3>
+    <form name="form" id="sign_in" action="/index" method="POST">
 
-    <label for="username">Username</label><br>
-    <input type="text" id="username" name="username" autocomplete="off" autofocus/>
-    <br><br>
+        <label for="username">Username</label><br>
+        <input type="text" id="username" name="username" autocomplete="off" autofocus/>
+        <br><br>
 
-    <label for="password">Password</label><br>
-    <input type="password" id="password" name="password" autocomplete="off"/>
-    <br><br>
+        <label for="password">Password</label><br>
+        <input type="password" id="password" name="password" autocomplete="off"/>
+        <br><br>
 
-    <div>
-        <button id="resetButton" class="visible" type="button" onclick="resetForm()">Reset form</button>
-        <button id="submitButton" class="visible" type="submit" onclick="location.href='../mainpage'">Submit</button>
-    </div>
+        <div>
+            <button id="resetButton" type="button" onclick="resetForm()">Reset form</button>
+            <button id="submitButton" type="submit" onclick="location.href='../mainpage'">Submit
+            </button>
+        </div>
 
-</form>
-<script th:inline="javascript">
+    </form>
 
-    disableEnter("userName");
-    disableEnter("password");
+    <script th:inline="javascript">
 
-    function disableEnter(id) {
-        let el = document.getElementById(id);
-        el.addEventListener("keypress", function(event) {
-            if (event.key === "Enter") {
-                event.preventDefault();
-            }
-        });
-    }
+        disableEnter("username");
+        disableEnter("password");
 
-    function resetForm() {
-        document.form.userName.value = "";
-        document.form.password.value = "";
-    }
-</script></body>
+        function disableEnter(id) {
+            let el = document.getElementById(id);
+            el.addEventListener("keypress", function (event) {
+                if (event.key === "Enter") {
+                    event.preventDefault();
+                }
+            });
+        }
+
+        function resetForm() {
+            document.form.username.value = "";
+            document.form.password.value = "";
+        }
+    </script>
+</div>
+</body>
 </html>
