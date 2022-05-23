@@ -47,6 +47,7 @@ public class LeaseService {
        return sum;
     }
 
+    //todo: Why not just use lr.getAllOpenLeases().size??
     public int printNumberOfLeasedCars(){
         int count = 0;
         for (Lease l: lr.getAllOpenLeases()){
