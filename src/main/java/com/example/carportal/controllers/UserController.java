@@ -41,7 +41,6 @@ public class UserController {
         } else {
             session.setAttribute("sessionUser", us.getUser("guest"));
         }
-        System.out.println(us.getUserFromSession(session));
         return (validated) ? "redirect:/mainpage" : "redirect:/index";
     }
 

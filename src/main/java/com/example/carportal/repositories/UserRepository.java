@@ -1,13 +1,12 @@
 package com.example.carportal.repositories;
 
 import com.example.carportal.models.Customer;
+import com.example.carportal.models.Lease;
 import com.example.carportal.models.User;
 import com.example.carportal.repositories.utility.DBConnector;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -135,23 +134,55 @@ public class UserRepository implements IUserRepository {
 
 
     @Override
-    public boolean create(Object entity) { // Might not be needed, but can't be deleted
-        return false;
+    public boolean create(Object entity) {
+
+        con = dbc.getConnection();
+        String username = ((User) entity).getUserName();
+        String password = ((User)entity).getPassword();
+        boolean isDamage = ((User)entity).isDamageRole();
+        boolean isBusiness = ((User)entity).isBusinessRole();
+        boolean isRegistration = ((User)entity).isRegistrationRole();
+        try {
+            PreparedStatement preparedStatement = con.prepareStatement
+                    ("INSERT INTO `zz8alsto5xji5csq`.`user` (`Username`, `Password`, `Business_role`, `Damage_role`, `Registration_role`) VALUES (?,?,?,?,?);");
+
+            preparedStatement.setString(1, username);
+            preparedStatement.setString(2, password);
+            preparedStatement.setBoolean(3, isBusiness);
+            preparedStatement.setBoolean(4, isDamage);
+            preparedStatement.setBoolean(5, isRegistration);
+            preparedStatement.executeUpdate();
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return true;
     }
 
     @Override
-    public boolean update(int id) { // Might not be needed, but can't be deleted
+    public boolean update(int id) { // Not needed, but can't be deleted
         return false;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        con = dbc.getConnection();
+        try
+        {
+            String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`user` WHERE (`User_ID` = '" + id + "');";
+            PreparedStatement ps = con.prepareStatement(sqlString);
+            ps.executeUpdate();
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 
     public static void main(String[] args) {
         UserRepository ur = new UserRepository();
-        System.out.println(ur.getUser(2));
+        ur.delete(7);
     }
 
 }
