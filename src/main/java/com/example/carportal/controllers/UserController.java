@@ -45,6 +45,11 @@ public class UserController {
         return (validated) ? "redirect:/mainpage" : "redirect:/index";
     }
 
+    @GetMapping("/accessdenied")
+    public String accessdenied() {
+        return "noaccess";
+    }
+
     public static void main(String[] args) {
         UserRepository ur = new UserRepository();
         //System.out.println(ur.getUser("datadottie"));
