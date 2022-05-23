@@ -1,0 +1,15 @@
+
+.inset {
+    border-style: inset;
+    padding: 2%;
+}
+.column {
+    float: left;
+}
+.left {
+    width: 30%;
+}
+.right {
+    width: 60%;
+    float: right;
+}
