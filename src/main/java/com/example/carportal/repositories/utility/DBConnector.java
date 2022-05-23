@@ -30,7 +30,6 @@ public class DBConnector {
 
         try {
             con = DriverManager.getConnection(A);
-            System.out.println(A);
             //con = DriverManager.getConnection(url, username, password);
         } catch (SQLException e){
             e.printStackTrace();
