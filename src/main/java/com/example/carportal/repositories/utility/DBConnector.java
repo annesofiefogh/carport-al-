@@ -1,14 +1,19 @@
 package com.example.carportal.repositories.utility;
 
+import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.web.context.ConfigurableWebEnvironment;
+
+import javax.security.auth.login.Configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DBConnector {
 
-    private static String url;
+   /* private static String url;
     private static String username;
-    private static String password;
+    private static String password;*/
+    private static String A;
     private static Connection con;
 
     public Connection getConnection() {
@@ -16,12 +21,17 @@ public class DBConnector {
             return con;
         }
 
-        url = System.getenv("db.url");
+        /*url = System.getenv("db.url");
         username = System.getenv("db.username");
         password = System.getenv("db.password");
+        */
+
+        A = System.getenv("MYSQLCONNSTR_A");
 
         try {
-            con = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(A);
+            System.out.println(A);
+            //con = DriverManager.getConnection(url, username, password);
         } catch (SQLException e){
             e.printStackTrace();
         }
