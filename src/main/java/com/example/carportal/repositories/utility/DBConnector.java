@@ -10,10 +10,9 @@ import java.sql.SQLException;
 
 public class DBConnector {
 
-   /* private static String url;
+    private static String url;
     private static String username;
-    private static String password;*/
-    private static String A;
+    private static String password;
     private static Connection con;
 
     public Connection getConnection() {
@@ -21,16 +20,16 @@ public class DBConnector {
             return con;
         }
 
-        /*url = System.getenv("db.url");
+        url = System.getenv("db.url");
+        System.out.println(url);
         username = System.getenv("db.username");
+        System.out.println(username);
         password = System.getenv("db.password");
-        */
+        System.out.println(password);
 
-        A = System.getenv("MYSQLCONNSTR_A");
 
         try {
-            con = DriverManager.getConnection(A);
-            //con = DriverManager.getConnection(url, username, password);
+            con = DriverManager.getConnection(url, username, password);
         } catch (SQLException e){
             e.printStackTrace();
         }
