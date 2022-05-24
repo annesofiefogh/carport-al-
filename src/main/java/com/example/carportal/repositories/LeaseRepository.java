@@ -91,8 +91,9 @@ public class LeaseRepository implements ILeaseRepository {
 
 
     @Override
-    public boolean damageReport(int leaseID,int carID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
-
+    public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
+        Lease lease = (Lease) getOneEntity(leaseID);
+        int carID = lease.getCarID();
         con = dbc.getConnection();
         try {
             for (Damage listOfDamage : listOfDamages) {
