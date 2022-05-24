@@ -1,6 +1,7 @@
 package com.example.carportal.services;
 
 import com.example.carportal.models.Damage;
+import com.example.carportal.repositories.LeaseRepository;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -8,10 +9,12 @@ import java.util.ArrayList;
 
 public class DamageService
 {
+    LeaseRepository lr = new LeaseRepository();
     public void addListOfDamagesToSession(HttpServletRequest request) {
         ArrayList<Damage> listOfDamages = new ArrayList<>();
         HttpSession session = request.getSession();
         session.setAttribute("listOfDamages", listOfDamages);
+
     }
 
     public double getTotalDamage(HttpSession session) {
@@ -26,4 +29,5 @@ public class DamageService
     public ArrayList<Damage> getSessionListOFDamages(HttpSession session) {
         return (ArrayList<Damage>) session.getAttribute("listOfDamages");
     }
+
 }
