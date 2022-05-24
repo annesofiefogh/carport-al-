@@ -1,5 +1,6 @@
 package com.example.carportal.services;
 
+import com.example.carportal.models.Lease;
 import com.example.carportal.models.User;
 
 import javax.servlet.http.HttpSession;
@@ -20,5 +21,13 @@ public class SessionService
 
     public boolean hasRegistrationRole(HttpSession session) {
         return getSessionUser(session).isRegistrationRole();
+    }
+
+    public void addLeaseIdToSession(HttpSession session, int leaseid) {
+        session.setAttribute("leaseid", leaseid);
+    }
+
+    public int getLeaseIdFromSession(HttpSession session) {
+        return (int) session.getAttribute("leaseid");
     }
 }
