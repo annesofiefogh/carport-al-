@@ -21,11 +21,9 @@ public class DBConnector {
         }
 
         url = System.getenv("db.url");
-        System.out.println(url);
         username = System.getenv("db.username");
-        System.out.println(username);
         password = System.getenv("db.password");
-        System.out.println(password);
+
 
 
         try {
