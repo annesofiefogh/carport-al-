@@ -3,28 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <title>Opret abonnement</title>
+    <link rel="stylesheet" th:href="@{css/index.css}">
 </head>
 <body>
-<div><br><br><br>
-    <h1>Opret abonnement</h1>
-    <form name="leaseCreation" action="/createlease" method = "POST">
-        <label for="customerID">Vælg kunde:&nbsp</label>
-            <select name="customerID" id="customerID">
-                <option th:each="c : ${allCustomers}" th:value="${c.getId}" th:text="${c.getName()}"></option>
-            </select>
+<div class="lease">
+    <h2>Opret abonnement</h2>
+    <form name="leaseCreation" action="/createlease" method="POST">
+        <label for="customerID">Vælg kunde:</label><br>
+        <select name="customerID" id="customerID">
+            <option th:each="c : ${allCustomers}" th:value="${c.getId}" th:text="${c.getName()}"></option>
+        </select>
+        <br>
 
-        <label for="carID">Vælg bil:&nbsp</label>
-            <select name="carID" id="carID">
-                <option th:each="car : ${availableCars}" th:value="${car.getCarID()}" th:text="${car.getMake()}"></option>
-            </select>
+        <p>Vælg abannoment:</p>
+        <input type="radio" id="limited" name="abannoment" value="Limited">
+        <label for="limited">Limited</label><br>
+        <input type="radio" id="Unlimited" name="abannoment" value="Unlimited">
+        <label for="unlimited">Unlimited</label><br>
+        <br>
 
+        <label for="carID">Vælg bil:</label><br>
+        <select name="carID" id="carID">
+            <option th:each="car : ${availableCars}" th:value="${car.getCarID()}"
+                    th:text="${car.getMake()}+'-'+${car.getModel()}+'-'+${car.getColour()}+'-('+${car.getChassisNumber()}+')'"></option>
+        </select>
+        <br><br>
 
-        <label for="price">Pris</label>
-        <input type="number" inputmode="decimal" id="price" name="price" autofocus>
-        <label for="startDate">Oprettelsesdato</label>
+        <label for="price">Pris:</label><br>
+        <input type="number" inputmode="decimal" step="0.01" id="price" name="price" autofocus>
+        <br><br>
+
+        <label for="startDate">Oprettelsesdato:</label><br>
         <input type="date" id="startDate" name="startDate" autofocus>
-        <label for="endDate">Slutdato</label>
+        <br><br>
+
+        <label for="endDate">Slutdato:</label><br>
         <input type="date" id="endDate" name="endDate" autofocus>
+        <br><br>
+
         <button onclick="location.href='/createleasesuccess'">Submit</button>
 
     </form>
