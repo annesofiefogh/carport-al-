@@ -56,6 +56,10 @@ public class LeaseService {
         return count;
     }
 
+    public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages) {
+        return lr.damageReport(leaseID, listOfDamages);
+    }
+
     public static void main(String[] args) {
         LeaseService ls = new LeaseService(new LeaseRepository());
         System.out.println(ls.calculateMonthlyEarnings());
