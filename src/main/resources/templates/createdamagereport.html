@@ -20,31 +20,31 @@
         }</style>
 </head>
 <body>
-<h1>A form to enter data</h1>
+<h1>Formular til skadesrapport</h1>
 
 <div class="row">
     <div class="column left inset">
-        <h2>Input form</h2>
+        <h2>Udfyld formular</h2>
         <form name="form" id="data" action="/createdamagereport" method="POST">
 
-            <label for="description">Description</label><br>
+            <label for="description">Beskrivelse</label><br>
             <input type="text" id="description" name="description" autocomplete="off" required autofocus/>
             <br><br>
 
-            <label for="price">Price</label><br>
+            <label for="price">Pris</label><br>
             <input type="number" id="price" name="price" autocomplete="off" required/>
             <br><br>
 
             <div>
-                <button type="submit" onclick="location.href='../createdamagereport'">Add damage to list >></button>
+                <button type="submit" onclick="location.href='../createdamagereport'">Tilføj skade til rapport >></button>
                 <br><br>
             </div>
         </form>
-        <button type="submit" onclick="location.href='../createdamagereportsuccess'">Create damage report</button>
+        <button type="submit" onclick="location.href='../createdamagereportsuccess'">Insend skadesrapport</button>
 
     </div>
     <div class="column right inset">
-        <h2>List of damages to add to lease no. <span th:text="${leaseid}"></span></h2>
+        <h2>Liste af skader der bliver lagt til abonnement nr. <span th:text="${leaseid}"></span></h2>
         <br>
 
         <table style="width:100%">
@@ -58,6 +58,9 @@
             </tr>
         </table>
     </div>
+
+    <footer th:replace="fragments/footer"></footer>
+
 </div>
 </body>
 </html>

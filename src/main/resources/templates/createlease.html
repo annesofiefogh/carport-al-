@@ -24,11 +24,11 @@
         <br><br>
 
         <label for="startDate">Oprettelsesdato:</label>
-        <input type="date" id="startDate" name="startDate">
+        <input type="date" id="startDate" name="startDate" required>
         <br><br>
 
         <label for="price">Pris:</label><br>
-        <input type="number" inputmode="decimal" step="0.01" id="price" name="price">
+        <input type="number" inputmode="decimal" step="0.01" id="price" name="price" required>
         <br><br>
 
     </div>
@@ -40,7 +40,7 @@
         </select>
         <br>
 
-        <p>Vælg abannoment:</p>
+        <p>Vælg abonnement:</p>
         <input type="radio" id="limited" name="abannoment" value="Limited">
         <label for="limited">Limited</label><br>
         <input type="radio" id="Unlimited" name="abannoment" value="Unlimited">
@@ -48,13 +48,16 @@
         <br>
 
         <label for="endDate">Slutdato:</label>
-        <input type="date" id="endDate" name="endDate">
+        <input type="date" id="endDate" name="endDate" required>
         <br><br>
 
-        <button onclick="location.href='/createleasesuccess'">Opret</button>
+        <button type = "submit" onclick="location.href='../createleasesuccess'">Opret</button>
 
     </div>
     </form>
+
+    <footer th:replace="fragments/footer"></footer>
+
 </div>
 </body>
 </html>

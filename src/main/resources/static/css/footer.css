@@ -1,0 +1,11 @@
+.design{
+    display: flex;
+    align-items: flex-end;
+    background-color: whitesmoke;
+    height: 50px;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

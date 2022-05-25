@@ -6,7 +6,7 @@
     <link rel="stylesheet" th:href="@{css/index.css}">
 </head>
 <body>
-<h2 class="center">Velkommen til Bilabannoment A/S database system v1.0</h2>
+<h2 class="center">Velkommen til Carpot(al) et Bilabannoment A/S databasesystem v1.0</h2>
 <div class="box">
     <h3>Log venligst ind her</h3>
     <form name="form" id="sign_in" action="/index" method="POST">
@@ -45,6 +45,8 @@
             document.form.password.value = "";
         }
     </script>
+
 </div>
+    <footer th:replace="fragments/footer"></footer>
 </body>
 </html>

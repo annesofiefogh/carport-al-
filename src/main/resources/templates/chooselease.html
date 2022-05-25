@@ -2,17 +2,20 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Choose Lease</title>
+    <title>Vælg abonnement</title>
 
 </head>
 <body>
 <form name="form" id="data" action="/chooselease" method="POST">
-<label for="lease">Lease </label>
+<label for="lease">Abonnement ID </label>
 <select name="lease" id="lease">
     <option th:each="lease : ${openLeases}" th:value="${lease.getLeaseID()}" th:text="${lease.getLeaseID()}"></option>
 </select>
-    <button type="submit" onclick="location.href='../createdamagereport'">Create damage report</button>
+    <button type="submit" onclick="location.href='../createdamagereport'">Opret skadesrapport</button>
 <br><br>
 </form>
+
+<footer th:replace="fragments/footer"></footer>
+
 </body>
 </html>
