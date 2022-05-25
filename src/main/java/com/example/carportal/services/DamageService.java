@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 public class DamageService
 {
-    LeaseRepository lr = new LeaseRepository();
+    LeaseRepository lr = new LeaseRepository(); //TODO Slettes???
     public void addListOfDamagesToSession(HttpServletRequest request) {
         ArrayList<Damage> listOfDamages = new ArrayList<>();
         HttpSession session = request.getSession();

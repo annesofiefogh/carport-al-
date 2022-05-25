@@ -1,6 +1,5 @@
 package com.example.carportal.services;
 
-import com.example.carportal.models.Lease;
 import com.example.carportal.models.User;
 
 import javax.servlet.http.HttpSession;
