@@ -24,11 +24,11 @@
         <br><br>
 
         <label for="startDate">Oprettelsesdato:</label>
-        <input type="date" id="startDate" name="startDate">
+        <input type="date" id="startDate" name="startDate" required>
         <br><br>
 
         <label for="price">Pris:</label><br>
-        <input type="number" inputmode="decimal" step="0.01" id="price" name="price">
+        <input type="number" inputmode="decimal" step="0.01" id="price" name="price" required>
         <br><br>
 
     </div>
@@ -48,10 +48,10 @@
         <br>
 
         <label for="endDate">Slutdato:</label>
-        <input type="date" id="endDate" name="endDate">
+        <input type="date" id="endDate" name="endDate" required>
         <br><br>
 
-        <button onclick="location.href='/createleasesuccess'">Opret</button>
+        <button type = "submit" onclick="location.href='../createleasesuccess'">Opret</button>
 
     </div>
     </form>
