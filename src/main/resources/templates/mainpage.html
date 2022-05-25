@@ -4,16 +4,19 @@
     <meta charset="UTF-8">
     <title>Hovedside</title>
     <link rel="stylesheet" th:href="@{css/index.css}">
+    <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
-<body>
+<body class="wheel">
 <h3>Velkommen '<span th:text="${sessionUser.getUserName()}"></spanth:text></span>'</h3>
-<button type="submit" onclick="location.href='../chooselease'">Opret skadesreport</button>
-<button type="submit" onclick="location.href='../createlease'">Opret abonnement</button>
-<button type="submit" onclick="location.href='../viewmonthlyincome'">Se statistikker</button>
-<button type="submit" onclick="location.href='../viewstock'">Se lagerbeholdning</button>
-<button type="submit" onclick="location.href='../'">Log ud</button>
+<button class="a" type="submit" onclick="location.href='../chooselease'">Opret skadesreport</button>
+<button class="b" type="submit" onclick="location.href='../createlease'">Opret abonnement</button>
+<button class="c" type="submit" onclick="location.href='../viewmonthlyincome'">Se statistikker</button>
+<button class="d" type="submit" onclick="location.href='../viewstock'">Se lagerbeholdning</button>
+<button class="e" type="submit" onclick="location.href='../'">Log ud</button>
 
-<footer th:replace="fragments/footer"></footer>
+<div class="footer">
+    <p th:replace="fragments/footer"></p>
+</div>
 
 </body>
 </html>
