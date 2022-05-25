@@ -7,9 +7,24 @@
 .center {
     text-align: center;
 
-}.lease {
+}
+.lease {
      margin: auto;
-     width: 60%;
+     width: 70%;
+     min-height: 400px;
      border: 2px solid;
      padding: 10px;
- }
+    background-color: whitesmoke;
+}
+.stock {
+    margin: auto;
+    border: 2px solid;
+    padding: 10px;
+}
+button {
+    width: 150px;
+    border-radius: 15px;
+    height: 30px;
+    background-color: steelblue;
+    color: white;
+}

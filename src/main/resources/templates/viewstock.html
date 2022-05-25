@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>View Stock</title>
+    <link rel="stylesheet" th:href="@{css/index.css}">
+</head>
+<body>
+<div>
+
+    <div class="stock" style="width: 45%; float: left;">
+        <h2>Leased cars</h2>
+        <table style="width:90%">
+            <tr>
+                <td><h4>Make</h4></td>
+                <td><h4>Model</h4></td>
+                <td><h4>Farve</h4></td>
+            </tr>
+            <tr th:each="car : ${leased}">
+                <td th:text="${car.getMake()}"></td>
+                <td th:text="${car.getModel()}"></td>
+                <td th:text="${car.getColour()}"></td>
+            </tr>
+        </table>
+    </div>
+    <div class="stock" style="width: 45%; float: left;">
+        <h2>Available cars</h2>
+        <table style="width:90%">
+            <tr>
+                <td><h4>Make</h4></td>
+                <td><h4>Model</h4></td>
+                <td><h4>Farve</h4></td>
+            </tr>
+            <tr th:each="car : ${available}">
+                <td th:text="${car.getMake()}"></td>
+                <td th:text="${car.getModel()}"></td>
+                <td th:text="${car.getColour()}"></td>
+            </tr>
+        </table>
+    </div>
+</div>
+</body>
+</html>
