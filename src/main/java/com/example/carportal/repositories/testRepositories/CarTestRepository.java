@@ -50,10 +50,10 @@ public class CarTestRepository implements ICarRepository {
     }
 
     @Override
-    public boolean update(int id) {
+    public boolean update(int ID) {
 
         for (Car car : arrayList) {
-            if (id == car.getCarID()) {
+            if (ID == car.getCarID()) {
                 if (car.isAvailable()) {
                     car.setAvailable(false);
                     return true;
@@ -68,7 +68,7 @@ public class CarTestRepository implements ICarRepository {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(int ID) {
         return false;
     }
 

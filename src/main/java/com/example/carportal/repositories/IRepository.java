@@ -10,9 +10,9 @@ public interface IRepository<T> {
 
     public boolean create(T entity);
 
-    public boolean update (int id);
+    public boolean update (int ID);
 
-    public boolean delete (int id);
+    public boolean delete (int ID);
 
 
 

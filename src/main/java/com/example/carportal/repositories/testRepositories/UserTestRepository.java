@@ -36,12 +36,12 @@ public class UserTestRepository implements IUserRepository {
     }
 
     @Override
-    public boolean update(int id) {
+    public boolean update(int ID) {
         return false;
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(int ID) {
         return false;
     }
 
@@ -51,7 +51,7 @@ public class UserTestRepository implements IUserRepository {
     }
 
     @Override
-    public User getUser(int id){
+    public User getUser(int ID){
         return null;
     }
 

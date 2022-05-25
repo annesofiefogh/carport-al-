@@ -35,15 +35,15 @@ public class CarRepository implements ICarRepository {
 
 
     @Override
-    public boolean update(int id) { // Change status Available/Unavailable
+    public boolean update(int ID) { // Change status Available/Unavailable
         int availableNumber = 1;
-            if (getOneEntity(id).isAvailable()) {
+            if (getOneEntity(ID).isAvailable()) {
                 availableNumber = 0;
             }
             con = dbc.getConnection();
             try
             {
-                String sqlString = "UPDATE `car` SET `Available` = '" + availableNumber + "' WHERE car_id = '" + id + "'";
+                String sqlString = "UPDATE `car` SET `Available` = '" + availableNumber + "' WHERE car_id = '" + ID + "'";
                 PreparedStatement ps = con.prepareStatement(sqlString);
                 ps.executeUpdate();
             } catch (SQLException e)
@@ -76,11 +76,11 @@ public class CarRepository implements ICarRepository {
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(int ID) {
         con = dbc.getConnection();
         try
         {
-            String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`car` WHERE (`Car_ID` = '" + id + "');";
+            String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`car` WHERE (`Car_ID` = '" + ID + "');";
             PreparedStatement ps = con.prepareStatement(sqlString);
             ps.executeUpdate();
         } catch (SQLException e)
