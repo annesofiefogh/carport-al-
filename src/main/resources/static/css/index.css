@@ -28,3 +28,46 @@ button {
     background-color: steelblue;
     color: white;
 }
+.wheel {
+    background-image: url('../car_wheel.png');
+    background-color: rgba(255, 255, 255, 0.7);
+    background-blend-mode: lighten;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: contain;
+    background-position: center;
+}
+.a {
+    position: absolute;
+    top: 75%;
+    left: 30%;
+}
+.b {
+    position: absolute;
+    top: 20%;
+    left: 30%;
+}
+.c {
+    position: absolute;
+    top: 33%;
+    left: 61%;
+}
+.d {
+    position: absolute;
+    top: 80%;
+    left: 57%;
+}
+.e {
+    position: absolute;
+    top: 8%;
+    left: 1%;
+}
+.footer {
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    background-color: red;
+    color: white;
+    text-align: center;
+}
