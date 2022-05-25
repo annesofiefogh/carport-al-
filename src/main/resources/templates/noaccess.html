@@ -4,12 +4,15 @@
   <meta charset="UTF-8">
   <title>Access Denied</title>
   <link rel="stylesheet" th:href="@{css/index.css}">
+  <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
 <body>
 <h3>Sørg for, at du har adgangsrettigheder til at se denne side</h3>
 <button onclick="location.href='/mainpage'">Tilbage</button>
 
-<footer th:replace="fragments/footer"></footer>
+<div class="footer">
+  <p th:replace="fragments/footer"></p>
+</div>
 
 </body>
 </html>

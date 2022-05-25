@@ -3,21 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Get data</title>
-    <style>
-        .inset {
-            border-style: inset;
-            padding: 2%;
-        }
-        .column {
-            float: left;
-        }
-        .left {
-            width: 30%;
-        }
-        .right {
-            width: 60%;
-            float: right;
-        }</style>
+    <link rel="stylesheet" th:href="@{css/index.css}">
+    <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
 <body>
 <h1>Formular til skadesrapport</h1>
@@ -59,7 +46,9 @@
         </table>
     </div>
 
-    <footer th:replace="fragments/footer"></footer>
+    <div class="footer">
+        <p th:replace="fragments/footer"></p>
+    </div>
 
 </div>
 </body>

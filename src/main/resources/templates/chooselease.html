@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Vælg abonnement</title>
-
+    <link rel="stylesheet" th:href="@{css/index.css}">
+    <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
 <body>
 <form name="form" id="data" action="/chooselease" method="POST">
@@ -15,7 +16,9 @@
 <br><br>
 </form>
 
-<footer th:replace="fragments/footer"></footer>
+<div class="footer">
+    <p th:replace="fragments/footer"></p>
+</div>
 
 </body>
 </html>

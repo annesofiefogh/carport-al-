@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Hovedside</title>
     <link rel="stylesheet" th:href="@{css/index.css}">
+    <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
 <body class="wheel">
 <h3>Velkommen '<span th:text="${sessionUser.getUserName()}"></spanth:text></span>'</h3>
@@ -12,7 +13,10 @@
 <button class="c" type="submit" onclick="location.href='../viewmonthlyincome'">Se statistikker</button>
 <button class="d" type="submit" onclick="location.href='../viewstock'">Se lagerbeholdning</button>
 <button class="e" type="submit" onclick="location.href='../'">Log ud</button>
-<div class="footer" th:replace="fragments/footer">
+
+<div class="footer">
+    <p th:replace="fragments/footer"></p>
 </div>
+
 </body>
 </html>
