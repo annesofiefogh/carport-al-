@@ -182,7 +182,7 @@ public class UserRepository implements IUserRepository {
 
     public static void main(String[] args) {
         UserRepository ur = new UserRepository();
-        ur.delete(7);
+
     }
 
 }

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeaseRepository implements ILeaseRepository {
-
+    //TODO we should consider having a DamageRepository, there are a lot of methods for Damages
 
     private DBConnector dbc = new DBConnector();
     private Connection con;
@@ -95,6 +95,7 @@ public class LeaseRepository implements ILeaseRepository {
         Lease lease = (Lease) getOneEntity(leaseID);
         int carID = lease.getCarID();
         con = dbc.getConnection();
+
         try {
             for (Damage listOfDamage : listOfDamages) {
                 Damage damage = new Damage(listOfDamage.getDescription(), listOfDamage.getPrice());
@@ -175,6 +176,7 @@ public class LeaseRepository implements ILeaseRepository {
 
     @Override
     public boolean update(int id) {     // Not needed, but can't be deleted
+        //COULD BE UPDATE DAMAGE TO REPAIRED
         return false;
     }
 
@@ -198,6 +200,7 @@ public class LeaseRepository implements ILeaseRepository {
     public static void main(String[] args) {
         LeaseRepository lr = new LeaseRepository();
         UserRepository userRepository = new UserRepository();
+        lr.getOneEntity(1);
 
 
     }

@@ -17,10 +17,17 @@ public class UserServiceTest {
         IUserRepository testUserRepository = new UserTestRepository();
         UserService serviceTest = new UserService(testUserRepository);
         boolean expected = true;
+        boolean expected2 = false;
         //Act
         boolean result = serviceTest.validateCredentials("Torb123", "torbWord");
+        boolean result2 = serviceTest.validateCredentials("Torb123", "wrongpassword");
+        boolean result3 = serviceTest.validateCredentials("wrongusername", "torbWord");
+        boolean result4 = serviceTest.validateCredentials("wrongusername", "wrongpassword");
         //Assert
         assertEquals(expected, result);
+        assertEquals(expected2, result2);
+        assertEquals(expected2, result3);
+        assertEquals(expected2, result4);
 
     }
 }
