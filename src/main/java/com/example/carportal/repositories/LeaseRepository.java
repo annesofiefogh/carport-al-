@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeaseRepository implements ILeaseRepository {
-
+    //TODO we should consider having a DamageRepository, there are a lot of methods for Damages
 
     private DBConnector dbc = new DBConnector();
     private Connection con;
@@ -23,7 +23,7 @@ public class LeaseRepository implements ILeaseRepository {
         try {
             ResultSet rs;
             Statement stmt;
-            String sqlString = "SELECT * FROM `lease` WHERE `lease_id` = '" + ID + "''";
+            String sqlString = "SELECT * FROM `lease` WHERE `lease_id` = '" + ID + "'";
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
             while (rs.next()) {
@@ -91,9 +91,11 @@ public class LeaseRepository implements ILeaseRepository {
 
 
     @Override
-    public boolean damageReport(int leaseID,int carID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
-
+    public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
+        Lease lease = (Lease) getOneEntity(leaseID);
+        int carID = lease.getCarID();
         con = dbc.getConnection();
+
         try {
             for (Damage listOfDamage : listOfDamages) {
                 Damage damage = new Damage(listOfDamage.getDescription(), listOfDamage.getPrice());
@@ -173,37 +175,34 @@ public class LeaseRepository implements ILeaseRepository {
     }
 
     @Override
-    public boolean update(int id) {     // Not needed as we only have open or closed leases
+    public boolean update(int id) {     // Not needed, but can't be deleted
+        //COULD BE UPDATE DAMAGE TO REPAIRED
         return false;
     }
 
     @Override
     public boolean delete(int id) {
-        return false;
+        con = dbc.getConnection();
+        try
+        {
+            String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`lease` WHERE (`Lease_ID` = '" + id + "');";
+            PreparedStatement ps = con.prepareStatement(sqlString);
+            ps.executeUpdate();
+        } catch (SQLException e)
+        {
+            e.printStackTrace();
+        }
+
+        return true;
     }
 
     //TEST
     public static void main(String[] args) {
         LeaseRepository lr = new LeaseRepository();
         UserRepository userRepository = new UserRepository();
+        lr.getOneEntity(1);
 
-        //lr.closeLease(5);
 
-        /*
-        CarRepository carRepository = new CarRepository();
-        carRepository.getOneEntity(1);
-        Customer customer = new Customer(2,"torben", 12234352, "Torben@mail.dk", "Rentemestervej 32", true, true);
-        String date = "2022,12,24";
-        String date2 = "2025,12,24";
-        /*
-
-        LocalDate date1 = LocalDate.now();
-        LocalDate date2 = LocalDate.of(2055,5,4);
-        Lease lease = new Lease(2,1,2500.99,date1,date2,true);
-        System.out.println(lr.create(lease));
-*/
-
-        System.out.println(lr.getAllOpenLeases());
     }
 
 

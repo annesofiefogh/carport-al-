@@ -27,12 +27,6 @@
         <h2>Input form</h2>
         <form name="form" id="data" action="/createdamagereport" method="POST">
 
-            <label for="lease">Lease </label>
-            <select name="lease" id="lease">
-                <option th:each="lease : ${openLeases}" th:value="${lease.getLeaseID()}" th:text="${lease.getLeaseID()}"></option>
-            </select>
-            <br><br>
-
             <label for="description">Description</label><br>
             <input type="text" id="description" name="description" autocomplete="off"/>
             <br><br>
@@ -50,7 +44,7 @@
 
     </div>
     <div class="column right inset">
-        <h2>List of damages to add to lease no. </h2>
+        <h2>List of damages to add to lease no. <span th:text="${leaseid}"></span></h2>
         <br>
 
         <table style="width:100%">

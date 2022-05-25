@@ -20,8 +20,8 @@ public class LeaseService {
         lr = injectedLeaseRepository;
     }
 
-    public void createLease(Lease lease){
-        lr.create(lease);
+    public boolean createLease(Lease lease){
+        return lr.create(lease);
     }
 
     public ArrayList<Lease> getAllOpenLeases(){
@@ -55,6 +55,10 @@ public class LeaseService {
            count ++;
         }
         return count;
+    }
+
+    public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages) {
+        return lr.damageReport(leaseID, listOfDamages);
     }
 
     public static void main(String[] args) {

@@ -53,16 +53,30 @@ public class LeaseController {
     @GetMapping("/createleasesuccess")
     public String leaseCreated(){
         return "createleasesuccess";
+
+    }
+    @GetMapping("/chooselease")
+    public String chooselease(Model model, HttpSession session)
+    {
+        ArrayList<Lease> openLeases = ls.getAllOpenLeases();
+        model.addAttribute("openLeases", openLeases);
+        boolean hasAccess = ss.hasDamageRole(session);
+        return (hasAccess) ? "chooselease" : "redirect:/accessdenied";
+    }
+
+    @PostMapping("/chooselease")
+    public String choosinglease(WebRequest request, HttpSession session)    {
+        int leaseId = Integer.parseInt(request.getParameter("lease"));
+        ss.addLeaseIdToSession(session, leaseId);
+        return "redirect:/createdamagereport";
     }
 
     @GetMapping("/createdamagereport")
     public String getdata(Model model, HttpSession session)
     {
-
-        ArrayList<Lease> openLeases = ls.getAllOpenLeases();
-
+        int leaseid = ss.getLeaseIdFromSession(session);
         model.addAttribute("listOfDamages", ds.getSessionListOFDamages(session));
-        model.addAttribute("openLeases", openLeases);
+        model.addAttribute("leaseid", leaseid);
         boolean hasAccess = ss.hasDamageRole(session);
         return (hasAccess) ? "createdamagereport" : "redirect:/accessdenied";
     }
@@ -70,19 +84,21 @@ public class LeaseController {
     @PostMapping("/createdamagereport")
     public String gettingdata(WebRequest request, HttpSession session)
     {
-        int leaseId = Integer.parseInt(request.getParameter("leaseId"));
         String desc = request.getParameter("description");
         Double price = Double.parseDouble(request.getParameter("price"));
-        ds.getSessionListOFDamages(session).add(new Damage(leaseId, desc, price));
+        ds.getSessionListOFDamages(session).add(new Damage(0, desc, price));
         return "redirect:/createdamagereport";
     }
 
     @GetMapping("createdamagereportsuccess")
     public String gotdata(Model model, HttpSession session)
     {
-        model.addAttribute("listOfDamages", ds.getSessionListOFDamages(session));
+        ArrayList<Damage> listOfDamages = ds.getSessionListOFDamages(session);
+        int leaseid = ss.getLeaseIdFromSession(session);
+        model.addAttribute("listOfDamages", listOfDamages);
         model.addAttribute("totalPrice", ds.getTotalDamage(session));
-        System.out.println(ds.getTotalDamage(session));
+        model.addAttribute("leaseid", leaseid);
+        ls.damageReport(leaseid, listOfDamages);
         return "createdamagereportsuccess";
     }
 
