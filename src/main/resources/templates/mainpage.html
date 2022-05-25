@@ -3,12 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Hovedside</title>
+    <link rel="stylesheet" th:href="@{css/index.css}">
 </head>
 <body>
 <h3>Velkommen '<span th:text="${sessionUser.getUserName()}"></spanth:text></span>'</h3>
-<button type="submit" onclick="location.href='../chooselease'">Opret tilstands report</button>
+<button type="submit" onclick="location.href='../chooselease'">Opret skadesreport</button>
 <button type="submit" onclick="location.href='../createlease'">Opret abonnement</button>
-<button type="submit" onclick="location.href='../viewmonthlyincome'">Se statistiker</button>
+<button type="submit" onclick="location.href='../viewmonthlyincome'">Se statistikker</button>
+<button type="submit" onclick="location.href='../viewstock'">Se lagerbeholdning</button>
 <button type="submit" onclick="location.href='../'">Log ud</button>
 </body>
 </html>

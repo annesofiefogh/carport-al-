@@ -5,13 +5,38 @@
     <title>Opret abonnement</title>
     <link rel="stylesheet" th:href="@{css/index.css}">
 </head>
-<body>
+<body style="background-color: deepskyblue">
 <div class="lease">
     <h2>Opret abonnement</h2>
     <form name="leaseCreation" action="/createlease" method="POST">
+    <div style="width: 40%; float: left;">
         <label for="customerID">Vælg kunde:</label><br>
         <select name="customerID" id="customerID">
             <option th:each="c : ${allCustomers}" th:value="${c.getId}" th:text="${c.getName()}"></option>
+        </select>
+        <br>
+
+        <p>Vælg afhentningssted:</p>
+        <input type="radio" id="bilabonnement" name="pickup" value="Bilabonnement">
+        <label for="bilabonnement">bilabannoment</label><br>
+        <input type="radio" id="fdm" name="pickup" value="FDM">
+        <label for="fdm">FDM</label>
+        <br><br>
+
+        <label for="startDate">Oprettelsesdato:</label>
+        <input type="date" id="startDate" name="startDate">
+        <br><br>
+
+        <label for="price">Pris:</label><br>
+        <input type="number" inputmode="decimal" step="0.01" id="price" name="price">
+        <br><br>
+
+    </div>
+    <div style="width: 60%; float: left;">
+        <label for="carID">Vælg bil:</label><br>
+        <select name="carID" id="carID">
+            <option th:each="car : ${availableCars}" th:value="${car.getCarID()}"
+                    th:text="${car.getMake()}+'-'+${car.getModel()}+'-'+${car.getColour()}+'-('+${car.getChassisNumber()}+')'"></option>
         </select>
         <br>
 
@@ -22,27 +47,13 @@
         <label for="unlimited">Unlimited</label><br>
         <br>
 
-        <label for="carID">Vælg bil:</label><br>
-        <select name="carID" id="carID">
-            <option th:each="car : ${availableCars}" th:value="${car.getCarID()}"
-                    th:text="${car.getMake()}+'-'+${car.getModel()}+'-'+${car.getColour()}+'-('+${car.getChassisNumber()}+')'"></option>
-        </select>
+        <label for="endDate">Slutdato:</label>
+        <input type="date" id="endDate" name="endDate">
         <br><br>
 
-        <label for="price">Pris:</label><br>
-        <input type="number" inputmode="decimal" step="0.01" id="price" name="price" autofocus>
-        <br><br>
+        <button onclick="location.href='/createleasesuccess'">Opret</button>
 
-        <label for="startDate">Oprettelsesdato:</label><br>
-        <input type="date" id="startDate" name="startDate" autofocus>
-        <br><br>
-
-        <label for="endDate">Slutdato:</label><br>
-        <input type="date" id="endDate" name="endDate" autofocus>
-        <br><br>
-
-        <button onclick="location.href='/createleasesuccess'">Submit</button>
-
+    </div>
     </form>
 </div>
 </body>
