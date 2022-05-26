@@ -13,7 +13,7 @@
     <div style="width: 40%; float: left;">
         <label for="customerID">Vælg kunde:</label><br>
         <select name="customerID" id="customerID">
-            <option th:each="c : ${allCustomers}" th:value="${c.getId}" th:text="${c.getName()}"></option>
+            <option th:each="c : ${allCustomers}" th:value="${c.costumerID}" th:text="${c.getName()}"></option>
         </select>
         <br>
 

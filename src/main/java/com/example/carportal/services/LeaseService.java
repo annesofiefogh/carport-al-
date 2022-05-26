@@ -1,16 +1,12 @@
 package com.example.carportal.services;
 
-import com.example.carportal.models.Customer;
 import com.example.carportal.models.Damage;
 import com.example.carportal.models.Lease;
 import com.example.carportal.repositories.ILeaseRepository;
-import com.example.carportal.repositories.IRepository;
 import com.example.carportal.repositories.LeaseRepository;
-import com.example.carportal.repositories.testRepositories.LeaseTestRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LeaseService {
 
@@ -26,10 +22,6 @@ public class LeaseService {
 
     public ArrayList<Lease> getAllOpenLeases(){
         return lr.getAllOpenLeases();
-    }
-
-    public ArrayList<Damage> getAllDamagesOnLease(int leaseID, Damage damage){
-        return null;
     }
 
     public double calculateMonthlyEarnings(){ //If the startdate is after the current month then it is not added to the total.
@@ -48,13 +40,9 @@ public class LeaseService {
        return sum;
     }
 
-    //todo: Why not just use lr.getAllOpenLeases().size??
-    public int printNumberOfLeasedCars(){
-        int count = 0;
-        for (Lease l: lr.getAllOpenLeases()){
-           count ++;
-        }
-        return count;
+
+    public int getNumberOfLeasedCars(){
+        return lr.getAllOpenLeases().size();
     }
 
     public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages) {
@@ -64,9 +52,12 @@ public class LeaseService {
     public static void main(String[] args) {
         LeaseService ls = new LeaseService(new LeaseRepository());
         System.out.println(ls.calculateMonthlyEarnings());
-        System.out.println(ls.printNumberOfLeasedCars());
+        System.out.println(ls.getNumberOfLeasedCars());
 
 
     }
 
+    public void createLeaseFromWebRequest(int carID, int customerID, double price, LocalDate toLocalDate, LocalDate toLocalDate1, boolean b) {
+        createLease(new Lease(carID, customerID, price, toLocalDate, toLocalDate1, b));
+    }
 }

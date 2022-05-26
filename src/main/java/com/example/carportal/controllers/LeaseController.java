@@ -17,7 +17,6 @@ import org.springframework.web.context.request.WebRequest;
 import javax.servlet.http.HttpSession;
 import java.sql.Date;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 @Controller
 public class LeaseController {
@@ -44,8 +43,7 @@ public class LeaseController {
         double price = Double.parseDouble(request.getParameter("price"));
         Date startDate = Date.valueOf(request.getParameter("startDate"));
         Date endDate = Date.valueOf(request.getParameter("endDate"));
-        Lease lease = new Lease(carID, customerID, price, startDate.toLocalDate(), endDate.toLocalDate(), true);
-        ls.createLease(lease);
+        ls.createLeaseFromWebRequest(carID, customerID, price, startDate.toLocalDate(), endDate.toLocalDate(), true);
         js.changeCarStatus(carID);
         return "redirect:/createleasesuccess";
     }
@@ -56,7 +54,7 @@ public class LeaseController {
 
     }
     @GetMapping("/chooselease")
-    public String chooselease(Model model, HttpSession session)
+    public String chooseLease(Model model, HttpSession session)
     {
         ArrayList<Lease> openLeases = ls.getAllOpenLeases();
         model.addAttribute("openLeases", openLeases);
@@ -65,35 +63,35 @@ public class LeaseController {
     }
 
     @PostMapping("/chooselease")
-    public String choosinglease(WebRequest request, HttpSession session)    {
+    public String choosingLease(WebRequest request, HttpSession session)    {
         int leaseId = Integer.parseInt(request.getParameter("lease"));
         ss.addLeaseIdToSession(session, leaseId);
         return "redirect:/createdamagereport";
     }
 
     @GetMapping("/createdamagereport")
-    public String getdata(Model model, HttpSession session)
+    public String getDamageData(Model model, HttpSession session)
     {
         int leaseid = ss.getLeaseIdFromSession(session);
-        model.addAttribute("listOfDamages", ds.getSessionListOFDamages(session));
+        model.addAttribute("listOfDamages", ds.getSessionListOfDamages(session));
         model.addAttribute("leaseid", leaseid);
         boolean hasAccess = ss.hasDamageRole(session);
         return (hasAccess) ? "createdamagereport" : "redirect:/accessdenied";
     }
 
     @PostMapping("/createdamagereport")
-    public String gettingdata(WebRequest request, HttpSession session)
+    public String gettingDamageData(WebRequest request, HttpSession session)
     {
         String desc = request.getParameter("description");
         Double price = Double.parseDouble(request.getParameter("price"));
-        ds.getSessionListOFDamages(session).add(new Damage(0, desc, price));
+        ds.getSessionListOfDamages(session).add(ds.createDamageFromSession(0, desc, price));
         return "redirect:/createdamagereport";
     }
 
     @GetMapping("createdamagereportsuccess")
-    public String gotdata(Model model, HttpSession session)
+    public String gotDamageData(Model model, HttpSession session)
     {
-        ArrayList<Damage> listOfDamages = ds.getSessionListOFDamages(session);
+        ArrayList<Damage> listOfDamages = ds.getSessionListOfDamages(session);
         int leaseid = ss.getLeaseIdFromSession(session);
         model.addAttribute("listOfDamages", listOfDamages);
         model.addAttribute("totalPrice", ds.getTotalDamage(session));
@@ -103,7 +101,7 @@ public class LeaseController {
     }
 
     @GetMapping("viewmonthlyincome")
-    public String viewmonthlyincome(HttpSession session, Model model)
+    public String viewMonthlyIncome(HttpSession session, Model model)
     {
         ArrayList<Lease> leases = ls.getAllOpenLeases();
         ArrayList<Statistic> stats = js.getListOfStatistics(leases);

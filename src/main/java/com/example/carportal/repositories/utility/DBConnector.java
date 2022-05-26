@@ -35,9 +35,4 @@ public class DBConnector {
         System.out.println("Der er forbindelse");
         return con;
     }
-
-    public static void main(String[] args) {
-        DBConnector c = new DBConnector();
-        c.getConnection();
-    }
 }

@@ -2,7 +2,7 @@ package com.example.carportal.models;
 
 public class Customer {
 
-    private int id;
+    private int costumerID;
     private String name;
     private String phoneNumber;
     private String email;
@@ -11,7 +11,7 @@ public class Customer {
     private boolean driversLicense;
 
     public Customer(int id, String name, String phoneNumber, String email, String address, boolean creditApproved, boolean driversLicense) {
-        this.id = id;
+        this.costumerID = id;
         this.name = name;
         this.phoneNumber = phoneNumber;
         this.email = email;
@@ -20,12 +20,12 @@ public class Customer {
         this.driversLicense = driversLicense;
     }
 
-    public int getId() {
-        return id;
+    public int getCostumerID() {
+        return costumerID;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setCostumerID(int costumerID) {
+        this.costumerID = costumerID;
     }
 
     public String getName() {

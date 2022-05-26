@@ -12,9 +12,8 @@ public class Lease {
     private double price;
     private LocalDate startDate;
     private LocalDate endDate;
-    private boolean status; // Har ændret den til en boolean istedet.
+    private boolean status;
 
-    //TODO Har ændret Date til String da jeg ikke kan få databasen til at snakke med en Date variable.
     public Lease(int leaseID, int carID,  int customerID, double price, LocalDate startDate, LocalDate endDate, boolean status ) {
         this.leaseID = leaseID;
         this.carID = carID;

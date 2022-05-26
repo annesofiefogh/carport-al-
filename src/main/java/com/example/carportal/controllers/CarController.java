@@ -1,15 +1,12 @@
 package com.example.carportal.controllers;
 
-import com.example.carportal.models.Car;
 import com.example.carportal.repositories.CarRepository;
 import com.example.carportal.repositories.UserRepository;
-import com.example.carportal.services.CarService;
 import com.example.carportal.services.JoinService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import java.util.ArrayList;
 
 @Controller
 public class CarController {
