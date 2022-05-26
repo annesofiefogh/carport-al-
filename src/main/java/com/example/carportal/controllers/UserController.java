@@ -1,7 +1,5 @@
 package com.example.carportal.controllers;
 
-import com.example.carportal.models.User;
-import com.example.carportal.repositories.IUserRepository;
 import com.example.carportal.repositories.UserRepository;
 import com.example.carportal.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -45,7 +43,7 @@ public class UserController {
     }
 
     @GetMapping("/accessdenied")
-    public String accessdenied() {
+    public String accessDenied() {
         return "noaccess";
     }
 
