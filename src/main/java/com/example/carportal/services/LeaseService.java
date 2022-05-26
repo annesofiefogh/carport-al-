@@ -24,10 +24,6 @@ public class LeaseService {
         return lr.getAllOpenLeases();
     }
 
-    public ArrayList<Damage> getAllDamagesOnLease(int leaseID, Damage damage){ //TODO Slettes måske???
-        return null;
-    }
-
     public double calculateMonthlyEarnings(){ //If the startdate is after the current month then it is not added to the total.
         double sum = 0;
        double price;
@@ -44,13 +40,9 @@ public class LeaseService {
        return sum;
     }
 
-    //todo: Why not just use lr.getAllOpenLeases().size??
+
     public int getNumberOfLeasedCars(){
-        int count = 0;
-        for (Lease l: lr.getAllOpenLeases()){
-           count ++;
-        }
-        return count;
+        return lr.getAllOpenLeases().size();
     }
 
     public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages) {
@@ -65,4 +57,7 @@ public class LeaseService {
 
     }
 
+    public void createLeaseFromWebRequest(int carID, int customerID, double price, LocalDate toLocalDate, LocalDate toLocalDate1, boolean b) {
+        createLease(new Lease(carID, customerID, price, toLocalDate, toLocalDate1, b));
+    }
 }
