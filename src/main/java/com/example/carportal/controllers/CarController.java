@@ -17,7 +17,7 @@ public class CarController {
     private JoinService js = new JoinService(new UserRepository(),new CarRepository());
 
     @GetMapping("/viewstock")
-    public String  viewstock(Model model)
+    public String viewstock(Model model)
     {
         model.addAttribute("leased",js.getCars(0));
         model.addAttribute("available",js.getCars(1));

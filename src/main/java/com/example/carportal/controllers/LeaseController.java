@@ -72,7 +72,7 @@ public class LeaseController {
     }
 
     @GetMapping("/createdamagereport")
-    public String getdata(Model model, HttpSession session)
+    public String getDamageData(Model model, HttpSession session)
     {
         int leaseid = ss.getLeaseIdFromSession(session);
         model.addAttribute("listOfDamages", ds.getSessionListOFDamages(session));
@@ -82,7 +82,7 @@ public class LeaseController {
     }
 
     @PostMapping("/createdamagereport")
-    public String gettingdata(WebRequest request, HttpSession session)
+    public String gettingDamageData(WebRequest request, HttpSession session)
     {
         String desc = request.getParameter("description");
         Double price = Double.parseDouble(request.getParameter("price"));
@@ -91,7 +91,7 @@ public class LeaseController {
     }
 
     @GetMapping("createdamagereportsuccess")
-    public String gotdata(Model model, HttpSession session)
+    public String gotDamageData(Model model, HttpSession session)
     {
         ArrayList<Damage> listOfDamages = ds.getSessionListOFDamages(session);
         int leaseid = ss.getLeaseIdFromSession(session);
