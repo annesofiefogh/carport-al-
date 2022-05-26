@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <title>Opret abonnement</title>
     <link rel="stylesheet" th:href="@{css/index.css}">
+    <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
-<body style="background-color: deepskyblue">
+<body>
 <div class="lease">
     <h2>Opret abonnement</h2>
     <form name="leaseCreation" action="/createlease" method="POST">
     <div style="width: 40%; float: left;">
         <label for="customerID">Vælg kunde:</label><br>
         <select name="customerID" id="customerID">
-            <option th:each="c : ${allCustomers}" th:value="${c.getId}" th:text="${c.getName()}"></option>
+            <option th:each="c : ${allCustomers}" th:value="${c.costumerID}" th:text="${c.getName()}"></option>
         </select>
         <br>
 
@@ -24,11 +25,11 @@
         <br><br>
 
         <label for="startDate">Oprettelsesdato:</label>
-        <input type="date" id="startDate" name="startDate">
+        <input type="date" id="startDate" name="startDate" required>
         <br><br>
 
         <label for="price">Pris:</label><br>
-        <input type="number" inputmode="decimal" step="0.01" id="price" name="price">
+        <input type="number" inputmode="decimal" step="0.01" id="price" name="price" required>
         <br><br>
 
     </div>
@@ -48,15 +49,17 @@
         <br>
 
         <label for="endDate">Slutdato:</label>
-        <input type="date" id="endDate" name="endDate">
+        <input type="date" id="endDate" name="endDate" required>
         <br><br>
 
-        <button onclick="location.href='/createleasesuccess'">Opret</button>
+        <button type = "submit" onclick="location.href='../createleasesuccess'">Opret</button>
 
     </div>
     </form>
 
-    <footer th:replace="fragments/footer"></footer>
+    <div class="footer">
+        <p th:replace="fragments/footer"></p>
+    </div>
 
 </div>
 </body>

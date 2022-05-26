@@ -1,16 +1,12 @@
 package com.example.carportal.services;
 
-import com.example.carportal.models.Customer;
 import com.example.carportal.models.Damage;
 import com.example.carportal.models.Lease;
 import com.example.carportal.repositories.ILeaseRepository;
-import com.example.carportal.repositories.IRepository;
 import com.example.carportal.repositories.LeaseRepository;
-import com.example.carportal.repositories.testRepositories.LeaseTestRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.List;
 
 public class LeaseService {
 
@@ -28,7 +24,7 @@ public class LeaseService {
         return lr.getAllOpenLeases();
     }
 
-    public ArrayList<Damage> getAllDamagesOnLease(int leaseID, Damage damage){
+    public ArrayList<Damage> getAllDamagesOnLease(int leaseID, Damage damage){ //TODO Slettes måske???
         return null;
     }
 
@@ -49,7 +45,7 @@ public class LeaseService {
     }
 
     //todo: Why not just use lr.getAllOpenLeases().size??
-    public int printNumberOfLeasedCars(){
+    public int getNumberOfLeasedCars(){
         int count = 0;
         for (Lease l: lr.getAllOpenLeases()){
            count ++;
@@ -64,7 +60,7 @@ public class LeaseService {
     public static void main(String[] args) {
         LeaseService ls = new LeaseService(new LeaseRepository());
         System.out.println(ls.calculateMonthlyEarnings());
-        System.out.println(ls.printNumberOfLeasedCars());
+        System.out.println(ls.getNumberOfLeasedCars());
 
 
     }

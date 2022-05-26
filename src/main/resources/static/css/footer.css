@@ -1,10 +1,9 @@
-.design{
-    display: block;
-    background-color: whitesmoke;
-    height: 50px;
+.footer {
     position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
+    background-color: black;
+    color: whitesmoke;
     text-align: center;
 }

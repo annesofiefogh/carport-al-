@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Got data</title>
     <link rel="stylesheet" th:href="@{css/index.css}">
+    <link rel="stylesheet" th:href="@{css/footer.css}">
     <style>
         .center {
             margin-left: auto;
@@ -29,7 +30,9 @@
 
 </table>
 
-<footer th:replace="fragments/footer"></footer>
+<div class="footer">
+    <p th:replace="fragments/footer"></p>
+</div>
 
 </body>
 </html>

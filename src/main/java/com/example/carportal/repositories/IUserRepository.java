@@ -9,7 +9,7 @@ public interface IUserRepository extends IRepository{
 
     ArrayList getAllCustomers();
 
-    User getUser(int id);
+    User getUser(int ID);
 
     User getUser(String username);
 

@@ -111,9 +111,9 @@ public class LeaseRepository implements ILeaseRepository {
             e.printStackTrace();
         }
 
-        closeLease(leaseID);
+        return closeLease(leaseID);
 
-        return true;
+
     }
 
     public ArrayList<Damage> listOfDamagesOnLease(int leaseID) { //Gets all damages associated with the specific lease
@@ -174,17 +174,17 @@ public class LeaseRepository implements ILeaseRepository {
     }
 
     @Override
-    public boolean update(int id) {     // Not needed, but can't be deleted
+    public boolean update(int ID) {     // Not needed, but can't be deleted
         //COULD BE UPDATE DAMAGE TO REPAIRED
         return false;
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(int ID) {
         con = dbc.getConnection();
         try
         {
-            String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`lease` WHERE (`Lease_ID` = '" + id + "');";
+            String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`lease` WHERE (`Lease_ID` = '" + ID + "');";
             PreparedStatement ps = con.prepareStatement(sqlString);
             ps.executeUpdate();
         } catch (SQLException e)

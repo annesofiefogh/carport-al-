@@ -3,8 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Failed login</title>
-  <link rel="stylesheet" th:href="@{css/faillogin.css}">
-  <link rel="stylesheet" th:href="@{css/navbar.css}">
+  <link rel="stylesheet" th:href="@{css/index.css}">
   <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
 <body>
@@ -12,7 +11,9 @@
   <h3>Login mislykkedes. Prøv venligst igen</h3>
   <button onclick="location.href='/login'">Return to sign in</button>
 
-  <footer th:replace="fragments/footer"></footer>
+  <div class="footer">
+    <p th:replace="fragments/footer"></p>
+  </div>
 
 </div>
 </body>

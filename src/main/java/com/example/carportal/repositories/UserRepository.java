@@ -160,16 +160,16 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public boolean update(int id) { // Not needed, but can't be deleted
+    public boolean update(int ID) { // Not needed, but can't be deleted
         return false;
     }
 
     @Override
-    public boolean delete(int id) {
+    public boolean delete(int ID) {
         con = dbc.getConnection();
         try
         {
-            String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`user` WHERE (`User_ID` = '" + id + "');";
+            String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`user` WHERE (`User_ID` = '" + ID + "');";
             PreparedStatement ps = con.prepareStatement(sqlString);
             ps.executeUpdate();
         } catch (SQLException e)
