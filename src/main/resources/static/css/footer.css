@@ -1,6 +1,5 @@
 .design{
-    display: flex;
-    align-items: flex-end;
+    display: block;
     background-color: whitesmoke;
     height: 50px;
     position: fixed;

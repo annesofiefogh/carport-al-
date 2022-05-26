@@ -89,7 +89,6 @@ public class LeaseRepository implements ILeaseRepository {
         return true;
     }
 
-
     @Override
     public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
         Lease lease = (Lease) getOneEntity(leaseID);
