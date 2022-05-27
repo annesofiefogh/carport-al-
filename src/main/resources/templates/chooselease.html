@@ -8,7 +8,7 @@
 </head>
 <body>
 <form name="form" id="data" action="/chooselease" method="POST">
-<label for="lease">Abonnement ID </label>
+<label for="lease">Vælg Abonnement ID </label>
 <select name="lease" id="lease">
     <option th:each="lease : ${openLeases}" th:value="${lease.getLeaseID()}" th:text="${lease.getLeaseID()}"></option>
 </select>
