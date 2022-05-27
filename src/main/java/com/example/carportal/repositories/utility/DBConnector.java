@@ -12,7 +12,9 @@ public class DBConnector {
     private static String password;
     private static Connection con;
 
-    public Connection getConnection() {
+    private DBConnector(){}
+
+    public static Connection getConnection() {
         if (con != null) {
             return con;
         }

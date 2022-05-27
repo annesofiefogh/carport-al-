@@ -65,14 +65,14 @@ public class LeaseController {
     @PostMapping("/chooselease")
     public String choosingLease(WebRequest request, HttpSession session)    {
         int leaseId = Integer.parseInt(request.getParameter("lease"));
-        ss.addLeaseIdToSession(session, leaseId);
+        ss.addLeaseIDToSession(session, leaseId);
         return "redirect:/createdamagereport";
     }
 
     @GetMapping("/createdamagereport")
     public String getDamageData(Model model, HttpSession session)
     {
-        int leaseid = ss.getLeaseIdFromSession(session);
+        int leaseid = ss.getLeaseIDFromSession(session);
         model.addAttribute("listOfDamages", ds.getSessionListOfDamages(session));
         model.addAttribute("leaseid", leaseid);
         boolean hasAccess = ss.hasDamageRole(session);
@@ -89,14 +89,15 @@ public class LeaseController {
     }
 
     @GetMapping("createdamagereportsuccess")
-    public String gotDamageData(Model model, HttpSession session)
-    {
+    public String gotDamageData(Model model, HttpSession session) {
         ArrayList<Damage> listOfDamages = ds.getSessionListOfDamages(session);
-        int leaseid = ss.getLeaseIdFromSession(session);
+        int leaseid = ss.getLeaseIDFromSession(session);
         model.addAttribute("listOfDamages", listOfDamages);
         model.addAttribute("totalPrice", ds.getTotalDamage(session));
         model.addAttribute("leaseid", leaseid);
-        ls.damageReport(leaseid, listOfDamages);
+        if (listOfDamages.size() != 0) {
+            ls.createDamageReport(leaseid, listOfDamages);
+        }
         return "createdamagereportsuccess";
     }
 
@@ -107,7 +108,7 @@ public class LeaseController {
         ArrayList<Statistic> stats = js.getListOfStatistics(leases);
         model.addAttribute("statistics", stats);
         model.addAttribute("numberOfLeasedCars" , leases.size());
-        model.addAttribute("totalPrice", ls.calculateMonthlyEarnings());
+        model.addAttribute("totalPrice", ls.calculateMonthlyIncome());
         boolean hasAccess = ss.hasBusinessRole(session);
         return (hasAccess) ? "viewmonthlyincome" : "redirect:/accessdenied";
     }

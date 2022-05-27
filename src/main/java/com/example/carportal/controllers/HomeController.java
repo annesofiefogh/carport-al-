@@ -23,25 +23,4 @@ public class HomeController
         model.addAttribute("sessionUser", us.getUserFromSession(session));
         return "mainpage";
     }
-
-    /*@GetMapping("/")
-    public String startPage(){
-        return "index";
-    }
-
-    @GetMapping("/index")
-    public String index(){
-        return "index";
-    }
-
-    @GetMapping("/loggedin")
-    public String loggedIn(){
-        return "loggedin";
-    }
-
-    @PostMapping("/index")
-    public String login(HttpServletRequest request){
-        HttpSession session = request.getSession();
-        return "redirect:/loggedin";
-    }*/
 }
