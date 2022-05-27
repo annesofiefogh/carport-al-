@@ -15,11 +15,11 @@ public class LeaseService {
         lr = injectedLeaseRepository;
     }
 
-    public void createLeaseFromWebRequest(int carID, int customerID, double price, LocalDate toLocalDate, LocalDate toLocalDate1, boolean b) {
-        createLease(new Lease(carID, customerID, price, toLocalDate, toLocalDate1, b));
+    public boolean createLeaseFromWebRequest(int carID, int customerID, double price, LocalDate toLocalDate, LocalDate toLocalDate1, boolean b) {
+       return createLease(new Lease(carID, customerID, price, toLocalDate, toLocalDate1, b));
     }
-    public void createLease(Lease lease){
-        lr.create(lease);
+    public boolean createLease(Lease lease){
+       return lr.create(lease);
     }
 
     public ArrayList<Lease> getAllOpenLeases(){

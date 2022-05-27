@@ -1,10 +1,4 @@
 package com.example.carportal.repositories.utility;
-
-import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.Environment;
-import org.springframework.web.context.ConfigurableWebEnvironment;
-
-import javax.security.auth.login.Configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -23,11 +17,9 @@ public class DBConnector {
             return con;
         }
 
-        url = System.getenv("db.url");
-        username = System.getenv("db.username");
-        password = System.getenv("db.password");
-
-
+        url = System.getenv("db.url2");
+        username = System.getenv("db.username2");
+        password = System.getenv("db.password2");
 
         try {
             con = DriverManager.getConnection(url, username, password);
