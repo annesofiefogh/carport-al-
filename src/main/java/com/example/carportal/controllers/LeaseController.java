@@ -89,14 +89,15 @@ public class LeaseController {
     }
 
     @GetMapping("createdamagereportsuccess")
-    public String gotDamageData(Model model, HttpSession session)
-    {
+    public String gotDamageData(Model model, HttpSession session) {
         ArrayList<Damage> listOfDamages = ds.getSessionListOfDamages(session);
         int leaseid = ss.getLeaseIdFromSession(session);
         model.addAttribute("listOfDamages", listOfDamages);
         model.addAttribute("totalPrice", ds.getTotalDamage(session));
         model.addAttribute("leaseid", leaseid);
-        ls.damageReport(leaseid, listOfDamages);
+        if (listOfDamages.size() != 0) {
+            ls.damageReport(leaseid, listOfDamages);
+        }
         return "createdamagereportsuccess";
     }
 
