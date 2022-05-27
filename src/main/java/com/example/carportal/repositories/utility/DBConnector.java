@@ -25,9 +25,9 @@ public class DBConnector {
             return con;
         }
 
-        url = System.getenv("db.url");
-        username = System.getenv("db.username");
-        password = System.getenv("db.password");
+        url = System.getenv("db.url2");
+        username = System.getenv("db.username2");
+        password = System.getenv("db.password2");
 
 
 
