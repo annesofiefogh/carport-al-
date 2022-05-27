@@ -12,12 +12,11 @@ import java.util.List;
 
 public class UserRepository implements IUserRepository {
 
-    private DBConnector dbc = new DBConnector();
     private Connection con;
 
     @Override
     public Customer getOneEntity(int ID) {
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         Customer customer = null;
         try {
             ResultSet rs;
@@ -34,7 +33,7 @@ public class UserRepository implements IUserRepository {
     }
 
     public User getUser(int ID) {
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         User user = null;
         try {
             ResultSet rs;
@@ -51,7 +50,7 @@ public class UserRepository implements IUserRepository {
     }
 
     public User getUser(String username) {
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         User user = null;
         try {
             ResultSet rs;
@@ -68,7 +67,7 @@ public class UserRepository implements IUserRepository {
     }
 
     public boolean validateCredentials (String username, String password){
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         try{
             ResultSet rs;
             Statement stmt;
@@ -87,7 +86,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public List getAllEntities() { // Gets all Users. Needed when someone tries to log in.
 
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         ArrayList<User> userList = new ArrayList<>();
         try {
             ResultSet rs;
@@ -114,7 +113,7 @@ public class UserRepository implements IUserRepository {
     }
 
     public ArrayList<Customer> getAllCustomers() {
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         ArrayList<Customer> allCustomers = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
@@ -136,7 +135,7 @@ public class UserRepository implements IUserRepository {
     @Override
     public boolean create(Object entity) {
 
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         String username = ((User) entity).getUserName();
         String password = ((User)entity).getPassword();
         boolean isDamage = ((User)entity).isDamageRole();
@@ -166,7 +165,7 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public boolean delete(int ID) {
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         try
         {
             String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`user` WHERE (`User_ID` = '" + ID + "');";
