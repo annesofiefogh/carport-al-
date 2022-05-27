@@ -6,13 +6,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
-public class DamageService
-{
+public class DamageService {
+
     public void addListOfDamagesToSession(HttpServletRequest request) {
         ArrayList<Damage> listOfDamages = new ArrayList<>();
         HttpSession session = request.getSession();
         session.setAttribute("listOfDamages", listOfDamages);
-
     }
 
     public double getTotalDamage(HttpSession session) {

@@ -11,13 +11,13 @@ import java.util.List;
 
 public class CarRepository implements ICarRepository {
 
-    private DBConnector dbc = new DBConnector();
+    //private DBConnector dbc = new DBConnector();
     private Connection con;
 
 
     @Override
     public Car getOneEntity(int ID) {
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         Car car = null;
         try{
             ResultSet rs;
@@ -40,7 +40,7 @@ public class CarRepository implements ICarRepository {
             if (getOneEntity(ID).isAvailable()) {
                 availableNumber = 0;
             }
-            con = dbc.getConnection();
+            con = DBConnector.getConnection();
             try
             {
                 String sqlString = "UPDATE `car` SET `Available` = '" + availableNumber + "' WHERE car_id = '" + ID + "'";
@@ -57,7 +57,7 @@ public class CarRepository implements ICarRepository {
 
     // 1 = available, 0 = unavailable
     public ArrayList<Car> getCars(int available){
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         ArrayList<Car> listOfCars = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
@@ -77,7 +77,7 @@ public class CarRepository implements ICarRepository {
 
     @Override
     public boolean delete(int ID) {
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         try
         {
             String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`car` WHERE (`Car_ID` = '" + ID + "');";
@@ -93,7 +93,7 @@ public class CarRepository implements ICarRepository {
 
     @Override
     public List getAllEntities()  {
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         ArrayList<Car> allCars = new ArrayList<>();
         Statement stmt;
         ResultSet rs;
@@ -114,7 +114,7 @@ public class CarRepository implements ICarRepository {
     @Override
     public boolean create(Car entity) {
 
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         String chassisNumber = entity.getChassisNumber();
         String make = entity.getMake();
         String model = entity.getModel();

@@ -13,12 +13,12 @@ import java.util.List;
 public class LeaseRepository implements ILeaseRepository {
     //TODO we should consider having a DamageRepository, there are a lot of methods for Damages
 
-    private DBConnector dbc = new DBConnector();
     private Connection con;
+
 
     @Override
     public Object getOneEntity(int ID) { //For future implementations
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         Lease lease = null;
         try {
             ResultSet rs;
@@ -41,7 +41,7 @@ public class LeaseRepository implements ILeaseRepository {
     @Override
     public List getAllEntities() { //For future implementations
         ArrayList<Lease> listOfLeases = new ArrayList<>();
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         Lease lease;
         try {
             ResultSet rs;
@@ -65,7 +65,7 @@ public class LeaseRepository implements ILeaseRepository {
     @Override
     public boolean create(Object entity) { // Add lease to database
 
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         int carID = ((Lease) entity).getCarID();
         int costumerID = ((Lease) entity).getCustomerID();
         double price = ((Lease) entity).getPrice();
@@ -93,7 +93,7 @@ public class LeaseRepository implements ILeaseRepository {
     public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
         Lease lease = (Lease) getOneEntity(leaseID);
         int carID = lease.getCarID();
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
 
         try {
             for (Damage listOfDamage : listOfDamages) {
@@ -119,7 +119,7 @@ public class LeaseRepository implements ILeaseRepository {
     public ArrayList<Damage> listOfDamagesOnLease(int leaseID) { //Gets all damages associated with the specific lease
         ArrayList<Damage> damageArrayList = new ArrayList<>();
         Damage damage;
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         try {
             ResultSet rs;
             Statement stmt;
@@ -138,7 +138,7 @@ public class LeaseRepository implements ILeaseRepository {
     }
 
     public boolean closeLease(int leaseID){
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         try {
             PreparedStatement preparedStatement = con.prepareStatement("UPDATE `zz8alsto5xji5csq`.`lease` SET `Status` = '0' WHERE (`Lease_id` = '" + leaseID + "')");
             preparedStatement.executeUpdate();
@@ -153,7 +153,7 @@ public class LeaseRepository implements ILeaseRepository {
     public ArrayList<Lease> getAllOpenLeases() { // When user needs to create a dmgReport, get a
                                                  // monthly income and see list of cars rented out.
         ArrayList<Lease> listOfLeases = new ArrayList<>();
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         Lease lease;
         try {
             ResultSet rs;
@@ -181,7 +181,7 @@ public class LeaseRepository implements ILeaseRepository {
 
     @Override
     public boolean delete(int ID) {
-        con = dbc.getConnection();
+        con = DBConnector.getConnection();
         try
         {
             String sqlString = "DELETE FROM `zz8alsto5xji5csq`.`lease` WHERE (`Lease_ID` = '" + ID + "');";
