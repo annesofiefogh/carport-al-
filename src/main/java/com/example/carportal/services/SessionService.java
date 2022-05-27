@@ -22,11 +22,11 @@ public class SessionService
         return getSessionUser(session).isRegistrationRole();
     }
 
-    public void addLeaseIdToSession(HttpSession session, int leaseid) {
+    public void addLeaseIDToSession(HttpSession session, int leaseid) {
         session.setAttribute("leaseid", leaseid);
     }
 
-    public int getLeaseIdFromSession(HttpSession session) {
+    public int getLeaseIDFromSession(HttpSession session) {
         return (int) session.getAttribute("leaseid");
     }
 }

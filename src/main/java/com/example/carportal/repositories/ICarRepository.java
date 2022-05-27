@@ -8,7 +8,7 @@ public interface ICarRepository extends IRepository<Car>{
 
     // MIGHT BE DELETED, make sure CarRepository extends IRepository if that is the case.
 
-    public ArrayList<Car> getCars(int available);
+    ArrayList<Car> getCars(int available);
 
 
 }

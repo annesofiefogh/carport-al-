@@ -31,13 +31,11 @@ public class UserTestRepository implements IUserRepository {
     }
 
     @Override
-    public boolean create(Object entity) {
-        return false;
+    public void create(Object entity) {
     }
 
     @Override
-    public boolean update(int ID) {
-        return false;
+    public void update(int ID) {
     }
 
     @Override

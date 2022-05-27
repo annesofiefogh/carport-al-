@@ -1,8 +1,6 @@
 package com.example.carportal.repositories;
 
 import com.example.carportal.models.Car;
-import com.example.carportal.models.Customer;
-import com.example.carportal.models.User;
 import com.example.carportal.repositories.utility.DBConnector;
 
 import java.sql.*;
@@ -34,7 +32,7 @@ public class CarRepository implements ICarRepository {
 
 
     @Override
-    public boolean update(int ID) { // Changes status Available/Unavailable
+    public void update(int ID) { // Changes status Available/Unavailable
         int availableNumber = 1;
             if (getOneEntity(ID).isAvailable()) {
                 availableNumber = 0;
@@ -50,9 +48,8 @@ public class CarRepository implements ICarRepository {
                 e.printStackTrace();
             }
 
-        return true;
     }
-
+    @Override
     public ArrayList<Car> getCars(int available){ // 1 = all available cars, 0 = all unavailable cars
         con = DBConnector.getConnection();
         ArrayList<Car> listOfCars = new ArrayList<>();
@@ -105,7 +102,7 @@ public class CarRepository implements ICarRepository {
     }
 
     @Override
-    public boolean create(Car entity) {
+    public void create(Car entity) {
 
         con = DBConnector.getConnection();
         String chassisNumber = entity.getChassisNumber();
@@ -125,7 +122,6 @@ public class CarRepository implements ICarRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
     }
 
 }

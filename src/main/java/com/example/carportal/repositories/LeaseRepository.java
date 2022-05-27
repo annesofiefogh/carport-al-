@@ -1,6 +1,7 @@
 package com.example.carportal.repositories;
 
-import com.example.carportal.models.*;
+import com.example.carportal.models.Lease;
+import com.example.carportal.models.Damage;
 import com.example.carportal.repositories.utility.DBConnector;
 import java.sql.*;
 import java.time.LocalDate;
@@ -61,7 +62,7 @@ public class LeaseRepository implements ILeaseRepository {
 
 
     @Override
-    public boolean create(Object entity) { // Add lease to database
+    public void create(Object entity) { // Add lease to database
         con = DBConnector.getConnection();
         int carID = ((Lease) entity).getCarID();
         int costumerID = ((Lease) entity).getCustomerID();
@@ -83,11 +84,10 @@ public class LeaseRepository implements ILeaseRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
     }
 
     @Override
-    public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
+    public void createDamageReport(int leaseID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
         Lease lease = (Lease) getOneEntity(leaseID);
         int carID = lease.getCarID();
         con = DBConnector.getConnection();
@@ -108,42 +108,17 @@ public class LeaseRepository implements ILeaseRepository {
             e.printStackTrace();
         }
 
-        return closeLease(leaseID);
-
-
+        closeLease(leaseID);
     }
 
-    public ArrayList<Damage> listOfDamagesOnLease(int leaseID) { //For future implementations
-        ArrayList<Damage> damageArrayList = new ArrayList<>();
-        Damage damage;
-        con = DBConnector.getConnection();
-        try {
-            ResultSet rs;
-            Statement stmt;
-            String sqlString = "SELECT * FROM `damage` WHERE `Lease_id` = " + leaseID + "" + ";";
-            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery(sqlString);
-            while (rs.next()) {
-                damage = new Damage(rs.getInt(1), rs.getString(4), rs.getDouble(5));
-                damageArrayList.add(damage);
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return damageArrayList;
-
-    }
-
-    public boolean closeLease(int leaseID){
+    public void closeLease(int leaseID){
         con = DBConnector.getConnection();
         try {
             PreparedStatement preparedStatement = con.prepareStatement("UPDATE `zz8alsto5xji5csq`.`lease` SET `Status` = '0' WHERE (`Lease_id` = '" + leaseID + "')");
             preparedStatement.executeUpdate();
         }catch (SQLException e){
             e.printStackTrace();
-            return false;
         }
-        return true;
     }
 
     @Override
@@ -175,7 +150,6 @@ public class LeaseRepository implements ILeaseRepository {
     }
 
     @Override
-    public boolean update(int ID) {
-        return false;
+    public void update(int ID) {
     }
 }
