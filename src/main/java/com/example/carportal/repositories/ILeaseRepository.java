@@ -8,11 +8,10 @@ import java.util.ArrayList;
 public interface ILeaseRepository extends IRepository{
 
 
-    public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages);
-    // Create dmgReport for the chosen lease.
-    // Change status from pending to closed.
+    void createDamageReport(int leaseID, ArrayList<Damage> listOfDamages);
 
-    public ArrayList<Lease> getAllOpenLeases();
-    // When user needs to create a dmgReport
+
+    ArrayList<Lease> getAllOpenLeases();
+
 
 }

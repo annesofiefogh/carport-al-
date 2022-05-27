@@ -8,29 +8,25 @@ import com.example.carportal.repositories.*;
 
 import java.util.ArrayList;
 
-public class JoinService { //Exists because leasecontroller cannot know car- and userservice (Seperation of concerns)
+public class JoinService {
 
     private IUserRepository ur;
     private ICarRepository cr;
-
-
 
     public JoinService(IUserRepository injectedUserRepository, ICarRepository injectedCarRepository ){
         ur = injectedUserRepository;
         cr = injectedCarRepository;
     }
     public ArrayList<Customer> getListOfCustomers(){
-        ArrayList<Customer> listOfAllCustomers = ur.getAllCustomers();
-        return listOfAllCustomers;
+        return (ArrayList<Customer>) ur.getAllCustomers();
     }
 
     public ArrayList<Car> getCars(int available){
-        ArrayList<Car> listOfCars = cr.getCars(available);
-        return listOfCars;
+        return cr.getCars(available);
     }
 
-    public boolean changeCarStatus (int carID){
-        return cr.update(carID);
+    public void changeCarStatus (int carID){
+        cr.update(carID);
     }
 
     public ArrayList<Statistic> getListOfStatistics(ArrayList<Lease> leases)
@@ -42,9 +38,4 @@ public class JoinService { //Exists because leasecontroller cannot know car- and
         return listOfStats;
     }
 
-    public static void main(String[] args) {
-        JoinService js = new JoinService(new UserRepository(), new CarRepository());
-        System.out.println(js.getCars(1));
-        System.out.println(js.getListOfCustomers());
-    }
 }

@@ -16,8 +16,6 @@ public class DBConnector {
     private static String password;
     private static Connection con;
 
-
-    //There has to be a private default constructor to make it a Singleton Pattern
     private DBConnector(){}
 
     public static Connection getConnection() {

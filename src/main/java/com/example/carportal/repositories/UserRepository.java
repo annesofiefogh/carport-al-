@@ -1,12 +1,10 @@
 package com.example.carportal.repositories;
 
 import com.example.carportal.models.Customer;
-import com.example.carportal.models.Lease;
 import com.example.carportal.models.User;
 import com.example.carportal.repositories.utility.DBConnector;
 
 import java.sql.*;
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -32,6 +30,7 @@ public class UserRepository implements IUserRepository {
         return customer;
     }
 
+    @Override
     public User getUser(int ID) {
         con = DBConnector.getConnection();
         User user = null;
@@ -49,6 +48,7 @@ public class UserRepository implements IUserRepository {
         return user;
     }
 
+    @Override
     public User getUser(String username) {
         con = DBConnector.getConnection();
         User user = null;
@@ -66,6 +66,7 @@ public class UserRepository implements IUserRepository {
         return user;
     }
 
+    @Override
     public boolean validateCredentials (String username, String password){
         con = DBConnector.getConnection();
         try{
@@ -84,18 +85,15 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public List getAllEntities() { // Gets all Users. Needed when someone tries to log in.
-
+    public List getAllEntities() { //For future implementations
         con = DBConnector.getConnection();
         ArrayList<User> userList = new ArrayList<>();
         try {
             ResultSet rs;
             Statement stmt;
             String sqlString = "SELECT * FROM `user`";
-
             stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
             rs = stmt.executeQuery(sqlString);
-
             while (rs.next()) {
                 int userID = rs.getInt(1);
                 String userName = rs.getString(2);
@@ -112,6 +110,7 @@ public class UserRepository implements IUserRepository {
         return userList;
     }
 
+    @Override
     public ArrayList<Customer> getAllCustomers() {
         con = DBConnector.getConnection();
         ArrayList<Customer> allCustomers = new ArrayList<>();
@@ -131,9 +130,8 @@ public class UserRepository implements IUserRepository {
         return allCustomers;
     }
 
-
     @Override
-    public boolean create(Object entity) {
+    public void create(Object entity) {
 
         con = DBConnector.getConnection();
         String username = ((User) entity).getUserName();
@@ -144,7 +142,6 @@ public class UserRepository implements IUserRepository {
         try {
             PreparedStatement preparedStatement = con.prepareStatement
                     ("INSERT INTO `zz8alsto5xji5csq`.`user` (`Username`, `Password`, `Business_role`, `Damage_role`, `Registration_role`) VALUES (?,?,?,?,?);");
-
             preparedStatement.setString(1, username);
             preparedStatement.setString(2, password);
             preparedStatement.setBoolean(3, isBusiness);
@@ -155,16 +152,10 @@ public class UserRepository implements IUserRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
     }
 
     @Override
-    public boolean update(int ID) { // Not needed, but can't be deleted
-        return false;
-    }
-
-    @Override
-    public boolean delete(int ID) {
+    public boolean delete(int ID) { //For future implementations
         con = DBConnector.getConnection();
         try
         {
@@ -175,13 +166,10 @@ public class UserRepository implements IUserRepository {
         {
             e.printStackTrace();
         }
-
         return true;
     }
 
-    public static void main(String[] args) {
-        UserRepository ur = new UserRepository();
-
+    @Override
+    public void update(int ID) {
     }
-
 }

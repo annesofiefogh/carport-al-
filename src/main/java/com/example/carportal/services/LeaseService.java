@@ -3,7 +3,6 @@ package com.example.carportal.services;
 import com.example.carportal.models.Damage;
 import com.example.carportal.models.Lease;
 import com.example.carportal.repositories.ILeaseRepository;
-import com.example.carportal.repositories.LeaseRepository;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -16,16 +15,19 @@ public class LeaseService {
         lr = injectedLeaseRepository;
     }
 
-    public boolean createLease(Lease lease){
-        return lr.create(lease);
+    public void createLeaseFromWebRequest(int carID, int customerID, double price, LocalDate toLocalDate, LocalDate toLocalDate1, boolean b) {
+        createLease(new Lease(carID, customerID, price, toLocalDate, toLocalDate1, b));
+    }
+    public void createLease(Lease lease){
+        lr.create(lease);
     }
 
     public ArrayList<Lease> getAllOpenLeases(){
         return lr.getAllOpenLeases();
     }
 
-    public double calculateMonthlyEarnings(){ //If the startdate is after the current month then it is not added to the total.
-        double sum = 0;
+    public double calculateMonthlyIncome(){ //If the startdate is after the current month then it is not added to the total.
+       double sum = 0;
        double price;
        LocalDate currentMonth = LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),LocalDate.now().lengthOfMonth());
 
@@ -40,24 +42,8 @@ public class LeaseService {
        return sum;
     }
 
-
-    public int getNumberOfLeasedCars(){
-        return lr.getAllOpenLeases().size();
+    public void createDamageReport(int leaseID, ArrayList<Damage> listOfDamages) {
+        lr.createDamageReport(leaseID, listOfDamages);
     }
 
-    public boolean damageReport(int leaseID, ArrayList<Damage> listOfDamages) {
-        return lr.damageReport(leaseID, listOfDamages);
-    }
-
-    public static void main(String[] args) {
-        LeaseService ls = new LeaseService(new LeaseRepository());
-        System.out.println(ls.calculateMonthlyEarnings());
-        System.out.println(ls.getNumberOfLeasedCars());
-
-
-    }
-
-    public void createLeaseFromWebRequest(int carID, int customerID, double price, LocalDate toLocalDate, LocalDate toLocalDate1, boolean b) {
-        createLease(new Lease(carID, customerID, price, toLocalDate, toLocalDate1, b));
-    }
 }
