@@ -11,7 +11,6 @@ import java.util.List;
 
 public class CarRepository implements ICarRepository {
 
-    //private DBConnector dbc = new DBConnector();
     private Connection con;
 
 
@@ -35,7 +34,7 @@ public class CarRepository implements ICarRepository {
 
 
     @Override
-    public boolean update(int ID) { // Change status Available/Unavailable
+    public boolean update(int ID) { // Changes status Available/Unavailable
         int availableNumber = 1;
             if (getOneEntity(ID).isAvailable()) {
                 availableNumber = 0;
@@ -54,29 +53,31 @@ public class CarRepository implements ICarRepository {
         return true;
     }
 
-
-    // 1 = available, 0 = unavailable
-    public ArrayList<Car> getCars(int available){
+    public ArrayList<Car> getCars(int available){ // 1 = all available cars, 0 = all unavailable cars
         con = DBConnector.getConnection();
         ArrayList<Car> listOfCars = new ArrayList<>();
-        Statement stmt;
-        ResultSet rs;
         try{
            String sqlString = "SELECT * FROM `car` WHERE `Available`= '" + available + "' ORDER BY car_id;";
-           stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-           rs = stmt.executeQuery(sqlString);
-           while (rs.next()){
-               Car car = new Car(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6));
-               listOfCars.add(car);
-           }
+            addCarToArrayList(listOfCars, sqlString);
         } catch (SQLException e){
             e.printStackTrace();
         }
         return listOfCars;
     }
 
+    private void addCarToArrayList(ArrayList<Car> listOfCars, String sqlString) throws SQLException {
+        Statement stmt;
+        ResultSet rs;
+        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        rs = stmt.executeQuery(sqlString);
+        while (rs.next()){
+            Car car = new Car(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6));
+            listOfCars.add(car);
+        }
+    }
+
     @Override
-    public boolean delete(int ID) {
+    public boolean delete(int ID) { //For future implementations
         con = DBConnector.getConnection();
         try
         {
@@ -87,24 +88,16 @@ public class CarRepository implements ICarRepository {
         {
             e.printStackTrace();
         }
-
         return true;
     }
 
     @Override
-    public List getAllEntities()  {
+    public List getAllEntities()  { //For future implementations
         con = DBConnector.getConnection();
         ArrayList<Car> allCars = new ArrayList<>();
-        Statement stmt;
-        ResultSet rs;
         try {
             String sqlString = "SELECT * FROM `car`";
-            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery(sqlString);
-            while (rs.next()) {
-                Car car = new Car(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getBoolean(6));
-                allCars.add(car);
-            }
+            addCarToArrayList(allCars, sqlString);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -123,23 +116,16 @@ public class CarRepository implements ICarRepository {
         try {
             PreparedStatement preparedStatement = con.prepareStatement
                     ("INSERT INTO `zz8alsto5xji5csq`.`car` (`Chassis_number`, `Make`, `Model`, `Colour`, `Available`) VALUES (?,?,?,?,?);");
-
             preparedStatement.setString(1, chassisNumber);
             preparedStatement.setString(2, make);
             preparedStatement.setString(3, model);
             preparedStatement.setString(4, colour);
             preparedStatement.setBoolean(5, available);
             preparedStatement.executeUpdate();
-
         } catch (Exception e) {
             e.printStackTrace();
         }
         return true;
-    }
-
-    public static void main(String[] args) {
-        CarRepository c = new CarRepository();
-
     }
 
 }

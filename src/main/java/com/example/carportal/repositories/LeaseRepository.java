@@ -2,22 +2,16 @@ package com.example.carportal.repositories;
 
 import com.example.carportal.models.*;
 import com.example.carportal.repositories.utility.DBConnector;
-import org.apache.tomcat.jni.Local;
-
-import javax.swing.plaf.nimbus.State;
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class LeaseRepository implements ILeaseRepository {
-    //TODO we should consider having a DamageRepository, there are a lot of methods for Damages
-
     private Connection con;
 
-
     @Override
-    public Object getOneEntity(int ID) { //For future implementations
+    public Object getOneEntity(int ID) {
         con = DBConnector.getConnection();
         Lease lease = null;
         try {
@@ -42,29 +36,32 @@ public class LeaseRepository implements ILeaseRepository {
     public List getAllEntities() { //For future implementations
         ArrayList<Lease> listOfLeases = new ArrayList<>();
         con = DBConnector.getConnection();
-        Lease lease;
         try {
-            ResultSet rs;
-            Statement stmt;
             String sqlString = "SELECT * FROM `lease`";
-            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery(sqlString);
-            while (rs.next()) {
-                LocalDate startDate = rs.getDate(5).toLocalDate();
-                LocalDate endDate = rs.getDate(6).toLocalDate();
-                lease = new Lease(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDouble(4), startDate, endDate, rs.getBoolean(7));
-                listOfLeases.add(lease);
-            }
+            addLeaseToArrayList(listOfLeases, sqlString);
         } catch (SQLException e) {
             e.printStackTrace();
         }
         return listOfLeases;
     }
 
+    private void addLeaseToArrayList(ArrayList<Lease> listOfLeases, String sqlString) throws SQLException {
+        Statement stmt;
+        ResultSet rs;
+        Lease lease;
+        stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
+        rs = stmt.executeQuery(sqlString);
+        while (rs.next()) {
+            LocalDate startDate = rs.getDate(5).toLocalDate();
+            LocalDate endDate = rs.getDate(6).toLocalDate();
+            lease = new Lease(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDouble(4), startDate, endDate, rs.getBoolean(7));
+            listOfLeases.add(lease);
+        }
+    }
+
 
     @Override
     public boolean create(Object entity) { // Add lease to database
-
         con = DBConnector.getConnection();
         int carID = ((Lease) entity).getCarID();
         int costumerID = ((Lease) entity).getCustomerID();
@@ -116,7 +113,7 @@ public class LeaseRepository implements ILeaseRepository {
 
     }
 
-    public ArrayList<Damage> listOfDamagesOnLease(int leaseID) { //Gets all damages associated with the specific lease
+    public ArrayList<Damage> listOfDamagesOnLease(int leaseID) { //For future implementations
         ArrayList<Damage> damageArrayList = new ArrayList<>();
         Damage damage;
         con = DBConnector.getConnection();
@@ -150,23 +147,12 @@ public class LeaseRepository implements ILeaseRepository {
     }
 
     @Override
-    public ArrayList<Lease> getAllOpenLeases() { // When user needs to create a dmgReport, get a
-                                                 // monthly income and see list of cars rented out.
+    public ArrayList<Lease> getAllOpenLeases() {
         ArrayList<Lease> listOfLeases = new ArrayList<>();
         con = DBConnector.getConnection();
-        Lease lease;
         try {
-            ResultSet rs;
-            Statement stmt;
             String sqlString = "SELECT * FROM `lease` WHERE `status` = 1 ORDER BY car_id";
-            stmt = con.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_READ_ONLY);
-            rs = stmt.executeQuery(sqlString);
-            while (rs.next()) {
-                LocalDate startDate = rs.getDate(5).toLocalDate();
-                LocalDate endDate = rs.getDate(6).toLocalDate();
-                lease = new Lease(rs.getInt(1), rs.getInt(2), rs.getInt(3), rs.getDouble(4), startDate, endDate, rs.getBoolean(7));
-                listOfLeases.add(lease);
-            }
+            addLeaseToArrayList(listOfLeases, sqlString);
         } catch (SQLException e) {
             e.printStackTrace();
         }
@@ -174,13 +160,7 @@ public class LeaseRepository implements ILeaseRepository {
     }
 
     @Override
-    public boolean update(int ID) {     // Not needed, but can't be deleted
-        //COULD BE UPDATE DAMAGE TO REPAIRED
-        return false;
-    }
-
-    @Override
-    public boolean delete(int ID) {
+    public boolean delete(int ID) { //For future implementations
         con = DBConnector.getConnection();
         try
         {
@@ -191,18 +171,11 @@ public class LeaseRepository implements ILeaseRepository {
         {
             e.printStackTrace();
         }
-
         return true;
     }
 
-    //TEST
-    public static void main(String[] args) {
-        LeaseRepository lr = new LeaseRepository();
-        UserRepository userRepository = new UserRepository();
-        lr.getOneEntity(1);
-
-
+    @Override
+    public boolean update(int ID) {
+        return false;
     }
-
-
 }
