@@ -3,24 +3,14 @@
     position: fixed;
     top: 0px;
     width: 100%;
-    height: 50px;
-    font-size: 17px;
+    height: 30px;
+    font-size: 18px;
     margin-left: 0px;
 }
 
 .menu_right{
     display: inline-block;
     float: right;
-    padding-left: 50px;
-    padding-right: 50px;
-    height: 50px;
-    font-size: large;
-    text-align: center;
 }
 .home {
-    padding-left: 50px;
-    padding-right: 50px;
-    height: 50px;
-    font-size: large;
-    text-align: center;
 }

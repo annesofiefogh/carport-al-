@@ -5,14 +5,23 @@
     <title>Hovedside</title>
     <link rel="stylesheet" th:href="@{css/index.css}">
     <link rel="stylesheet" th:href="@{css/footer.css}">
+    <link rel="stylesheet" th:href="@{css/navbar.css}">
 </head>
 <body class="wheel">
-<h3>Velkommen '<span th:text="${sessionUser.getUserName()}"></spanth:text></span>'</h3>
+
+<div class="navbar" th:insert="fragments/navbar :: navbar(~{::span})">
+    <span th:text="${sessionUser.getUserName()}"></span>
+    <span>' | Database kilde : </span>
+    <span th:text="${source}"></span><
+    <span th:replace="fragments/logout">
+    </span>
+</div>
+<br>
+
 <button class="a" type="submit" onclick="location.href='../chooselease'">Opret skadesrapport</button>
 <button class="b" type="submit" onclick="location.href='../createlease'">Opret abonnement</button>
 <button class="c" type="submit" onclick="location.href='../viewmonthlyincome'">Se statistikker</button>
 <button class="d" type="submit" onclick="location.href='../viewstock'">Se lagerbeholdning</button>
-<button class="e" type="submit" onclick="location.href='../'">Log ud</button>
 
 <div class="footer">
     <p th:replace="fragments/footer"></p>

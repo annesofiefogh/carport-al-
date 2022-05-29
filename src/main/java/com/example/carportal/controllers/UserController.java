@@ -21,7 +21,6 @@ public class UserController {
     @GetMapping("/index")
     public String login(Model model, HttpSession session){
         String[] dbname = {"Local", "Heroku"};
-        System.out.println((int) session.getAttribute("source"));
         model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         model.addAttribute("username", us.getUserFromSession(session));
         us.getUserFromSession(session);
