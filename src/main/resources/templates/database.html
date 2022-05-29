@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Vælg DB kilde</title>
+    <link rel="stylesheet" th:href="@{css/index.css}">
+    <link rel="stylesheet" th:href="@{css/footer.css}">
+</head>
+<body>
+<h2 class="center">Velkommen til Carport(al): Bilabonnement A/S databasesystem v1.0</h2>
+<div class="box">
+    <h3>Vælg database kilde:</h3>
+    <form name="form" id="choose_db" action="/selectDb" method="POST">
+
+
+        <input type="radio" id="local" name="source" value="0" checked>
+        <label for="local">Local</label>
+        <br>
+        <input type="radio" id="heroku" name="source" value="1">
+        <label for="heroku">Heroku</label><br><br>
+
+        <div>
+            <button id="submitButton" type="submit" onclick="location.href='../index'">Indsend</button>
+        </div>
+    </form>
+</div>
+<div class="footer">
+    <p th:replace="fragments/footer"></p>
+</div>
+</body>
+</html>

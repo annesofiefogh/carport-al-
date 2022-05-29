@@ -1,11 +1,15 @@
 package com.example.carportal.services;
 
 import com.example.carportal.models.User;
+import com.example.carportal.repositories.utility.DBConnector;
 
 import javax.servlet.http.HttpSession;
+import java.sql.Connection;
 
 public class SessionService
 {
+    private Connection con;
+
     public User getSessionUser(HttpSession session){
         return (User) session.getAttribute("sessionUser");
     }
@@ -28,5 +32,10 @@ public class SessionService
 
     public int getLeaseIDFromSession(HttpSession session) {
         return (int) session.getAttribute("leaseid");
+    }
+
+    public void setDbSource(int dbSource)
+    {
+        DBConnector.setDbSource(dbSource);
     }
 }
