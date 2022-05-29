@@ -45,24 +45,21 @@ public class CarTestRepository implements ICarRepository {
     }
 
     @Override
-    public void create(Car entity) {
+    public boolean create(Car entity) {
+        return false;
     }
 
     @Override
-    public void update(int ID) {
+    public boolean update(int ID) {
+
 
         for (Car car : arrayList) {
             if (ID == car.getCarID()) {
-                if (car.isAvailable()) {
-                    car.setAvailable(false);
-                    return;
-                } else {
-                    car.setAvailable(true);
-                    return;
-                }
+                car.setAvailable(!car.isAvailable());
 
             }
         }
+        return true;
     }
 
     @Override

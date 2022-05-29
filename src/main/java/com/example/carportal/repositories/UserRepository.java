@@ -131,7 +131,7 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public void create(Object entity) {
+    public boolean create(Object entity) {
 
         con = DBConnector.getConnection();
         String username = ((User) entity).getUserName();
@@ -152,6 +152,7 @@ public class UserRepository implements IUserRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return true;
     }
 
     @Override
@@ -170,6 +171,7 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public void update(int ID) {
+    public boolean update(int ID) {
+        return true;
     }
 }

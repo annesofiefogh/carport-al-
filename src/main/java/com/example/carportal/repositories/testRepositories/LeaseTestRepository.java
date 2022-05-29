@@ -19,7 +19,8 @@ public class LeaseTestRepository implements ILeaseRepository {
             new Lease(6,6,6,600.5, LocalDate.now(),LocalDate.of(2055,12,12),true)
     ));
     @Override
-    public void createDamageReport(int leaseID, ArrayList<Damage> listOfDamages) {
+    public boolean createDamageReport(int leaseID, ArrayList<Damage> listOfDamages) {
+        return false;
     }
 
     @Override
@@ -44,11 +45,13 @@ public class LeaseTestRepository implements ILeaseRepository {
     }
 
     @Override
-    public void create(Object entity) {
+    public boolean create(Object entity) {
+        return false;
     }
 
     @Override
-    public void update(int ID) {
+    public boolean update(int ID) {
+        return false;
     }
 
     @Override

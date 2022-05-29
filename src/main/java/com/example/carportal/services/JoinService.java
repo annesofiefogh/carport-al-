@@ -25,8 +25,8 @@ public class JoinService {
         return cr.getCars(available);
     }
 
-    public void changeCarStatus (int carID){
-        cr.update(carID);
+    public boolean changeCarStatus (int carID){
+        return cr.update(carID);
     }
 
     public ArrayList<Statistic> getListOfStatistics(ArrayList<Lease> leases)

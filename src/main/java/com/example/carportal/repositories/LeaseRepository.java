@@ -62,7 +62,7 @@ public class LeaseRepository implements ILeaseRepository {
 
 
     @Override
-    public void create(Object entity) { // Add lease to database
+    public boolean create(Object entity) { // Add lease to database
         con = DBConnector.getConnection();
         int carID = ((Lease) entity).getCarID();
         int costumerID = ((Lease) entity).getCustomerID();
@@ -84,17 +84,17 @@ public class LeaseRepository implements ILeaseRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return true;
     }
 
     @Override
-    public void createDamageReport(int leaseID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
+    public boolean createDamageReport(int leaseID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
         Lease lease = (Lease) getOneEntity(leaseID);
         int carID = lease.getCarID();
         con = DBConnector.getConnection();
 
         try {
-            for (Damage listOfDamage : listOfDamages) {
-                Damage damage = new Damage(listOfDamage.getDescription(), listOfDamage.getPrice());
+            for (Damage damage : listOfDamages) {
                 PreparedStatement preparedStatement = con.prepareStatement
                         ("INSERT INTO `zz8alsto5xji5csq`.`damage`(`Car_id`, `Lease_id`, `Dmg_description`, `Price`, `Repaired`) VALUES (?,?,?,?,?);");
                 preparedStatement.setInt(1, carID);
@@ -108,10 +108,11 @@ public class LeaseRepository implements ILeaseRepository {
             e.printStackTrace();
         }
 
-        closeLease(leaseID);
+        return closeLease(leaseID);
+
     }
 
-    public void closeLease(int leaseID){
+    public boolean closeLease(int leaseID){
         con = DBConnector.getConnection();
         try {
             PreparedStatement preparedStatement = con.prepareStatement("UPDATE `zz8alsto5xji5csq`.`lease` SET `Status` = '0' WHERE (`Lease_id` = '" + leaseID + "')");
@@ -119,6 +120,7 @@ public class LeaseRepository implements ILeaseRepository {
         }catch (SQLException e){
             e.printStackTrace();
         }
+        return true;
     }
 
     @Override
@@ -150,6 +152,7 @@ public class LeaseRepository implements ILeaseRepository {
     }
 
     @Override
-    public void update(int ID) {
+    public boolean update(int ID) {
+        return true;
     }
 }
