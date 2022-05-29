@@ -32,7 +32,7 @@ public class CarRepository implements ICarRepository {
 
 
     @Override
-    public void update(int ID) { // Changes status Available/Unavailable
+    public boolean update(int ID) { // Changes status Available/Unavailable
         int availableNumber = 1;
             if (getOneEntity(ID).isAvailable()) {
                 availableNumber = 0;
@@ -47,6 +47,7 @@ public class CarRepository implements ICarRepository {
             {
                 e.printStackTrace();
             }
+            return true;
 
     }
     @Override
@@ -102,7 +103,7 @@ public class CarRepository implements ICarRepository {
     }
 
     @Override
-    public void create(Car entity) {
+    public boolean create(Car entity) {
 
         con = DBConnector.getConnection();
         String chassisNumber = entity.getChassisNumber();
@@ -122,6 +123,8 @@ public class CarRepository implements ICarRepository {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        return true;
     }
+
 
 }

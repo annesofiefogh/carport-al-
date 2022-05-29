@@ -28,11 +28,11 @@ public class LeaseController {
 
     @GetMapping("/createlease")
     public String createLease(Model model, HttpSession session){
+        boolean hasAccess = ss.hasRegistrationRole(session);
         ArrayList<Customer> allCustomers = js.getListOfCustomers();
         ArrayList<Car> availableCars = js.getCars(1);
         model.addAttribute("allCustomers", allCustomers);
         model.addAttribute("availableCars", availableCars);
-        boolean hasAccess = ss.hasRegistrationRole(session);
         return (hasAccess) ? "createlease" : "redirect:/accessdenied";
     }
 
@@ -56,9 +56,9 @@ public class LeaseController {
     @GetMapping("/chooselease")
     public String chooseLease(Model model, HttpSession session)
     {
+        boolean hasAccess = ss.hasDamageRole(session);
         ArrayList<Lease> openLeases = ls.getAllOpenLeases();
         model.addAttribute("openLeases", openLeases);
-        boolean hasAccess = ss.hasDamageRole(session);
         return (hasAccess) ? "chooselease" : "redirect:/accessdenied";
     }
 
@@ -73,9 +73,9 @@ public class LeaseController {
     public String getDamageData(Model model, HttpSession session)
     {
         int leaseid = ss.getLeaseIDFromSession(session);
+        boolean hasAccess = ss.hasDamageRole(session);
         model.addAttribute("listOfDamages", ds.getSessionListOfDamages(session));
         model.addAttribute("leaseid", leaseid);
-        boolean hasAccess = ss.hasDamageRole(session);
         return (hasAccess) ? "createdamagereport" : "redirect:/accessdenied";
     }
 
@@ -104,12 +104,12 @@ public class LeaseController {
     @GetMapping("viewmonthlyincome")
     public String viewMonthlyIncome(HttpSession session, Model model)
     {
+        boolean hasAccess = ss.hasBusinessRole(session);
         ArrayList<Lease> leases = ls.getAllOpenLeases();
         ArrayList<Statistic> stats = js.getListOfStatistics(leases);
         model.addAttribute("statistics", stats);
         model.addAttribute("numberOfLeasedCars" , leases.size());
         model.addAttribute("totalPrice", ls.calculateMonthlyIncome());
-        boolean hasAccess = ss.hasBusinessRole(session);
         return (hasAccess) ? "viewmonthlyincome" : "redirect:/accessdenied";
     }
 }

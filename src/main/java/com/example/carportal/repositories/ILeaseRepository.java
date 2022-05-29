@@ -8,7 +8,7 @@ import java.util.ArrayList;
 public interface ILeaseRepository extends IRepository{
 
 
-    void createDamageReport(int leaseID, ArrayList<Damage> listOfDamages);
+    boolean createDamageReport(int leaseID, ArrayList<Damage> listOfDamages);
 
 
     ArrayList<Lease> getAllOpenLeases();

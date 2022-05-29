@@ -8,9 +8,9 @@ public interface IRepository<T> {
 
     public List<T> getAllEntities(); // For future implementations
 
-    public void create(T entity);
+    public boolean create(T entity);
 
-    public void update (int ID);
+    public boolean update (int ID);
 
     public boolean delete (int ID); //For future implementations
 
