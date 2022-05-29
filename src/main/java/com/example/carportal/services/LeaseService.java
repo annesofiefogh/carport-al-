@@ -26,12 +26,12 @@ public class LeaseService {
         return lr.getAllOpenLeases();
     }
 
-    public double calculateMonthlyIncome(){ //If the startdate is after the current month then it is not added to the total.
+    public double calculateMonthlyIncome(ArrayList<Lease> listOfLeases){ //If the startdate is after the current month then it is not added to the total.
        double sum = 0;
        double price;
        LocalDate currentMonth = LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),LocalDate.now().lengthOfMonth());
 
-       for (Lease l: lr.getAllOpenLeases()){
+       for (Lease l: listOfLeases){
            if (l.getStartDate().isAfter(currentMonth)){
             price = 0;
            } else {

@@ -16,7 +16,7 @@ public class LeaseServiceTest {
         LeaseService serviceTest = new LeaseService(testLeaseRepository);
         double expected = 1502.0;
         //Act
-        double result = serviceTest.calculateMonthlyIncome();
+        double result = serviceTest.calculateMonthlyIncome(testLeaseRepository.getAllOpenLeases());
         //Assert
         assertEquals(expected,result);
     }
