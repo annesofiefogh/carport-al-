@@ -40,11 +40,17 @@ public class LeaseController {
     public String createLease(WebRequest request){
         int carID = Integer.valueOf(request.getParameter("carID"));
         int customerID = Integer.valueOf(request.getParameter("customerID"));
+
+
         double price = Double.parseDouble(request.getParameter("price"));
         Date startDate = Date.valueOf(request.getParameter("startDate"));
         Date endDate = Date.valueOf(request.getParameter("endDate"));
+        System.out.println(price);
+        System.out.println(startDate);
+        System.out.println(endDate);
         ls.createLeaseFromWebRequest(carID, customerID, price, startDate.toLocalDate(), endDate.toLocalDate(), true);
         js.changeCarStatus(carID);
+
         return "redirect:/createleasesuccess";
     }
 
@@ -98,6 +104,7 @@ public class LeaseController {
         if (listOfDamages.size() != 0) { //Todo, Graham skal lige fortælle Mikkel præcis hvordan det her loop fungerer
             ls.createDamageReport(leaseID, listOfDamages);
         }
+
         return "createdamagereportsuccess";
     }
 

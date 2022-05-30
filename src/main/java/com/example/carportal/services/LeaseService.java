@@ -44,6 +44,7 @@ public class LeaseService {
 
     public void createDamageReport(int leaseID, ArrayList<Damage> listOfDamages) {
         lr.createDamageReport(leaseID, listOfDamages);
+
     }
 
 }

@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 public class HomeController
 {
 
-    private DamageService ds = new DamageService();
     private UserService us = new UserService(new UserRepository());
     private SessionService ss = new SessionService();
 
@@ -42,7 +41,7 @@ public class HomeController
 
     @GetMapping("/mainpage")
     public String index(HttpSession session, HttpServletRequest request, Model model){
-        ds.addListOfDamagesToSession(request);
+        ss.addListOfDamagesToSession(request);
         model.addAttribute("sessionUser", us.getUserFromSession(session));
         String[] dbname = {"Local", "Heroku"};
         model.addAttribute("source", dbname[(int) session.getAttribute("source")]);

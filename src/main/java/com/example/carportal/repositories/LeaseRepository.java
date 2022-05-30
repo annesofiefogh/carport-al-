@@ -63,6 +63,7 @@ public class LeaseRepository implements ILeaseRepository {
 
     @Override
     public boolean create(Object entity) { // Add lease to database
+        boolean returnBoolean = false;
         con = DBConnector.getConnection();
         int carID = ((Lease) entity).getCarID();
         int costumerID = ((Lease) entity).getCustomerID();
@@ -80,11 +81,12 @@ public class LeaseRepository implements ILeaseRepository {
             preparedStatement.setDate(5, java.sql.Date.valueOf(endDate));
             preparedStatement.setBoolean(6, status);
             preparedStatement.executeUpdate();
+            returnBoolean = true;
 
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
+        return returnBoolean;
     }
 
     @Override
@@ -108,7 +110,7 @@ public class LeaseRepository implements ILeaseRepository {
             e.printStackTrace();
         }
 
-        return closeLease(leaseID);
+        return true;
 
     }
 
