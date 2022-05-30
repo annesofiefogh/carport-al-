@@ -16,5 +16,4 @@ public interface ILeaseRepository extends IRepository{
     boolean closeLease(int leaseID);
 
 
-    boolean closeLease(int leaseID);
 }

@@ -48,7 +48,14 @@ public class LeaseService {
     }
 
     public boolean validateLeaseForm(String date1, String date2, String price) {
-        return (date1 != "" && date2 != "" && price != "");
+        boolean firstValidate = (date1 != "" && date2 != "" && price != "");
+        if (firstValidate) {
+            double price1 = Double.valueOf(price);
+            if (price1>=0){
+                return true;
+            }
+        }
+        return false;
     }
 
     public void closeLease(int leaseID)
