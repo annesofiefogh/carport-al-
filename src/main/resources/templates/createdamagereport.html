@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:insert="fragments/header">
     <title>Get data</title>
-    <link rel="stylesheet" th:href="@{css/index.css}">
-    <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
 <body>
+
+<div class="navbar" th:insert="fragments/navbar :: navbar(~{::span})">
+    <span th:text="${username.getUserName()}"></span>
+    <span>' | Database kilde : </span>
+    <span th:text="${source}"></span><
+    <span th:replace="fragments/buttons">
+    </span>
+</div>
+<br>
+
 <h1>Formular til skadesrapport</h1>
 
 <div class="row">
-    <div class="column left inset">
+    <div class="column left">
         <h2>Udfyld formular</h2>
         <form name="form" id="data" action="/createdamagereport" method="POST">
 
@@ -30,8 +37,11 @@
         <button type="submit" onclick="location.href='../createdamagereportsuccess'">Insend skadesrapport</button>
 
     </div>
-    <div class="column right inset">
-        <h2>Liste af skader der bliver lagt til abonnement nr. <span th:text="${leaseid}"></span></h2>
+    <div class="column right">
+        <table>
+            <td><h2>Liste af skader der bliver lagt til abonnement nr.</h2></td>
+            <td><h2 th:text="${leaseid}"></h2></td>
+        </table>
         <br>
 
         <table style="width:100%">
