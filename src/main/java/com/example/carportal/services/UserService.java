@@ -10,7 +10,7 @@ public class UserService {
 
     private IUserRepository ur;
 
-    public UserService(IUserRepository injectedUserRepository){
+    public UserService(IUserRepository injectedUserRepository) {
         ur = injectedUserRepository;
     }
 
@@ -19,11 +19,11 @@ public class UserService {
         session.setAttribute("sessionUser", ur.getUser("guest"));
     }
 
-    public User getUserFromSession(HttpSession session){
+    public User getUserFromSession(HttpSession session) {
         return (User) session.getAttribute("sessionUser");
     }
 
-    public boolean validateCredentials(String username, String password){
+    public boolean validateCredentials(String username, String password) {
         return ur.validateCredentials(username, password);
     }
 

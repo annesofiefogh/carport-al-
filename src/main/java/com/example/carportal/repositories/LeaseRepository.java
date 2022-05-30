@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class LeaseRepository implements ILeaseRepository {
+
     private Connection con;
 
     @Override
@@ -32,9 +33,9 @@ public class LeaseRepository implements ILeaseRepository {
         return lease;
     }
 
-
     @Override
-    public List getAllEntities() { //For future implementations
+    //For future implementations
+    public List getAllEntities() {
         ArrayList<Lease> listOfLeases = new ArrayList<>();
         con = DBConnector.getConnection();
         try {
@@ -60,9 +61,9 @@ public class LeaseRepository implements ILeaseRepository {
         }
     }
 
-
     @Override
-    public boolean create(Object entity) { // Add lease to database
+    // Add lease to database
+    public boolean create(Object entity) {
         boolean returnBoolean = false;
         con = DBConnector.getConnection();
         int carID = ((Lease) entity).getCarID();
@@ -109,12 +110,10 @@ public class LeaseRepository implements ILeaseRepository {
         } catch (SQLException e) {
             e.printStackTrace();
         }
-
         return true;
-
     }
 
-    public boolean closeLease(int leaseID){
+    public boolean closeLease(int leaseID) {
         con = DBConnector.getConnection();
         try {
             PreparedStatement preparedStatement = con.prepareStatement("UPDATE `zz8alsto5xji5csq`.`lease` SET `Status` = '0' WHERE (`Lease_id` = '" + leaseID + "')");
@@ -139,7 +138,8 @@ public class LeaseRepository implements ILeaseRepository {
     }
 
     @Override
-    public boolean delete(int ID) { //For future implementations
+    //For future implementations
+    public boolean delete(int ID) {
         con = DBConnector.getConnection();
         try
         {

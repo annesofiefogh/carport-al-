@@ -13,7 +13,7 @@ public class Damage {
         this.price = price;
     }
 
-    public Damage (String description, double price){
+    public Damage (String description, double price) {
         this.description = description;
         this.price = price;
     }

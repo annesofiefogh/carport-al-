@@ -1,7 +1,6 @@
 package com.example.carportal.controllers;
 
 import com.example.carportal.repositories.UserRepository;
-import com.example.carportal.services.DamageService;
 import com.example.carportal.services.SessionService;
 import com.example.carportal.services.UserService;
 import org.springframework.stereotype.Controller;
@@ -14,14 +13,13 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 @Controller
-public class HomeController
-{
+public class HomeController {
 
     private UserService us = new UserService(new UserRepository());
     private SessionService ss = new SessionService();
 
     @GetMapping("/")
-    public String landPage(){
+    public String landPage() {
         return "database";
     }
 
@@ -40,7 +38,7 @@ public class HomeController
     }
 
     @GetMapping("/mainpage")
-    public String index(HttpSession session, HttpServletRequest request, Model model){
+    public String index(HttpSession session, HttpServletRequest request, Model model) {
         ss.addListOfDamagesToSession(request);
         model.addAttribute("sessionUser", us.getUserFromSession(session));
         String[] dbname = {"Lokal", "Heroku"};

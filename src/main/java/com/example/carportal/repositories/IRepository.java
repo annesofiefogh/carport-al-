@@ -4,15 +4,17 @@ import java.util.List;
 
 public interface IRepository<T> {
 
-    public T getOneEntity(int ID);
+    T getOneEntity(int ID);
 
-    public List<T> getAllEntities(); // For future implementations
+    // For future implementations
+    List<T> getAllEntities();
 
-    public boolean create(T entity);
+    boolean create(T entity);
 
-    public boolean update (int ID);
+    boolean update (int ID);
 
-    public boolean delete (int ID); //For future implementations
+    //For future implementations
+    boolean delete (int ID);
 
 
 

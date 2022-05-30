@@ -1,10 +1,5 @@
 package com.example.carportal.repositories.utility;
 
-import org.springframework.core.env.ConfigurableEnvironment;
-import org.springframework.core.env.Environment;
-import org.springframework.web.context.ConfigurableWebEnvironment;
-
-import javax.security.auth.login.Configuration;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -36,18 +31,16 @@ public class DBConnector {
         }
 
 
-
         try {
             con = DriverManager.getConnection(url, username, password);
-        } catch (SQLException e){
+        } catch (SQLException e) {
             e.printStackTrace();
         }
         System.out.println("Der er forbindelse");
         return con;
     }
 
-    public static void setDbSource(int dbSource)
-    {
+    public static void setDbSource(int dbSource) {
         DBConnector.con = null;
         DBConnector.dbSource = dbSource;
     }

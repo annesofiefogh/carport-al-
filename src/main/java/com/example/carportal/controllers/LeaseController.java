@@ -19,8 +19,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 @Controller
-public class LeaseController
-{
+public class LeaseController {
 
     private LeaseService ls = new LeaseService(new LeaseRepository());
     private JoinService js = new JoinService(new UserRepository(), new CarRepository());
@@ -28,8 +27,7 @@ public class LeaseController
     private SessionService ss = new SessionService();
 
     @GetMapping("/createlease")
-    public String createLease(Model model, HttpSession session)
-    {
+    public String createLease(Model model, HttpSession session) {
         boolean hasAccess = ss.hasRegistrationRole(session);
         ArrayList<Customer> allCustomers = js.getListOfCustomers();
         ArrayList<Car> availableCars = js.getCars(1);
@@ -42,16 +40,14 @@ public class LeaseController
     }
 
     @PostMapping("/createlease")
-    public String createLease(WebRequest request)
-    {
+    public String createLease(WebRequest request) {
         int carID = Integer.valueOf(request.getParameter("carID"));
         int customerID = Integer.valueOf(request.getParameter("customerID"));
         String pr = request.getParameter("price");
         String d1 = request.getParameter("startDate");
         String d2 = request.getParameter("endDate");
         boolean success = ls.validateLeaseForm(d1, d2, pr);
-        if (success)
-        {
+        if (success) {
             double price = Double.valueOf(pr);
             Date startDate = Date.valueOf(d1);
             Date endDate = Date.valueOf(d2);
@@ -62,18 +58,15 @@ public class LeaseController
     }
 
     @GetMapping("/createleasesuccess")
-    public String leaseCreated(Model model, HttpSession session)
-    {
+    public String leaseCreated(Model model, HttpSession session) {
         model.addAttribute("username", ss.getSessionUser(session));
         String[] dbname = {"Lokal", "Heroku"};
         model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         return "createleasesuccess";
-
     }
 
     @GetMapping("/chooselease")
-    public String chooseLease(Model model, HttpSession session)
-    {
+    public String chooseLease(Model model, HttpSession session) {
         boolean hasAccess = ss.hasDamageRole(session);
         ArrayList<Lease> openLeases = ls.getAllOpenLeases();
         model.addAttribute("openLeases", openLeases);
@@ -84,16 +77,14 @@ public class LeaseController
     }
 
     @PostMapping("/chooselease")
-    public String choosingLease(WebRequest request, HttpSession session)
-    {
+    public String choosingLease(WebRequest request, HttpSession session) {
         int leaseId = Integer.parseInt(request.getParameter("lease"));
         ss.addLeaseIDToSession(session, leaseId);
         return "redirect:/createdamagereport";
     }
 
     @GetMapping("/createdamagereport")
-    public String getDamageData(Model model, HttpSession session)
-    {
+    public String getDamageData(Model model, HttpSession session) {
         int leaseID = ss.getLeaseIDFromSession(session);
         boolean hasAccess = ss.hasDamageRole(session);
         model.addAttribute("listOfDamages", ds.getSessionListOfDamages(session));
@@ -105,8 +96,7 @@ public class LeaseController
     }
 
     @PostMapping("/createdamagereport")
-    public String gettingDamageData(WebRequest request, HttpSession session)
-    {
+    public String gettingDamageData(WebRequest request, HttpSession session) {
         String desc = request.getParameter("description");
         Double price = Double.parseDouble(request.getParameter("price"));
         ds.getSessionListOfDamages(session).add(ds.createDamageFromSession(0, desc, price));
@@ -114,8 +104,7 @@ public class LeaseController
     }
 
     @GetMapping("createdamagereportsuccess")
-    public String gotDamageData(Model model, HttpSession session)
-    {
+    public String gotDamageData(Model model, HttpSession session) {
         ArrayList<Damage> listOfDamages = ds.getSessionListOfDamages(session);
         int leaseID = ss.getLeaseIDFromSession(session);
         model.addAttribute("listOfDamages", listOfDamages);
@@ -134,8 +123,7 @@ public class LeaseController
     }
 
     @GetMapping("viewmonthlyincome")
-    public String viewMonthlyIncome(HttpSession session, Model model)
-    {
+    public String viewMonthlyIncome(HttpSession session, Model model) {
         boolean hasAccess = ss.hasBusinessRole(session);
         ArrayList<Lease> leases = ls.getAllOpenLeases();
         ArrayList<Statistic> stats = js.getListOfStatistics(leases);

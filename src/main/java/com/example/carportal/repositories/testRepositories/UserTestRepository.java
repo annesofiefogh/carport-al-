@@ -20,6 +20,7 @@ public class UserTestRepository implements IUserRepository {
             new User(1,"Sør123","SørWord",false,true,false),
             new User(1,"Jes777","JesusWord",false,false,true)
     ));
+
     @Override
     public Object getOneEntity(int ID) {
         return null;
@@ -51,17 +52,17 @@ public class UserTestRepository implements IUserRepository {
     }
 
     @Override
-    public User getUser(int ID){
+    public User getUser(int ID) {
         return null;
     }
 
     @Override
-    public User getUser(String username){
+    public User getUser(String username) {
         return null;
     }
 
     @Override
-    public boolean validateCredentials(String username, String password){
+    public boolean validateCredentials(String username, String password) {
         for (int i = 0; i < userArrayList.size(); i++) {
             if (userArrayList.get(i).getUserName().equals(username) && userArrayList.get(i).getPassword().equals(password)){
                 return true;

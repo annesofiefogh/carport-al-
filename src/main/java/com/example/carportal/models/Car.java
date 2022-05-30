@@ -1,7 +1,5 @@
 package com.example.carportal.models;
 
-import java.util.ArrayList;
-
 public class Car {
 
     private int carID;

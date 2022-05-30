@@ -1,7 +1,6 @@
 package com.example.carportal.controllers;
 
 import com.example.carportal.repositories.UserRepository;
-import com.example.carportal.services.SessionService;
 import com.example.carportal.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +17,9 @@ public class UserController {
     private UserService us = new UserService(new UserRepository());
 
     @GetMapping("/index")
-    public String login(Model model, HttpSession session, HttpServletRequest request){
-        us.addUserToSession(request); // logout is actually login as guest
+    public String login(Model model, HttpSession session, HttpServletRequest request) {
+        // logout is login as guest
+        us.addUserToSession(request);
         String[] dbname = {"Lokal", "Heroku"};
         model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         model.addAttribute("username", us.getUserFromSession(session));
@@ -28,7 +28,7 @@ public class UserController {
     }
 
     @PostMapping("/index")
-    public String login(WebRequest request, HttpSession session){
+    public String login(WebRequest request, HttpSession session) {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         boolean validated = us.validateCredentials(username,password);

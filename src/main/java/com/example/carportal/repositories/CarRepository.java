@@ -11,7 +11,6 @@ public class CarRepository implements ICarRepository {
 
     private Connection con;
 
-
     @Override
     public Car getOneEntity(int ID) {
         con = DBConnector.getConnection();
@@ -32,7 +31,8 @@ public class CarRepository implements ICarRepository {
 
 
     @Override
-    public boolean update(int ID) { // Changes status Available/Unavailable
+    // Changes status Available/Unavailable
+    public boolean update(int ID) {
         int availableNumber = 1;
             if (getOneEntity(ID).isAvailable()) {
                 availableNumber = 0;
@@ -48,10 +48,11 @@ public class CarRepository implements ICarRepository {
                 e.printStackTrace();
             }
             return true;
+        }
 
-    }
     @Override
-    public ArrayList<Car> getCars(int available){ // 1 = all available cars, 0 = all unavailable cars
+    // 1 = all available cars, 0 = all unavailable cars
+    public ArrayList<Car> getCars(int available) {
         con = DBConnector.getConnection();
         ArrayList<Car> listOfCars = new ArrayList<>();
         try{
@@ -75,7 +76,8 @@ public class CarRepository implements ICarRepository {
     }
 
     @Override
-    public boolean delete(int ID) { //For future implementations
+    //For future implementations
+    public boolean delete(int ID) {
         con = DBConnector.getConnection();
         try
         {
@@ -90,7 +92,8 @@ public class CarRepository implements ICarRepository {
     }
 
     @Override
-    public List getAllEntities()  { //For future implementations
+    //For future implementations
+    public List getAllEntities() {
         con = DBConnector.getConnection();
         ArrayList<Car> allCars = new ArrayList<>();
         try {
@@ -104,7 +107,6 @@ public class CarRepository implements ICarRepository {
 
     @Override
     public boolean create(Car entity) {
-
         con = DBConnector.getConnection();
         String chassisNumber = entity.getChassisNumber();
         String make = entity.getMake();
@@ -125,6 +127,4 @@ public class CarRepository implements ICarRepository {
         }
         return true;
     }
-
-
 }

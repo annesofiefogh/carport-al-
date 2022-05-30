@@ -10,7 +10,6 @@ public interface ILeaseRepository extends IRepository{
 
     boolean createDamageReport(int leaseID, ArrayList<Damage> listOfDamages);
 
-
     ArrayList<Lease> getAllOpenLeases();
 
     boolean closeLease(int leaseID);

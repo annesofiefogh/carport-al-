@@ -18,7 +18,8 @@ public class SessionService
         HttpSession session = request.getSession();
         session.setAttribute("listOfDamages", listOfDamages);
     }
-    public User getSessionUser(HttpSession session){
+
+    public User getSessionUser(HttpSession session) {
         return (User) session.getAttribute("sessionUser");
     }
 
@@ -42,8 +43,7 @@ public class SessionService
         return (int) session.getAttribute("leaseid");
     }
 
-    public void setDbSource(int dbSource)
-    {
+    public void setDbSource(int dbSource) {
         DBConnector.setDbSource(dbSource);
     }
 }

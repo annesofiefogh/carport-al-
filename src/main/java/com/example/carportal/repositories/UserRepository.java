@@ -67,7 +67,7 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public boolean validateCredentials (String username, String password){
+    public boolean validateCredentials (String username, String password) {
         con = DBConnector.getConnection();
         try{
             ResultSet rs;
@@ -85,7 +85,8 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public List getAllEntities() { //For future implementations
+    //For future implementations
+    public List getAllEntities() {
         con = DBConnector.getConnection();
         ArrayList<User> userList = new ArrayList<>();
         try {
@@ -132,7 +133,6 @@ public class UserRepository implements IUserRepository {
 
     @Override
     public boolean create(Object entity) {
-
         con = DBConnector.getConnection();
         String username = ((User) entity).getUserName();
         String password = ((User)entity).getPassword();
@@ -156,7 +156,8 @@ public class UserRepository implements IUserRepository {
     }
 
     @Override
-    public boolean delete(int ID) { //For future implementations
+    //For future implementations
+    public boolean delete(int ID) {
         con = DBConnector.getConnection();
         try
         {

@@ -13,29 +13,28 @@ public class JoinService {
     private IUserRepository ur;
     private ICarRepository cr;
 
-    public JoinService(IUserRepository injectedUserRepository, ICarRepository injectedCarRepository ){
+    public JoinService(IUserRepository injectedUserRepository, ICarRepository injectedCarRepository) {
         ur = injectedUserRepository;
         cr = injectedCarRepository;
     }
-    public ArrayList<Customer> getListOfCustomers(){
+
+    public ArrayList<Customer> getListOfCustomers() {
         return (ArrayList<Customer>) ur.getAllCustomers();
     }
 
-    public ArrayList<Car> getCars(int available){
+    public ArrayList<Car> getCars(int available) {
         return cr.getCars(available);
     }
 
-    public boolean changeCarStatus (int carID){
+    public boolean changeCarStatus (int carID) {
         return cr.update(carID);
     }
 
-    public ArrayList<Statistic> getListOfStatistics(ArrayList<Lease> leases)
-    {
+    public ArrayList<Statistic> getListOfStatistics(ArrayList<Lease> leases) {
         ArrayList<Statistic> listOfStats = new ArrayList<>();
         for (Lease l : leases) {
             listOfStats.add(new Statistic(l, cr.getOneEntity(l.getCarID())));
         }
         return listOfStats;
     }
-
 }

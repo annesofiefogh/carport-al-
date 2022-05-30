@@ -18,6 +18,7 @@ public class LeaseService {
     public boolean createLeaseFromWebRequest(int carID, int customerID, double price, LocalDate toLocalDate, LocalDate toLocalDate1, boolean b) {
        return createLease(new Lease(carID, customerID, price, toLocalDate, toLocalDate1, b));
     }
+
     public boolean createLease(Lease lease){
        return lr.create(lease);
     }
@@ -26,7 +27,8 @@ public class LeaseService {
         return lr.getAllOpenLeases();
     }
 
-    public double calculateMonthlyIncome(ArrayList<Lease> listOfLeases){ //If the startdate is after the current month then it is not added to the total.
+    //If the startdate is after the current month then it is not added to the total.
+    public double calculateMonthlyIncome(ArrayList<Lease> listOfLeases){
        double sum = 0;
        double price;
        LocalDate currentMonth = LocalDate.of(LocalDate.now().getYear(),LocalDate.now().getMonth(),LocalDate.now().lengthOfMonth());
@@ -44,22 +46,20 @@ public class LeaseService {
 
     public void createDamageReport(int leaseID, ArrayList<Damage> listOfDamages) {
         lr.createDamageReport(leaseID, listOfDamages);
-
     }
 
     public boolean validateLeaseForm(String date1, String date2, String price) {
         boolean firstValidate = (date1 != "" && date2 != "" && price != "");
         if (firstValidate) {
             double price1 = Double.valueOf(price);
-            if (price1>=0){
+            if (price1 >= 0){
                 return true;
             }
         }
         return false;
     }
 
-    public void closeLease(int leaseID)
-    {
+    public void closeLease(int leaseID){
         lr.closeLease(leaseID);
     }
 }
