@@ -45,5 +45,4 @@ public class UserController {
     public String accessDenied() {
         return "noaccess";
     }
-
 }

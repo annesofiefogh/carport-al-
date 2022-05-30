@@ -110,6 +110,9 @@ public class LeaseController {
         model.addAttribute("statistics", stats);
         model.addAttribute("numberOfLeasedCars" , leases.size());
         model.addAttribute("totalPrice", ls.calculateMonthlyIncome(leases));
+        model.addAttribute("username", ss.getSessionUser(session));
+        String[] dbname = {"Local", "Heroku"};
+        model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         return (hasAccess) ? "viewmonthlyincome" : "redirect:/accessdenied";
     }
 }

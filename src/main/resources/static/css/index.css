@@ -23,11 +23,12 @@
     padding: 10px;
 }
 button {
-    width: 150px;
+    width: 140px;
     border-radius: 15px;
     height: 30px;
     background-color: steelblue;
     color: whitesmoke;
+    cursor:pointer;
 }
 .wheel {
     background-image: url('../car_wheel.png');
@@ -51,12 +52,12 @@ button {
 .c {
     position: absolute;
     top: 33%;
-    left: 61%;
+    left: 63%;
 }
 .d {
     position: absolute;
-    top: 78%;
-    left: 59%;
+    top: 63%;
+    left: 62%;
 }
 .inset {
      border-style: inset;
@@ -74,4 +75,7 @@ button {
 }
 body {
     background-color: lightgray;
+}
+.justifyright {
+    text-align: right;
 }

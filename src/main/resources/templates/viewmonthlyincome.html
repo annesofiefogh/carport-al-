@@ -1,20 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:insert="fragments/header">
     <title>VisMånedligIndtjening</title>
-    <link rel="stylesheet" th:href="@{css/index.css}">
-    <link rel="stylesheet" th:href="@{css/footer.css}">
-<style>
-    .right {
-        text-align: right;
-    }
-</style>
 </head>
 <body>
+<div class="navbar" th:insert="fragments/navbar :: navbar(~{::span})">
+    <span th:text="${username.getUserName()}"></span>
+    <span> ' | Database kilde : </span>
+    <span th:text="${source}"></span><
+    <span th:replace="fragments/buttons">
+    </span>
+</div>
+<br><br>
+
 <h3>Forventet månedlig indtjening</h3>
 
-<p>Der er <span th:text="${numberOfLeasedCars}"></span> udlejede biler med total pris <span th:text="${totalPrice}"></span> DKK.</p>
+<table>
+    <tr>
+        <td><h4>Antal udlejede biler</h4></td>
+        <td th:text="${numberOfLeasedCars}"></td>
+        <td><h4>Total pris</h4></td>
+        <td th:text="${totalPrice}"></td>
+        <td>DKK</td>
+    </tr>
+</table>
 
 <h3>Åbne abonnementer</h3>
 <div>
@@ -27,7 +36,7 @@
             <td><h4>Mærke</h4></td>
             <td><h4>Model</h4></td>
             <td><h4>Farve</h4></td>
-            <td class="right"><h4>Pris</h4></td>
+            <td class="justifyright"><h4>Pris</h4></td>
         </tr>
         <tr th:each="stat : ${statistics}">
             <td th:text="${stat.getLease().getLeaseID()}"></td>
@@ -50,11 +59,12 @@
             <td class="right" th:text="${totalPrice}"></td>
         </tr>
     </table>
-
-    <div class="footer">
-        <p th:replace="fragments/footer"></p>
-    </div>
-
+    <br><br><br><br><br><br>
 </div>
+
+<div class="footer">
+    <p th:replace="fragments/footer"></p>
+</div>
+
 </body>
 </html>
