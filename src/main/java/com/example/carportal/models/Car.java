@@ -16,7 +16,7 @@ public class Car {
         this.chassisNumber = chassisNumber;
         this.colour = colour;
         this.available = available;
-    }
+    } //TODO muligvis bruges i rapport til at redegøre for hvordan Car obj ser ud.At det er mindre end det burde være.
 
     public boolean isAvailable() {
         return available;
