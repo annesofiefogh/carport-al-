@@ -1,13 +1,21 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:insert="fragments/header">
     <title>Abonnement oprettet</title>
-    <link rel="stylesheet" th:href="@{css/index.css}">
-    <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
 <body>
-<h1>Success!!</h1>
+<div class="navbar" th:insert="fragments/navbar :: navbar(~{::span})">
+    <span th:text="${username.getUserName()}"></span>
+    <span>' | Database kilde : </span>
+    <span th:text="${source}"></span><
+    <span th:replace="fragments/buttons">
+    </span>
+</div>
+<br><br>
+<div class="box">
+    Abonnement oprettet
+</div>
+
 <div class="footer">
     <p th:replace="fragments/footer"></p>
 </div>

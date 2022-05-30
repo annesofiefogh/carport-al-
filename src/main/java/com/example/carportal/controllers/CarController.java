@@ -18,12 +18,12 @@ public class CarController {
     private SessionService ss = new SessionService();
 
     @GetMapping("/viewstock")
-    public String viewstock(Model model, HttpSession session)
+    public String viewStock(Model model, HttpSession session)
     {
         model.addAttribute("leased",js.getCars(0));
         model.addAttribute("available",js.getCars(1));
         model.addAttribute("username", ss.getSessionUser(session));
-        String[] dbname = {"Local", "Heroku"};
+        String[] dbname = {"Lokal", "Heroku"};
         model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         return "viewstock";
     }

@@ -43,7 +43,7 @@ public class HomeController
     public String index(HttpSession session, HttpServletRequest request, Model model){
         ss.addListOfDamagesToSession(request);
         model.addAttribute("sessionUser", us.getUserFromSession(session));
-        String[] dbname = {"Local", "Heroku"};
+        String[] dbname = {"Lokal", "Heroku"};
         model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         return "mainpage";
     }

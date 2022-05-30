@@ -16,12 +16,11 @@ import javax.servlet.http.HttpSession;
 public class UserController {
 
     private UserService us = new UserService(new UserRepository());
-    private SessionService ss = new SessionService();
 
     @GetMapping("/index")
     public String login(Model model, HttpSession session, HttpServletRequest request){
         us.addUserToSession(request); // logout is actually login as guest
-        String[] dbname = {"Local", "Heroku"};
+        String[] dbname = {"Lokal", "Heroku"};
         model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         model.addAttribute("username", us.getUserFromSession(session));
         us.getUserFromSession(session);

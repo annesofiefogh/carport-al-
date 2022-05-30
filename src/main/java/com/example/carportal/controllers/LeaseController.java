@@ -19,57 +19,73 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 @Controller
-public class LeaseController {
+public class LeaseController
+{
 
     private LeaseService ls = new LeaseService(new LeaseRepository());
-    private JoinService js = new JoinService(new UserRepository(),new CarRepository());
+    private JoinService js = new JoinService(new UserRepository(), new CarRepository());
     private DamageService ds = new DamageService();
     private SessionService ss = new SessionService();
 
     @GetMapping("/createlease")
-    public String createLease(Model model, HttpSession session){
+    public String createLease(Model model, HttpSession session)
+    {
         boolean hasAccess = ss.hasRegistrationRole(session);
         ArrayList<Customer> allCustomers = js.getListOfCustomers();
         ArrayList<Car> availableCars = js.getCars(1);
         model.addAttribute("allCustomers", allCustomers);
         model.addAttribute("availableCars", availableCars);
+        model.addAttribute("username", ss.getSessionUser(session));
+        String[] dbname = {"Lokal", "Heroku"};
+        model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         return (hasAccess) ? "createlease" : "redirect:/accessdenied";
     }
 
     @PostMapping("/createlease")
-    public String createLease(WebRequest request){
+    public String createLease(WebRequest request)
+    {
         int carID = Integer.valueOf(request.getParameter("carID"));
         int customerID = Integer.valueOf(request.getParameter("customerID"));
-
-
-        double price = Double.parseDouble(request.getParameter("price"));
-        Date startDate = Date.valueOf(request.getParameter("startDate"));
-        Date endDate = Date.valueOf(request.getParameter("endDate"));
-        System.out.println(price);
-        System.out.println(startDate);
-        System.out.println(endDate);
-        ls.createLeaseFromWebRequest(carID, customerID, price, startDate.toLocalDate(), endDate.toLocalDate(), true);
-        js.changeCarStatus(carID);
-
-        return "redirect:/createleasesuccess";
+        String pr = request.getParameter("price");
+        String d1 = request.getParameter("startDate");
+        String d2 = request.getParameter("endDate");
+        boolean success = ls.validateLeaseForm(d1, d2, pr);
+        if (success)
+        {
+            double price = Double.valueOf(pr);
+            Date startDate = Date.valueOf(d1);
+            Date endDate = Date.valueOf(d2);
+            ls.createLeaseFromWebRequest(carID, customerID, price, startDate.toLocalDate(), endDate.toLocalDate(), true);
+            js.changeCarStatus(carID);
+        }
+        return (success) ? "redirect:/createleasesuccess" : "redirect:/createlease";
     }
 
     @GetMapping("/createleasesuccess")
-    public String leaseCreated(){
+    public String leaseCreated(Model model, HttpSession session)
+    {
+        model.addAttribute("username", ss.getSessionUser(session));
+        String[] dbname = {"Lokal", "Heroku"};
+        model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         return "createleasesuccess";
 
     }
+
     @GetMapping("/chooselease")
     public String chooseLease(Model model, HttpSession session)
     {
         boolean hasAccess = ss.hasDamageRole(session);
         ArrayList<Lease> openLeases = ls.getAllOpenLeases();
         model.addAttribute("openLeases", openLeases);
+        model.addAttribute("username", ss.getSessionUser(session));
+        String[] dbname = {"Lokal", "Heroku"};
+        model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         return (hasAccess) ? "chooselease" : "redirect:/accessdenied";
     }
 
     @PostMapping("/chooselease")
-    public String choosingLease(WebRequest request, HttpSession session)    {
+    public String choosingLease(WebRequest request, HttpSession session)
+    {
         int leaseId = Integer.parseInt(request.getParameter("lease"));
         ss.addLeaseIDToSession(session, leaseId);
         return "redirect:/createdamagereport";
@@ -82,6 +98,9 @@ public class LeaseController {
         boolean hasAccess = ss.hasDamageRole(session);
         model.addAttribute("listOfDamages", ds.getSessionListOfDamages(session));
         model.addAttribute("leaseid", leaseID);
+        model.addAttribute("username", ss.getSessionUser(session));
+        String[] dbname = {"Lokal", "Heroku"};
+        model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         return (hasAccess) ? "createdamagereport" : "redirect:/accessdenied";
     }
 
@@ -95,16 +114,21 @@ public class LeaseController {
     }
 
     @GetMapping("createdamagereportsuccess")
-    public String gotDamageData(Model model, HttpSession session) {
+    public String gotDamageData(Model model, HttpSession session)
+    {
         ArrayList<Damage> listOfDamages = ds.getSessionListOfDamages(session);
         int leaseID = ss.getLeaseIDFromSession(session);
         model.addAttribute("listOfDamages", listOfDamages);
         model.addAttribute("totalPrice", ds.getTotalDamage(session));
         model.addAttribute("leaseid", leaseID);
-        if (listOfDamages.size() != 0) { //Todo, Graham skal lige fortælle Mikkel præcis hvordan det her loop fungerer
+        model.addAttribute("username", ss.getSessionUser(session));
+        String[] dbname = {"Lokal", "Heroku"};
+        model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
+        if (listOfDamages.size() != 0)
+        { //Todo, Graham skal lige fortælle Mikkel præcis hvordan det her loop fungerer
             ls.createDamageReport(leaseID, listOfDamages);
         }
-
+        ls.closeLease(leaseID);
         return "createdamagereportsuccess";
     }
 
@@ -115,7 +139,7 @@ public class LeaseController {
         ArrayList<Lease> leases = ls.getAllOpenLeases();
         ArrayList<Statistic> stats = js.getListOfStatistics(leases);
         model.addAttribute("statistics", stats);
-        model.addAttribute("numberOfLeasedCars" , leases.size());
+        model.addAttribute("numberOfLeasedCars", leases.size());
         model.addAttribute("totalPrice", ls.calculateMonthlyIncome(leases));
         model.addAttribute("username", ss.getSessionUser(session));
         String[] dbname = {"Local", "Heroku"};

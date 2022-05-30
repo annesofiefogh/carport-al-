@@ -7,12 +7,15 @@
 }
 .center {
     text-align: center;
-
+}
+.middle {
+    margin-left: auto;
+    margin-right: auto;
 }
 .lease {
      margin: auto;
      width: 70%;
-     min-height: 400px;
+     min-height: 360px;
      border: 2px solid;
      padding: 10px;
     background-color: whitesmoke;
@@ -21,9 +24,10 @@
     margin: auto;
     border: 2px solid;
     padding: 10px;
+    background-color: white;
 }
 button {
-    width: 140px;
+    width: 150px;
     border-radius: 15px;
     height: 30px;
     background-color: steelblue;
@@ -67,11 +71,17 @@ button {
     float: left;
 }
 .left {
-    width: 30%;
+    width: 35%;
+    border: 2px solid;
+    padding: 10px;
+    background-color: white;
 }
 .right {
     width: 60%;
     float: right;
+    border: 2px solid;
+    padding: 10px;
+    background-color: white;
 }
 body {
     background-color: lightgray;
