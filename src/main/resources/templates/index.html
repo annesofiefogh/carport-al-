@@ -5,8 +5,18 @@
     <title>Login</title>
     <link rel="stylesheet" th:href="@{css/index.css}">
     <link rel="stylesheet" th:href="@{css/footer.css}">
+    <link rel="stylesheet" th:href="@{css/navbar.css}">
 </head>
 <body>
+
+<div class="navbar" th:insert="fragments/navbar :: navbar(~{::span})">
+    <span th:text="${username.getUserName()}"></span>
+    <span>' | Database kilde : </span>
+    <span th:text="${source}"></span><
+    <span th:replace="fragments/login">
+    </span>
+</div>
+    <br>
 <h2 class="center">Velkommen til Carport(al): Bilabonnement A/S databasesystem v1.0</h2>
 <div class="box">
     <h3>Log venligst ind her</h3>

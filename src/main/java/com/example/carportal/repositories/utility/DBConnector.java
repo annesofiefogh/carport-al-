@@ -15,6 +15,7 @@ public class DBConnector {
     private static String username;
     private static String password;
     private static Connection con;
+    public static int dbSource = 0; // 0=local, 1=Heroku
 
     private DBConnector(){}
 
@@ -23,9 +24,16 @@ public class DBConnector {
             return con;
         }
 
-        url = System.getenv("db.url2");
-        username = System.getenv("db.username2");
-        password = System.getenv("db.password2");
+        if (dbSource == 1) {
+            url = System.getenv("db.url");
+            username = System.getenv("db.username");
+            password = System.getenv("db.password");
+        }
+        else {
+            url = System.getenv("db.url2");
+            username = System.getenv("db.username2");
+            password = System.getenv("db.password2");
+        }
 
 
 
@@ -36,5 +44,11 @@ public class DBConnector {
         }
         System.out.println("Der er forbindelse");
         return con;
+    }
+
+    public static void setDbSource(int dbSource)
+    {
+        DBConnector.con = null;
+        DBConnector.dbSource = dbSource;
     }
 }

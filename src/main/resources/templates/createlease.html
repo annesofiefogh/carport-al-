@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:insert="fragments/header">
     <title>Opret abonnement</title>
-    <link rel="stylesheet" th:href="@{css/index.css}">
-    <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
 <body>
+
+<div class="navbar" th:insert="fragments/navbar :: navbar(~{::span})">
+    <span th:text="${username.getUserName()}"></span>
+    <span>' | Database kilde : </span>
+    <span th:text="${source}"></span><
+    <span th:replace="fragments/buttons">
+    </span>
+</div>
+<br><br><br>
+
 <div class="lease">
     <h2>Opret abonnement</h2>
     <form name="leaseCreation" action="/createlease" method="POST">
@@ -18,19 +25,18 @@
         <br>
 
         <p>Vælg afhentningssted:</p>
-        <input type="radio" id="bilabonnement" name="pickup" value="Bilabonnement">
-        <label for="bilabonnement">bilabannoment</label><br>
+        <input type="radio" id="bilabonnement" name="pickup" value="Bilabonnement" checked>
+        <label for="bilabonnement">Bilabannoment</label><br>
         <input type="radio" id="fdm" name="pickup" value="FDM">
         <label for="fdm">FDM</label>
         <br><br>
 
-        <label for="startDate">Oprettelsesdato:</label>
-        <input type="date" id="startDate" name="startDate" required>
+        <label for="startDate">Oprettelsesdato:</label><br>
+        <input type="date" id="startDate" name="startDate">
         <br><br>
 
         <label for="price">Pris:</label><br>
-        <input type="number" inputmode="decimal" step="0.01" id="price" name="price" required>
-        <br><br>
+        <input type="number" inputmode="decimal" step="0.01" id="price" name="price">
 
     </div>
     <div style="width: 60%; float: left;">
@@ -42,14 +48,14 @@
         <br>
 
         <p>Vælg abonnement:</p>
-        <input type="radio" id="limited" name="abannoment" value="Limited">
+        <input type="radio" id="limited" name="abannoment" value="Limited" checked>
         <label for="limited">Limited</label><br>
         <input type="radio" id="Unlimited" name="abannoment" value="Unlimited">
         <label for="unlimited">Unlimited</label><br>
         <br>
 
-        <label for="endDate">Slutdato:</label>
-        <input type="date" id="endDate" name="endDate" required>
+        <label for="endDate">Slutdato:</label><br>
+        <input type="date" id="endDate" name="endDate">
         <br><br>
 
         <button type = "submit" onclick="location.href='../createleasesuccess'">Opret</button>

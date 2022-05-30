@@ -1,21 +1,28 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:insert="fragments/header">
     <title>Vælg abonnement</title>
-    <link rel="stylesheet" th:href="@{css/index.css}">
-    <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
 <body>
+<div class="navbar" th:insert="fragments/navbar :: navbar(~{::span})">
+    <span th:text="${username.getUserName()}"></span>
+    <span>' | Database kilde : </span>
+    <span th:text="${source}"></span><
+    <span th:replace="fragments/buttons">
+    </span>
+</div>
+<br><br>
+<div class="box">
 <form name="form" id="data" action="/chooselease" method="POST">
-<label for="lease">Vælg Abonnement ID </label>
+<label for="lease">Vælg abonnement ID </label>
 <select name="lease" id="lease">
     <option th:each="lease : ${openLeases}" th:value="${lease.getLeaseID()}" th:text="${lease.getLeaseID()}"></option>
 </select>
-    <button type="submit" onclick="location.href='../createdamagereport'">Opret skadesrapport</button>
+    <br><br>
+    <button type="submit" onclick="location.href='../createdamagereport'">Vælg abonnement</button>
 <br><br>
 </form>
-
+</div>
 <div class="footer">
     <p th:replace="fragments/footer"></p>
 </div>

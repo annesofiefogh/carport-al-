@@ -1,26 +1,19 @@
 .navbar{
     background-color: whitesmoke;
     position: fixed;
-    top: 0px;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: 50px;
-    font-size: 17px;
-    margin-left: 0px;
+    height: 32px;
+    font-size: 18px;
+    text-align: center;
+}
+.menu_left {
+    display: inline-block;
+    float: left;
 }
 
 .menu_right{
     display: inline-block;
     float: right;
-    padding-left: 50px;
-    padding-right: 50px;
-    height: 50px;
-    font-size: large;
-    text-align: center;
-}
-.home {
-    padding-left: 50px;
-    padding-right: 50px;
-    height: 50px;
-    font-size: large;
-    text-align: center;
 }

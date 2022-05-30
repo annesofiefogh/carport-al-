@@ -1,15 +1,20 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:insert="fragments/header">
     <title>View Stock</title>
-    <link rel="stylesheet" th:href="@{css/index.css}">
-    <link rel="stylesheet" th:href="@{css/footer.css}">
 </head>
 <body>
-<div>
+<div class="navbar" th:insert="fragments/navbar :: navbar(~{::span})">
+    <span th:text="${username.getUserName()}"></span>
+    <span>' | Database kilde : </span>
+    <span th:text="${source}"></span><
+    <span th:replace="fragments/buttons">
+    </span>
+</div>
+<br><br>
 
-    <div class="stock" style="width: 45%; float: left;">
+<div>
+    <div class="stock" style="width: 48%; float: left;">
         <h2>Udlejede biler</h2>
         <table style="width:90%">
             <tr>
@@ -24,7 +29,7 @@
             </tr>
         </table>
     </div>
-    <div class="stock" style="width: 45%; float: right;">
+    <div class="stock" style="width: 48%; float: right;">
         <h2>Available cars</h2>
         <table style="width:90%">
             <tr>

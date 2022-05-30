@@ -1,6 +1,7 @@
 package com.example.carportal.controllers;
 
 import com.example.carportal.repositories.UserRepository;
+import com.example.carportal.services.SessionService;
 import com.example.carportal.services.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,14 +17,11 @@ public class UserController {
 
     private UserService us = new UserService(new UserRepository());
 
-    @GetMapping("/")
-    public String landPage(HttpServletRequest request){
-        us.addUserToSession(request);
-        return "index";
-    }
-
     @GetMapping("/index")
-    public String login(Model model, HttpSession session){
+    public String login(Model model, HttpSession session, HttpServletRequest request){
+        us.addUserToSession(request); // logout is actually login as guest
+        String[] dbname = {"Lokal", "Heroku"};
+        model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         model.addAttribute("username", us.getUserFromSession(session));
         us.getUserFromSession(session);
         return "index";
@@ -46,5 +44,4 @@ public class UserController {
     public String accessDenied() {
         return "noaccess";
     }
-
 }
