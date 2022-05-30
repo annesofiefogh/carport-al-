@@ -121,10 +121,14 @@ public class LeaseController
         model.addAttribute("listOfDamages", listOfDamages);
         model.addAttribute("totalPrice", ds.getTotalDamage(session));
         model.addAttribute("leaseid", leaseID);
+        model.addAttribute("username", ss.getSessionUser(session));
+        String[] dbname = {"Lokal", "Heroku"};
+        model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
         if (listOfDamages.size() != 0)
         { //Todo, Graham skal lige fortælle Mikkel præcis hvordan det her loop fungerer
             ls.createDamageReport(leaseID, listOfDamages);
         }
+        ls.closeLease(leaseID);
         return "createdamagereportsuccess";
     }
 

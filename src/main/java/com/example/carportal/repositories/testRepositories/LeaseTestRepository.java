@@ -35,6 +35,12 @@ public class LeaseTestRepository implements ILeaseRepository {
     }
 
     @Override
+    public boolean closeLease(int leaseID)
+    {
+        return true;
+    }
+
+    @Override
     public Object getOneEntity(int ID) {
         return null;
     }

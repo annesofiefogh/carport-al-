@@ -108,7 +108,7 @@ public class LeaseRepository implements ILeaseRepository {
             e.printStackTrace();
         }
 
-        return closeLease(leaseID);
+        return true;
 
     }
 

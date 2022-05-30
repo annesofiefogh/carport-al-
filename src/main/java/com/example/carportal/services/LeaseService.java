@@ -50,4 +50,8 @@ public class LeaseService {
         return (date1 != "" && date2 != "" && price != "");
     }
 
+    public void closeLease(int leaseID)
+    {
+        lr.closeLease(leaseID);
+    }
 }

@@ -12,56 +12,57 @@
     </span>
 </div>
 <br><br>
+<div class="stock">
+    <h3>Forventet månedlig indtjening</h3>
 
-<h3>Forventet månedlig indtjening</h3>
-
-<table>
-    <tr>
-        <td><h4>Antal udlejede biler</h4></td>
-        <td th:text="${numberOfLeasedCars}"></td>
-        <td><h4>Total pris</h4></td>
-        <td th:text="${totalPrice}"></td>
-        <td>DKK</td>
-    </tr>
-</table>
-
-<h3>Åbne abonnementer</h3>
-<div>
-    <table style="width:90%">
+    <table>
         <tr>
-            <td><h4>Abonnements ID</h4></td>
-            <td><h4>Startdato</h4></td>
-            <td><h4>Slutdato</h4></td>
-            <td><h4>Vogn ID</h4></td>
-            <td><h4>Mærke</h4></td>
-            <td><h4>Model</h4></td>
-            <td><h4>Farve</h4></td>
-            <td class="justifyright"><h4>Pris</h4></td>
-        </tr>
-        <tr th:each="stat : ${statistics}">
-            <td th:text="${stat.getLease().getLeaseID()}"></td>
-            <td th:text="${stat.getLease.getStartDate()}"></td>
-            <td th:text="${stat.getLease.getEndDate()}"></td>
-            <td th:text="${stat.getCar().getCarID()}"></td>
-            <td th:text="${stat.getCar().getMake()}"></td>
-            <td th:text="${stat.getCar().getModel()}"></td>
-            <td th:text="${stat.getCar().getColour()}"></td>
-            <td class="right" th:text="${stat.getLease.getPrice()}"></td>
-        </tr>
-        <tr>
-            <td>Total</td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td></td>
-            <td class="right" th:text="${totalPrice}"></td>
+            <td><h4>Antal udlejede biler</h4></td>
+            <td th:text="${numberOfLeasedCars}"></td>
+            <td><h4>Total pris</h4></td>
+            <td th:text="${totalPrice}"></td>
+            <td>DKK</td>
         </tr>
     </table>
-    <br><br><br><br><br><br>
-</div>
 
+    <h3>Åbne abonnementer</h3>
+    <div>
+        <table style="width:90%">
+            <tr>
+                <td><h4>Abonnements ID</h4></td>
+                <td><h4>Startdato</h4></td>
+                <td><h4>Slutdato</h4></td>
+                <td><h4>Vogn ID</h4></td>
+                <td><h4>Mærke</h4></td>
+                <td><h4>Model</h4></td>
+                <td><h4>Farve</h4></td>
+                <td class="justifyright"><h4>Pris</h4></td>
+            </tr>
+            <tr th:each="stat : ${statistics}">
+                <td th:text="${stat.getLease().getLeaseID()}"></td>
+                <td th:text="${stat.getLease.getStartDate()}"></td>
+                <td th:text="${stat.getLease.getEndDate()}"></td>
+                <td th:text="${stat.getCar().getCarID()}"></td>
+                <td th:text="${stat.getCar().getMake()}"></td>
+                <td th:text="${stat.getCar().getModel()}"></td>
+                <td th:text="${stat.getCar().getColour()}"></td>
+                <td class="justifyright" th:text="${stat.getLease.getPrice()}"></td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td class="justifyright" th:text="${totalPrice}"></td>
+            </tr>
+        </table>
+
+    </div>
+</div>
+<br><br><br><br><br><br>
 <div class="footer">
     <p th:replace="fragments/footer"></p>
 </div>

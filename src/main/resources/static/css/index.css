@@ -7,7 +7,10 @@
 }
 .center {
     text-align: center;
-
+}
+.middle {
+    margin-left: auto;
+    margin-right: auto;
 }
 .lease {
      margin: auto;
@@ -21,6 +24,7 @@
     margin: auto;
     border: 2px solid;
     padding: 10px;
+    background-color: white;
 }
 button {
     width: 150px;

@@ -14,4 +14,5 @@ public interface ILeaseRepository extends IRepository{
     ArrayList<Lease> getAllOpenLeases();
 
 
+    boolean closeLease(int leaseID);
 }
