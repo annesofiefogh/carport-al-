@@ -8,7 +8,7 @@ import javax.servlet.http.HttpSession;
 
 public class UserService {
 
-    private IUserRepository ur;
+    private final IUserRepository ur;
 
     public UserService(IUserRepository injectedUserRepository) {
         ur = injectedUserRepository;

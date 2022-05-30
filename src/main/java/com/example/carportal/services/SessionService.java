@@ -11,8 +11,6 @@ import java.util.ArrayList;
 
 public class SessionService
 {
-    private Connection con;
-
     public void addListOfDamagesToSession(HttpServletRequest request) {
         ArrayList<Damage> listOfDamages = new ArrayList<>();
         HttpSession session = request.getSession();

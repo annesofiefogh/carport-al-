@@ -10,8 +10,8 @@ import java.util.ArrayList;
 
 public class JoinService {
 
-    private IUserRepository ur;
-    private ICarRepository cr;
+    private final IUserRepository ur;
+    private final ICarRepository cr;
 
     public JoinService(IUserRepository injectedUserRepository, ICarRepository injectedCarRepository) {
         ur = injectedUserRepository;

@@ -2,8 +2,8 @@ package com.example.carportal.models;
 
 public class Statistic {
 
-    private Lease lease;
-    private Car car;
+    private final Lease lease;
+    private final Car car;
 
     public Statistic(Lease lease, Car car) {
         this.lease = lease;
