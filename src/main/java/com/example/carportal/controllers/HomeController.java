@@ -15,8 +15,8 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class HomeController {
 
-    private UserService us = new UserService(new UserRepository());
-    private SessionService ss = new SessionService();
+    private final UserService us = new UserService(new UserRepository());
+    private final SessionService ss = new SessionService();
 
     @GetMapping("/")
     public String landPage() {

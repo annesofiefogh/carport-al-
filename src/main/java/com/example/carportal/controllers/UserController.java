@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class UserController {
 
-    private UserService us = new UserService(new UserRepository());
+    private final UserService us = new UserService(new UserRepository());
 
     @GetMapping("/index")
     public String login(Model model, HttpSession session, HttpServletRequest request) {
