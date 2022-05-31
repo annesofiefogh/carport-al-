@@ -52,9 +52,7 @@ public class LeaseService {
         boolean firstValidate = (date1 != "" && date2 != "" && price != "");
         if (firstValidate) {
             double price1 = Double.valueOf(price);
-            if (price1 >= 0){
-                return true;
-            }
+            return price1 >= 0;
         }
         return false;
     }

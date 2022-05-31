@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8">
+<head th:insert="fragments/header">
     <title>Hovedside</title>
-    <link rel="stylesheet" th:href="@{css/index.css}">
-    <link rel="stylesheet" th:href="@{css/footer.css}">
-    <link rel="stylesheet" th:href="@{css/navbar.css}">
 </head>
 <body class="wheel">
 
@@ -13,8 +9,7 @@
     <span th:text="${sessionUser.getUserName()}"></span>
     <span>' | Database kilde : </span>
     <span th:text="${source}"></span><
-    <span th:replace="fragments/logout">
-    </span>
+    <span th:replace="fragments/logout"></span>
 </div>
 <br>
 
