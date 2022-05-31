@@ -26,7 +26,6 @@ public class JoinServiceTest {
 
     @Test
     void getListOfAvailableCars() {
-
         //Arrange
         IUserRepository testUserRepository = new UserTestRepository();
         ICarRepository testCarRepository = new CarTestRepository();

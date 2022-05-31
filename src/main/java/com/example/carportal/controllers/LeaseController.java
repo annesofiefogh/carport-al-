@@ -114,8 +114,7 @@ public class LeaseController {
         String[] dbname = {"Lokal", "Heroku"};
         model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
 
-        if (listOfDamages.size() != 0)
-        {
+        if (listOfDamages.size() != 0) {
             ls.createDamageReport(leaseID, listOfDamages);
         }
         ls.closeLease(leaseID);
