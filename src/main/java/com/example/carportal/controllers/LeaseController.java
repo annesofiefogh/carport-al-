@@ -21,10 +21,10 @@ import java.util.ArrayList;
 @Controller
 public class LeaseController {
 
-    private LeaseService ls = new LeaseService(new LeaseRepository());
-    private JoinService js = new JoinService(new UserRepository(), new CarRepository());
-    private DamageService ds = new DamageService();
-    private SessionService ss = new SessionService();
+    private final LeaseService ls = new LeaseService(new LeaseRepository());
+    private final JoinService js = new JoinService(new UserRepository(), new CarRepository());
+    private final DamageService ds = new DamageService();
+    private final SessionService ss = new SessionService();
 
     @GetMapping("/createlease")
     public String createLease(Model model, HttpSession session) {
