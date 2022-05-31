@@ -47,7 +47,7 @@ VALUES (10, 'DNK57263H2353L789', 'Opel', 'Crossland Sport', 'Magenta', 1);
 
 INSERT INTO `lease` (`Lease_id`, `Car_id`, `Costumer_id`, `Price`, `Start_date`, `Stop_date`, `Status`, `Lease_type`,
                      `Pickup_place`)
-VALUES (24, 1, 1, 3900, '2022-05-01', '2022-07-30', 1, NULL, NULL);
+VALUES (11, 1, 1, 3900, '2022-05-01', '2022-07-30', 1, NULL, NULL);
 INSERT INTO `lease` (`Lease_id`, `Car_id`, `Costumer_id`, `Price`, `Start_date`, `Stop_date`, `Status`, `Lease_type`,
                      `Pickup_place`)
 VALUES (25, 7, 2, 4800, '2022-04-01', '2022-11-30', 1, NULL, NULL);
