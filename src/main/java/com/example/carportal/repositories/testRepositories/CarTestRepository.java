@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-//@author: AC
+//@author: MS, AC
 public class CarTestRepository implements ICarRepository {
 
     ArrayList<Car> arrayList = new ArrayList<>(Arrays.asList(
