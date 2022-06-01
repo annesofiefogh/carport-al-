@@ -98,7 +98,7 @@ public class LeaseController {
     @PostMapping("/createdamagereport")
     public String gettingDamageData(WebRequest request, HttpSession session) {
         String desc = request.getParameter("description");
-        Double price = Double.parseDouble(request.getParameter("price"));
+        double price = Double.parseDouble(request.getParameter("price"));
         ds.getSessionListOfDamages(session).add(ds.createDamageFromSession(0, desc, price));
         return "redirect:/createdamagereport";
     }
