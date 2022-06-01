@@ -2,6 +2,7 @@ package com.example.carportal.models;
 
 import java.time.LocalDate;
 
+//@author: EO
 public class Lease {
 
     private int leaseID;

@@ -1,5 +1,6 @@
 package com.example.carportal.models;
 
+//@author: EO
 public class User {
 
     private int userID;

@@ -1,5 +1,6 @@
 package com.example.carportal.models;
 
+//@author: GH
 public class Customer {
 
     private int costumerID;
@@ -9,6 +10,7 @@ public class Customer {
     private String address;
     private boolean creditApproved;
     private boolean driversLicense;
+
 
     public Customer(int id, String name, String phoneNumber, String email, String address, boolean creditApproved, boolean driversLicense) {
         this.costumerID = id;

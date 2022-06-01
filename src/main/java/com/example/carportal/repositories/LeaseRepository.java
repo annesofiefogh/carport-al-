@@ -12,6 +12,8 @@ public class LeaseRepository implements ILeaseRepository {
 
     private Connection con;
 
+    //@author: GH
+
     @Override
     public Object getOneEntity(int ID) {
         con = DBConnector.getConnection();
@@ -33,6 +35,7 @@ public class LeaseRepository implements ILeaseRepository {
         return lease;
     }
 
+    //@author: AC
     @Override
     //For future implementations
     public List getAllEntities() {
@@ -47,6 +50,7 @@ public class LeaseRepository implements ILeaseRepository {
         return listOfLeases;
     }
 
+    //@author: MS
     private void addLeaseToArrayList(ArrayList<Lease> listOfLeases, String sqlString) throws SQLException {
         Statement stmt;
         ResultSet rs;
@@ -61,6 +65,7 @@ public class LeaseRepository implements ILeaseRepository {
         }
     }
 
+    //@author: EO
     @Override
     // Add lease to database
     public boolean create(Object entity) {
@@ -90,6 +95,7 @@ public class LeaseRepository implements ILeaseRepository {
         return returnBoolean;
     }
 
+    //@author: GH
     @Override
     public boolean createDamageReport(int leaseID, ArrayList<Damage> listOfDamages) {    // Create dmgReport for the chosen lease.
         Lease lease = (Lease) getOneEntity(leaseID);
@@ -113,6 +119,7 @@ public class LeaseRepository implements ILeaseRepository {
         return true;
     }
 
+    //@author: MS
     public boolean closeLease(int leaseID) {
         con = DBConnector.getConnection();
         try {
@@ -124,6 +131,7 @@ public class LeaseRepository implements ILeaseRepository {
         return true;
     }
 
+    //@author: AC
     @Override
     public ArrayList<Lease> getAllOpenLeases() {
         ArrayList<Lease> listOfLeases = new ArrayList<>();
@@ -137,6 +145,7 @@ public class LeaseRepository implements ILeaseRepository {
         return listOfLeases;
     }
 
+    //@author: EO
     @Override
     //For future implementations
     public boolean delete(int ID) {

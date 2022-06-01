@@ -2,6 +2,7 @@ package com.example.carportal.repositories;
 
 import java.util.List;
 
+//@author: MS
 public interface IRepository<T> {
 
     T getOneEntity(int ID);

@@ -9,6 +9,7 @@ import javax.servlet.http.HttpSession;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+//@author: GH
 public class SessionService
 {
     public void addListOfDamagesToSession(HttpServletRequest request) {

@@ -18,18 +18,22 @@ public class JoinService {
         cr = injectedCarRepository;
     }
 
+    //@author: AC
     public ArrayList<Customer> getListOfCustomers() {
         return (ArrayList<Customer>) ur.getAllCustomers();
     }
 
+    //@author: MS
     public ArrayList<Car> getCars(int available) {
         return cr.getCars(available);
     }
 
+    //@author: EO
     public boolean changeCarStatus (int carID) {
         return cr.update(carID);
     }
 
+    //@author: GH
     public ArrayList<Statistic> getListOfStatistics(ArrayList<Lease> leases) {
         ArrayList<Statistic> listOfStats = new ArrayList<>();
         for (Lease l : leases) {

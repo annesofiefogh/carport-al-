@@ -26,6 +26,7 @@ public class LeaseController {
     private final DamageService ds = new DamageService();
     private final SessionService ss = new SessionService();
 
+    //@author: AC
     @GetMapping("/createlease")
     public String createLease(Model model, HttpSession session) {
         boolean hasAccess = ss.hasRegistrationRole(session);
@@ -39,6 +40,7 @@ public class LeaseController {
         return (hasAccess) ? "createlease" : "redirect:/accessdenied";
     }
 
+    //@author: AC
     @PostMapping("/createlease")
     public String createLease(WebRequest request) {
         int carID = Integer.valueOf(request.getParameter("carID"));
@@ -57,6 +59,7 @@ public class LeaseController {
         return (success) ? "redirect:/createleasesuccess" : "redirect:/createlease";
     }
 
+    //@author: AC
     @GetMapping("/createleasesuccess")
     public String leaseCreated(Model model, HttpSession session) {
         model.addAttribute("username", ss.getSessionUser(session));
@@ -65,6 +68,7 @@ public class LeaseController {
         return "createleasesuccess";
     }
 
+    //@author: GH
     @GetMapping("/chooselease")
     public String chooseLease(Model model, HttpSession session) {
         boolean hasAccess = ss.hasDamageRole(session);
@@ -76,6 +80,7 @@ public class LeaseController {
         return (hasAccess) ? "chooselease" : "redirect:/accessdenied";
     }
 
+    //@author: GH
     @PostMapping("/chooselease")
     public String choosingLease(WebRequest request, HttpSession session) {
         int leaseId = Integer.parseInt(request.getParameter("lease"));
@@ -83,6 +88,7 @@ public class LeaseController {
         return "redirect:/createdamagereport";
     }
 
+    //@author: GH
     @GetMapping("/createdamagereport")
     public String getDamageData(Model model, HttpSession session) {
         int leaseID = ss.getLeaseIDFromSession(session);
@@ -95,6 +101,7 @@ public class LeaseController {
         return (hasAccess) ? "createdamagereport" : "redirect:/accessdenied";
     }
 
+    //@author: GH
     @PostMapping("/createdamagereport")
     public String gettingDamageData(WebRequest request, HttpSession session) {
         String desc = request.getParameter("description");
@@ -102,7 +109,7 @@ public class LeaseController {
         ds.getSessionListOfDamages(session).add(ds.createDamageFromSession(0, desc, price));
         return "redirect:/createdamagereport";
     }
-
+    //@author: GH
     @GetMapping("createdamagereportsuccess")
     public String gotDamageData(Model model, HttpSession session) {
         ArrayList<Damage> listOfDamages = ds.getSessionListOfDamages(session);
@@ -121,6 +128,7 @@ public class LeaseController {
         return "createdamagereportsuccess";
     }
 
+    //@author: GH, EO
     @GetMapping("viewmonthlyincome")
     public String viewMonthlyIncome(HttpSession session, Model model) {
         boolean hasAccess = ss.hasBusinessRole(session);

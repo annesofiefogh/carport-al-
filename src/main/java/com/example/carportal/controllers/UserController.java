@@ -16,9 +16,9 @@ public class UserController {
 
     private final UserService us = new UserService(new UserRepository());
 
+    //@author: AC
     @GetMapping("/index")
-    public String login(Model model, HttpSession session, HttpServletRequest request) {
-        // logout is login as guest
+    public String login(Model model, HttpSession session, HttpServletRequest request) { // logout is login as guest
         us.addUserToSession(request);
         String[] dbname = {"Lokal", "Heroku"};
         model.addAttribute("source", dbname[(int) session.getAttribute("source")]);
@@ -27,6 +27,7 @@ public class UserController {
         return "index";
     }
 
+    //@author: AC
     @PostMapping("/index")
     public String login(WebRequest request, HttpSession session) {
         String username = request.getParameter("username");
@@ -40,6 +41,7 @@ public class UserController {
         return (validated) ? "redirect:/mainpage" : "redirect:/index";
     }
 
+    //@author: AC
     @GetMapping("/accessdenied")
     public String accessDenied() {
         return "noaccess";

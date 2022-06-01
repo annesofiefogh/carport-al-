@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//@author: MS
 public class LeaseTestRepository implements ILeaseRepository {
     ArrayList<Lease> arrayList = new ArrayList(Arrays.asList(
             new Lease(1,1,1,100.5, LocalDate.of(1999,12,12),LocalDate.of(2050,12,12),true),
@@ -27,9 +28,9 @@ public class LeaseTestRepository implements ILeaseRepository {
     @Override
     public ArrayList<Lease> getAllOpenLeases() {
         ArrayList<Lease> listOfOpenLeases = new ArrayList<>();
-        for (int i = 0; i < arrayList.size(); i++) {
-            if (arrayList.get(i).isStatus()){
-                listOfOpenLeases.add(arrayList.get(i));
+        for (Lease lease : arrayList) {
+            if (lease.isStatus()) {
+                listOfOpenLeases.add(lease);
             }
         }
         return listOfOpenLeases;

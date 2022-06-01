@@ -5,6 +5,7 @@ import com.example.carportal.models.Lease;
 
 import java.util.ArrayList;
 
+//@author: GH
 public interface ILeaseRepository extends IRepository{
 
 

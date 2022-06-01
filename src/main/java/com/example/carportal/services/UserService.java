@@ -14,19 +14,23 @@ public class UserService {
         ur = injectedUserRepository;
     }
 
+    //@author: AC
     public void addUserToSession(HttpServletRequest request) {
         HttpSession session = request.getSession();
         session.setAttribute("sessionUser", ur.getUser("guest"));
     }
 
+    //@author: EO
     public User getUserFromSession(HttpSession session) {
         return (User) session.getAttribute("sessionUser");
     }
 
+    //@author: MS
     public boolean validateCredentials(String username, String password) {
         return ur.validateCredentials(username, password);
     }
 
+    //@author: GH
     public User getUser(String username) {
         return ur.getUser(username);
     }

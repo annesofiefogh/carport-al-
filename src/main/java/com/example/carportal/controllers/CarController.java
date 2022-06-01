@@ -17,6 +17,7 @@ public class CarController {
     private final JoinService js = new JoinService(new UserRepository(),new CarRepository());
     private final SessionService ss = new SessionService();
 
+    //@author: GH
     @GetMapping("/viewstock")
     public String viewStock(Model model, HttpSession session) {
         model.addAttribute("leased",js.getCars(0));

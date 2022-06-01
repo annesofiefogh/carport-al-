@@ -1,5 +1,6 @@
 package com.example.carportal.models;
 
+//@author: MS
 public class Damage {
 
     private int damageID;

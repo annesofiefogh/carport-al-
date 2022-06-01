@@ -1,5 +1,6 @@
 package com.example.carportal.models;
 
+//@author: GH
 public class Statistic {
 
     private final Lease lease;

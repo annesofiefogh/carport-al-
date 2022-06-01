@@ -11,6 +11,7 @@ public class CarRepository implements ICarRepository {
 
     private Connection con;
 
+    //@author: AC
     @Override
     public Car getOneEntity(int ID) {
         con = DBConnector.getConnection();
@@ -30,6 +31,7 @@ public class CarRepository implements ICarRepository {
     }
 
 
+    //@author: EO
     @Override
     // Changes status Available/Unavailable
     public boolean update(int ID) {
@@ -50,6 +52,7 @@ public class CarRepository implements ICarRepository {
             return true;
         }
 
+    //@author: GH
     @Override
     // 1 = all available cars, 0 = all unavailable cars
     public ArrayList<Car> getCars(int available) {
@@ -64,6 +67,7 @@ public class CarRepository implements ICarRepository {
         return listOfCars;
     }
 
+    //@author: AC
     private void addCarToArrayList(ArrayList<Car> listOfCars, String sqlString) throws SQLException {
         Statement stmt;
         ResultSet rs;
@@ -75,6 +79,7 @@ public class CarRepository implements ICarRepository {
         }
     }
 
+    //@author: MS
     @Override
     //For future implementations
     public boolean delete(int ID) {
@@ -91,6 +96,7 @@ public class CarRepository implements ICarRepository {
         return true;
     }
 
+    //@author: MS
     @Override
     //For future implementations
     public List getAllEntities() {
@@ -105,6 +111,7 @@ public class CarRepository implements ICarRepository {
         return allCars;
     }
 
+    //@author: EO
     @Override
     public boolean create(Car entity) {
         con = DBConnector.getConnection();

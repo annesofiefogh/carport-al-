@@ -12,6 +12,8 @@ public class UserRepository implements IUserRepository {
 
     private Connection con;
 
+    //@author: MS
+
     @Override
     public Customer getOneEntity(int ID) {
         con = DBConnector.getConnection();
@@ -30,6 +32,7 @@ public class UserRepository implements IUserRepository {
         return customer;
     }
 
+    //@author: AC
     @Override
     public User getUser(int ID) {
         con = DBConnector.getConnection();
@@ -48,6 +51,7 @@ public class UserRepository implements IUserRepository {
         return user;
     }
 
+    //@author: AC
     @Override
     public User getUser(String username) {
         con = DBConnector.getConnection();
@@ -66,6 +70,7 @@ public class UserRepository implements IUserRepository {
         return user;
     }
 
+    //@author: GH
     @Override
     public boolean validateCredentials (String username, String password) {
         con = DBConnector.getConnection();
@@ -84,6 +89,7 @@ public class UserRepository implements IUserRepository {
         return true;
     }
 
+    //@author: EO
     @Override
     //For future implementations
     public List getAllEntities() {
@@ -111,6 +117,7 @@ public class UserRepository implements IUserRepository {
         return userList;
     }
 
+    //@author: EO
     @Override
     public ArrayList<Customer> getAllCustomers() {
         con = DBConnector.getConnection();
@@ -131,6 +138,7 @@ public class UserRepository implements IUserRepository {
         return allCustomers;
     }
 
+    //@author: AC
     @Override
     public boolean create(Object entity) {
         con = DBConnector.getConnection();
@@ -155,6 +163,7 @@ public class UserRepository implements IUserRepository {
         return true;
     }
 
+    //@author: GH
     @Override
     //For future implementations
     public boolean delete(int ID) {

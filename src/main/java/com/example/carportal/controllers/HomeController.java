@@ -18,16 +18,19 @@ public class HomeController {
     private final UserService us = new UserService(new UserRepository());
     private final SessionService ss = new SessionService();
 
+    //@author: GH
     @GetMapping("/")
     public String landPage() {
         return "database";
     }
 
+    //@author: GH
     @GetMapping("/selectDb")
     public String chooseDb() {
         return "database";
     }
 
+    //@author: GH
     @PostMapping("/selectDb")
     public String chosenDb(WebRequest webrequest, HttpSession session, HttpServletRequest request) {
         int dbSource = Integer.parseInt(webrequest.getParameter("source"));
@@ -37,6 +40,7 @@ public class HomeController {
         return "redirect:/index";
     }
 
+    //@author: GH
     @GetMapping("/mainpage")
     public String index(HttpSession session, HttpServletRequest request, Model model) {
         ss.addListOfDamagesToSession(request);

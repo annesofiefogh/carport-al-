@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+//@author: MS
 public class CarTestRepository implements ICarRepository {
 
     ArrayList<Car> arrayList = new ArrayList<>(Arrays.asList(
@@ -52,11 +53,9 @@ public class CarTestRepository implements ICarRepository {
     @Override
     public boolean update(int ID) {
 
-
         for (Car car : arrayList) {
             if (ID == car.getCarID()) {
                 car.setAvailable(!car.isAvailable());
-
             }
         }
         return true;

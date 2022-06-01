@@ -1,5 +1,6 @@
 package com.example.carportal.models;
 
+//@author: AC
 public class Car {
 
     private int carID;
@@ -9,6 +10,7 @@ public class Car {
     private String colour;
     private boolean available;
 
+
     public Car(int carID, String chassisNumber, String make, String model, String colour, boolean available) {
         this.carID = carID;
         this.make = make;
@@ -16,7 +18,7 @@ public class Car {
         this.chassisNumber = chassisNumber;
         this.colour = colour;
         this.available = available;
-    } //TODO muligvis bruges i rapport til at redegøre for hvordan Car obj ser ud.At det er mindre end det burde være.
+    }
 
     public boolean isAvailable() {
         return available;
